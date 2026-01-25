@@ -14,15 +14,18 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-20">
         {/* Main Footer */}
         <div className="grid grid-cols-2 md:grid-cols-6 gap-12 mb-16">
-          {/* Brand - Much bigger logo */}
+          {/* Brand - Extra large logo */}
           <div className="col-span-2">
-            <a href="#" className="inline-block mb-8">
+            <a href="#" className="inline-block mb-6 group">
               <img 
                 src={koloroweyLogo} 
                 alt="Kolorowey" 
-                className="h-20 w-auto brightness-0 invert"
+                className="h-24 w-auto brightness-0 invert transition-transform duration-300 group-hover:scale-105"
               />
             </a>
+            <p className="text-xs font-semibold tracking-widest text-background/40 uppercase mb-4">
+              AdTech Unfragmented
+            </p>
             <p className="text-background/50 text-sm mb-8 max-w-xs leading-relaxed">
               Unifying the global advertising ecosystem. Enterprise-grade infrastructure for the modern programmatic world.
             </p>
