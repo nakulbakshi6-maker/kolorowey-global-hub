@@ -41,12 +41,12 @@ const Header = () => {
             ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border border-border/50" 
             : ""
         }`}>
-          {/* Logo - Much bigger */}
-          <a href="#" className="flex items-center">
+          {/* Logo - Extra large */}
+          <a href="#" className="flex items-center group">
             <img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
-              className={`transition-all duration-300 ${isScrolled ? 'h-14' : 'h-20'} w-auto`}
+              className={`transition-all duration-500 ${isScrolled ? 'h-16' : 'h-24'} w-auto group-hover:scale-105`}
             />
           </a>
 
