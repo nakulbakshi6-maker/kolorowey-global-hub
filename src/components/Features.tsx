@@ -69,11 +69,11 @@ const Features = () => {
   return (
     <section id="platform" className="relative py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
-      <div className="absolute inset-0 dot-pattern opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-background" />
+      <div className="absolute inset-0 swiss-grid opacity-40" />
 
       <div className="relative z-10 container mx-auto px-6">
-        {/* Section Header - Editorial Style */}
+        {/* Section Header */}
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -81,10 +81,10 @@ const Features = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="premium-badge mb-6">
-              Platform Capabilities
+            <span className="editorial-badge mb-6">
+              Platform
             </span>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.05]">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1]">
               Infrastructure
               <br />
               <span className="gradient-text italic">Built for Scale</span>
@@ -97,49 +97,53 @@ const Features = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-xl text-muted-foreground max-w-md leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
               Enterprise-grade advertising technology that unifies your entire
-              programmatic ecosystem with precision and elegance.
+              programmatic ecosystem with precision.
             </p>
           </motion.div>
         </div>
 
-        {/* Features Grid - Unique Asymmetric Layout */}
+        {/* Precision line */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="precision-line mb-16"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        />
+
+        {/* Features Grid */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className={`glass-card-hover p-8 group relative ${
-                index === 0 ? 'lg:col-span-2 lg:row-span-1' : ''
-              }`}
+              className="bg-card p-10 group hover:bg-secondary/30 transition-colors duration-500 relative"
             >
-              {/* Editorial Number */}
-              <span className="absolute top-6 right-6 text-6xl font-serif italic text-muted-foreground/10 group-hover:text-primary/10 transition-colors duration-500">
+              {/* Number */}
+              <span className="absolute top-8 right-8 text-5xl font-serif italic text-border group-hover:text-primary/20 transition-colors duration-500">
                 {feature.number}
               </span>
 
-              {/* Icon Container */}
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                <feature.icon className="w-7 h-7 text-primary" />
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-sm bg-accent flex items-center justify-center mb-8 group-hover:bg-primary transition-colors duration-300">
+                <feature.icon className="w-6 h-6 text-accent-foreground" />
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-serif text-foreground mb-3">
+              <h3 className="text-xl font-serif text-foreground mb-3">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.description}
               </p>
-
-              {/* Hover accent line */}
-              <div className="absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </motion.div>
           ))}
         </motion.div>

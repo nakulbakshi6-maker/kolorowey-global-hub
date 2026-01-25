@@ -59,8 +59,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,29 +77,24 @@ export default {
           to: { height: "0" },
         },
         "float": {
-          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
-          "50%": { transform: "translateY(-20px) rotate(3deg)" },
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-15px)" },
         },
         "pulse-subtle": {
-          "0%, 100%": { opacity: "0.5", transform: "scale(1)" },
-          "50%": { opacity: "1", transform: "scale(1.1)" },
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
         },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "morph": {
-          "0%, 100%": { borderRadius: "60% 40% 30% 70%/60% 30% 70% 40%" },
-          "50%": { borderRadius: "30% 60% 70% 40%/50% 60% 30% 60%" },
+        "reveal-line": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 8s ease-in-out infinite",
-        "pulse-subtle": "pulse-subtle 4s ease-in-out infinite",
-        "spin-slow": "spin-slow 20s linear infinite",
-        "morph": "morph 8s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-subtle": "pulse-subtle 3s ease-in-out infinite",
+        "reveal-line": "reveal-line 1s ease-out forwards",
       },
     },
   },
