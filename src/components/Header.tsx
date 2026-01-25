@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
@@ -17,62 +17,69 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Platform", href: "#platform", hasDropdown: true },
-    { label: "Solutions", href: "#solutions", hasDropdown: true },
+    { label: "Platform", href: "#platform" },
+    { label: "Solutions", href: "#solutions" },
     { label: "Partners", href: "#partners" },
-    { label: "Resources", href: "#resources", hasDropdown: true },
+    { label: "Company", href: "#about" },
   ];
 
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-sm py-3"
-          : "bg-transparent py-5"
+          ? "py-3"
+          : "py-6"
       }`}
     >
+      {/* Floating header container */}
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo - Made bigger */}
+        <div className={`flex items-center justify-between transition-all duration-500 ${
+          isScrolled 
+            ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border border-border/50" 
+            : ""
+        }`}>
+          {/* Logo - Much bigger */}
           <a href="#" className="flex items-center">
             <img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
-              className="h-16 w-auto"
+              className={`transition-all duration-300 ${isScrolled ? 'h-14' : 'h-20'} w-auto`}
             />
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Center Navigation - Pill style */}
+          <nav className={`hidden lg:flex items-center gap-1 ${
+            !isScrolled ? "bg-card/80 backdrop-blur-lg rounded-full px-2 py-2 shadow-md border border-border/30" : ""
+          }`}>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
+                className="px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-all duration-200"
               >
                 {link.label}
-                {link.hasDropdown && <ChevronDown className="w-4 h-4" />}
               </a>
             ))}
           </nav>
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="font-semibold">
+            <a href="#" className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors link-underline py-2">
               Sign In
-            </Button>
-            <Button size="sm" className="font-semibold">
-              Request Demo
+            </a>
+            <Button className="rounded-full px-6 font-semibold group">
+              Get Started
+              <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground rounded-lg hover:bg-secondary"
+            className="lg:hidden p-3 text-foreground rounded-full hover:bg-secondary transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -82,33 +89,32 @@ const Header = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden"
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden mt-4 bg-card rounded-2xl shadow-xl border border-border overflow-hidden"
             >
-              <nav className="py-6 space-y-1 border-t border-border mt-4">
+              <nav className="p-4 space-y-1">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.label}
                     href={link.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center justify-between px-4 py-3 text-foreground hover:bg-secondary rounded-lg transition-colors font-medium"
+                    transition={{ delay: index * 0.05 }}
+                    className="block px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
-                    {link.hasDropdown && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                   </motion.a>
                 ))}
-                <div className="flex flex-col gap-3 pt-4 px-4">
-                  <Button variant="outline" className="w-full justify-center h-11 font-semibold">
+                <div className="pt-4 px-4 space-y-3">
+                  <Button variant="outline" className="w-full justify-center h-12 rounded-xl font-semibold">
                     Sign In
                   </Button>
-                  <Button className="w-full justify-center h-11 font-semibold">
-                    Request Demo
+                  <Button className="w-full justify-center h-12 rounded-xl font-semibold">
+                    Get Started
                   </Button>
                 </div>
               </nav>
