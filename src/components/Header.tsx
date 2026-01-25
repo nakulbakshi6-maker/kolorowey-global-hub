@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,11 +33,8 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">K</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Kolorowey</span>
+          <a href="#" className="flex items-center">
+            <img src={koloroweyLogo} alt="Kolorowey" className="h-8 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
