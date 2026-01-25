@@ -1,4 +1,4 @@
-import { Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { Linkedin, Twitter } from "lucide-react";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
@@ -10,9 +10,9 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-background to-muted/30 border-t border-border/30">
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <footer className="relative bg-accent text-accent-foreground">
+      {/* Top gold line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-primary/50" />
       
       <div className="container mx-auto px-6 py-20">
         {/* Main Footer Content */}
@@ -20,24 +20,24 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2">
             <a href="#" className="inline-block mb-8">
-              <img src={koloroweyLogo} alt="Kolorowey" className="h-10 w-auto" />
+              <img src={koloroweyLogo} alt="Kolorowey" className="h-12 w-auto brightness-0 invert" />
             </a>
-            <p className="text-muted-foreground mb-8 max-w-xs leading-relaxed">
+            <p className="text-accent-foreground/60 mb-8 max-w-xs text-sm leading-relaxed">
               Unifying the global advertising ecosystem. Beyond the walled gardens, towards a connected future.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+                className="w-10 h-10 border border-accent-foreground/20 flex items-center justify-center text-accent-foreground/60 hover:text-primary hover:border-primary transition-all duration-300"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+                className="w-10 h-10 border border-accent-foreground/20 flex items-center justify-center text-accent-foreground/60 hover:text-primary hover:border-primary transition-all duration-300"
               >
-                <Twitter className="w-5 h-5" />
+                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -45,7 +45,7 @@ const Footer = () => {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-medium text-foreground mb-5 text-sm uppercase tracking-wider">
+              <h4 className="font-semibold text-accent-foreground mb-5 text-xs uppercase tracking-[0.2em]">
                 {category}
               </h4>
               <ul className="space-y-3">
@@ -53,10 +53,9 @@ const Footer = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-accent-foreground/50 hover:text-primary transition-colors"
                     >
                       {link}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
                     </a>
                   </li>
                 ))}
@@ -66,8 +65,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-muted-foreground">
+        <div className="pt-8 border-t border-accent-foreground/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-xs text-accent-foreground/40">
             © 2025 Kolorowey. All rights reserved.
           </p>
           <div className="flex items-center gap-8">
@@ -75,7 +74,7 @@ const Footer = () => {
               <a 
                 key={item}
                 href="#" 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors flowing-underline"
+                className="text-xs text-accent-foreground/40 hover:text-primary transition-colors"
               >
                 {item}
               </a>

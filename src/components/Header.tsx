@@ -19,7 +19,7 @@ const Header = () => {
   const navLinks = [
     { label: "Platform", href: "#platform" },
     { label: "Solutions", href: "#solutions" },
-    { label: "Partnerships", href: "#partnerships" },
+    { label: "Partners", href: "#partners" },
     { label: "About", href: "#about" },
   ];
 
@@ -30,8 +30,8 @@ const Header = () => {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-2xl border-b border-border/50 py-3"
-          : "bg-transparent py-5"
+          ? "bg-background/95 backdrop-blur-xl border-b border-border py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -41,32 +41,36 @@ const Header = () => {
             <motion.img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
-              className="h-12 w-auto"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="h-14 w-auto"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400 }}
             />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="relative px-5 py-2.5 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
+                className="swiss-underline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 {link.label}
-                <span className="absolute bottom-1 left-5 right-5 h-0.5 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             ))}
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="font-medium">
+          <div className="hidden md:flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              className="text-sm font-medium h-10 px-5"
+            >
               Sign In
             </Button>
-            <Button variant="hero" size="sm">
+            <Button 
+              className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm font-medium h-10 px-6 rounded-sm"
+            >
               Get Started
             </Button>
           </div>
@@ -90,7 +94,7 @@ const Header = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <nav className="py-8 space-y-2">
+              <nav className="py-8 space-y-1">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.label}
@@ -98,17 +102,17 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="block px-4 py-3 text-foreground hover:text-primary transition-colors text-lg font-medium"
+                    className="block px-4 py-3 text-foreground hover:text-primary transition-colors text-lg font-medium border-b border-border/50"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
                   </motion.a>
                 ))}
                 <div className="flex flex-col gap-3 pt-6 px-4">
-                  <Button variant="ghost" className="w-full justify-center">
+                  <Button variant="outline" className="w-full justify-center h-12 rounded-sm">
                     Sign In
                   </Button>
-                  <Button variant="hero" className="w-full justify-center">
+                  <Button className="w-full justify-center h-12 bg-accent text-accent-foreground rounded-sm">
                     Get Started
                   </Button>
                 </div>
