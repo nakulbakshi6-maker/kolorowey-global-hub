@@ -1,4 +1,5 @@
 import { Linkedin, Twitter } from "lucide-react";
+import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
   Platform: ["Overview", "Features", "Integrations", "Pricing", "Changelog"],
@@ -15,11 +16,8 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">K</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">Kolorowey</span>
+            <a href="#" className="flex items-center mb-6">
+              <img src={koloroweyLogo} alt="Kolorowey" className="h-8 w-auto" />
             </a>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
               Unifying the global advertising ecosystem. Beyond the walled gardens.

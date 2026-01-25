@@ -16,9 +16,9 @@
     --popover: 220 25% 8%;
     --popover-foreground: 210 20% 98%;
 
-    /* Blue-Teal Primary */
-    --primary: 195 85% 55%;
-    --primary-foreground: 220 25% 6%;
+    /* Magenta-Purple Primary (from logo) */
+    --primary: 300 65% 55%;
+    --primary-foreground: 220 25% 98%;
 
     /* Subtle Secondary */
     --secondary: 220 20% 14%;
@@ -27,8 +27,8 @@
     --muted: 220 20% 12%;
     --muted-foreground: 215 15% 55%;
 
-    /* Teal Accent */
-    --accent: 185 75% 45%;
+    /* Blue-Cyan Accent (from logo) */
+    --accent: 200 85% 55%;
     --accent-foreground: 220 25% 6%;
 
     --destructive: 0 72% 51%;
@@ -36,34 +36,34 @@
 
     --border: 220 20% 15%;
     --input: 220 20% 15%;
-    --ring: 195 85% 55%;
+    --ring: 300 65% 55%;
 
     --radius: 0.75rem;
 
-    /* Custom Gradient Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(195 85% 55%) 0%, hsl(175 70% 45%) 100%);
+    /* Custom Gradient Tokens - Magenta to Blue (matching logo) */
+    --gradient-primary: linear-gradient(135deg, hsl(300 65% 55%) 0%, hsl(200 85% 55%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(220 25% 12%) 0%, hsl(220 30% 8%) 100%);
-    --gradient-glow: radial-gradient(ellipse at center, hsl(195 85% 55% / 0.15) 0%, transparent 70%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(195 85% 55% / 0.12) 0px, transparent 50%),
-                     radial-gradient(at 80% 0%, hsl(175 70% 45% / 0.1) 0px, transparent 50%),
-                     radial-gradient(at 0% 50%, hsl(210 80% 50% / 0.08) 0px, transparent 50%),
-                     radial-gradient(at 80% 50%, hsl(185 75% 45% / 0.08) 0px, transparent 50%),
-                     radial-gradient(at 0% 100%, hsl(195 85% 55% / 0.1) 0px, transparent 50%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(300 65% 55% / 0.15) 0%, transparent 70%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(300 65% 55% / 0.12) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(200 85% 55% / 0.1) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(260 70% 50% / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 80% 50%, hsl(200 85% 55% / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 0% 100%, hsl(300 65% 55% / 0.1) 0px, transparent 50%);
 
     /* Shadow Tokens */
-    --shadow-glow: 0 0 60px -12px hsl(195 85% 55% / 0.35);
+    --shadow-glow: 0 0 60px -12px hsl(280 70% 55% / 0.35);
     --shadow-card: 0 4px 24px -4px hsl(220 25% 2% / 0.5);
     --shadow-elevated: 0 8px 40px -8px hsl(220 25% 2% / 0.6);
 
     /* Sidebar */
     --sidebar-background: 220 25% 8%;
     --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 195 85% 55%;
-    --sidebar-primary-foreground: 220 25% 6%;
+    --sidebar-primary: 300 65% 55%;
+    --sidebar-primary-foreground: 220 25% 98%;
     --sidebar-accent: 220 20% 14%;
     --sidebar-accent-foreground: 210 20% 90%;
     --sidebar-border: 220 20% 15%;
-    --sidebar-ring: 195 85% 55%;
+    --sidebar-ring: 300 65% 55%;
   }
 }
 
@@ -96,7 +96,7 @@
 
   .glass-card-hover:hover {
     @apply border-primary/30 bg-card/80;
-    box-shadow: var(--shadow-elevated), 0 0 40px -10px hsl(195 85% 55% / 0.2);
+    box-shadow: var(--shadow-elevated), 0 0 40px -10px hsl(280 70% 55% / 0.2);
   }
 
   /* Gradient Text */
