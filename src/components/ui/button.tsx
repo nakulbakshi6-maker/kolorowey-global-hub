@@ -9,24 +9,22 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-sm",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-sm",
-        outline: "border border-border bg-transparent hover:bg-secondary hover:text-secondary-foreground rounded-sm",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-sm",
-        ghost: "hover:bg-secondary hover:text-secondary-foreground rounded-sm",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 font-mono",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-border bg-transparent hover:bg-secondary hover:text-foreground font-mono",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 font-mono",
+        ghost: "hover:bg-secondary hover:text-foreground font-mono",
         link: "text-primary underline-offset-4 hover:underline",
-        // Dark luxury button
-        hero: "bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-sm",
-        // Clean outline
-        "hero-outline": "border border-foreground/20 bg-transparent text-foreground hover:border-foreground/40 rounded-sm",
-        // Subtle glass
-        glass: "bg-secondary/50 backdrop-blur-sm border border-border text-foreground hover:bg-secondary rounded-sm",
+        // Neon button
+        neon: "bg-primary text-primary-foreground hover:shadow-[0_0_20px_hsl(180_100%_50%/0.5)] font-mono tracking-wider",
+        // Outline with neon hover
+        "neon-outline": "border border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:border-primary font-mono tracking-wider",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 px-4",
-        lg: "h-12 px-8 text-base",
-        xl: "h-14 px-10 text-base",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-12 px-8",
+        xl: "h-14 px-10",
         icon: "h-10 w-10",
       },
     },

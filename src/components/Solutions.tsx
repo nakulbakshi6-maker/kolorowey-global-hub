@@ -1,30 +1,27 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const solutions = [
   {
-    title: "Publishers",
-    subtitle: "Maximize Revenue",
-    description:
-      "Maximize yield with header bidding, unified auctions, and direct demand partnerships. Take control of your inventory.",
-    features: ["Header Bidding", "Yield Optimization", "Floor Price Management", "Direct Deals"],
-    number: "01",
+    title: "PUBLISHERS",
+    subtitle: "yield.maximize()",
+    description: "Header bidding, unified auctions, and direct demand partnerships.",
+    features: ["Header Bidding", "Yield Opt", "Floor Mgmt", "Direct Deals"],
+    status: "ACTIVE",
   },
   {
-    title: "Advertisers",
-    subtitle: "Reach Audiences",
-    description:
-      "Reach your audience across premium inventory with advanced targeting, brand safety, and transparent measurement.",
-    features: ["Audience Targeting", "Brand Safety", "Cross-Device", "Attribution"],
-    number: "02",
+    title: "ADVERTISERS",
+    subtitle: "audience.reach()",
+    description: "Premium inventory with advanced targeting and brand safety.",
+    features: ["Targeting", "Brand Safety", "Cross-Device", "Attribution"],
+    status: "ACTIVE",
   },
   {
-    title: "Agencies",
-    subtitle: "Scale Campaigns",
-    description:
-      "Manage campaigns at scale with white-label solutions, unified reporting, and automated optimization.",
-    features: ["Campaign Management", "White-Label", "Bulk Operations", "Client Reporting"],
-    number: "03",
+    title: "AGENCIES",
+    subtitle: "campaigns.scale()",
+    description: "White-label solutions with unified reporting and automation.",
+    features: ["Campaign Mgmt", "White-Label", "Bulk Ops", "Reporting"],
+    status: "ACTIVE",
   },
 ];
 
@@ -32,71 +29,65 @@ const Solutions = () => {
   return (
     <section id="solutions" className="relative py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-card" />
+      <div className="absolute inset-0 data-stream opacity-30" />
 
       <div className="relative z-10 container mx-auto px-6">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div 
-          className="max-w-4xl mb-16"
+          className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="editorial-badge mb-6">
-            Solutions
+          <span className="terminal-badge mb-6">
+            <span className="text-accent">$</span> SOLUTION_TYPES
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6">
-            Tailored for Every
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground mb-4">
+            TAILORED_FOR
             <br />
-            <span className="gradient-text italic">Partner</span>
+            <span className="neon-text">EVERY_PARTNER</span>
           </h2>
         </motion.div>
 
-        {/* Solutions Cards */}
+        {/* Solutions */}
         <div className="space-y-4">
           {solutions.map((solution, index) => (
             <motion.div
               key={solution.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <div className="swiss-card-hover overflow-hidden">
-                <div className="grid md:grid-cols-12 gap-6 p-8 md:p-10">
-                  {/* Number */}
-                  <div className="md:col-span-1 flex items-start">
-                    <span className="luxury-number text-4xl">
-                      {solution.number}
-                    </span>
-                  </div>
-
+              <div className="terminal-card-hover overflow-hidden">
+                <div className="grid md:grid-cols-12 gap-6 p-6 md:p-8">
                   {/* Title */}
                   <div className="md:col-span-3">
-                    <h3 className="text-2xl md:text-3xl font-serif text-foreground mb-1">
+                    <h3 className="text-xl font-mono font-bold text-foreground group-hover:text-primary transition-colors">
                       {solution.title}
                     </h3>
-                    <p className="text-primary text-sm font-semibold uppercase tracking-wider">
+                    <p className="text-sm font-mono text-accent">
                       {solution.subtitle}
                     </p>
                   </div>
 
                   {/* Description */}
                   <div className="md:col-span-4">
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {solution.description}
                     </p>
                   </div>
 
                   {/* Features */}
-                  <div className="md:col-span-3">
+                  <div className="md:col-span-4">
                     <div className="flex flex-wrap gap-2">
                       {solution.features.map((feature) => (
                         <span
                           key={feature}
-                          className="px-3 py-1.5 bg-secondary text-secondary-foreground text-xs font-medium rounded-sm"
+                          className="px-2 py-1 bg-secondary border border-border text-xs font-mono text-muted-foreground"
                         >
                           {feature}
                         </span>
@@ -104,17 +95,19 @@ const Solutions = () => {
                     </div>
                   </div>
 
-                  {/* Arrow */}
-                  <div className="md:col-span-1 flex items-center justify-end">
-                    <div className="w-10 h-10 rounded-sm border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary transition-all duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors duration-300" />
-                    </div>
+                  {/* Status & Arrow */}
+                  <div className="md:col-span-1 flex items-center justify-end gap-3">
+                    <span className="text-xs font-mono text-primary flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      {solution.status}
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
 
-                {/* Bottom border accent */}
+                {/* Progress bar */}
                 <div className="h-0.5 bg-border">
-                  <div className="h-full bg-primary w-0 group-hover:w-full transition-all duration-500" />
+                  <div className="h-full bg-gradient-to-r from-primary to-accent w-0 group-hover:w-full transition-all duration-700" />
                 </div>
               </div>
             </motion.div>
