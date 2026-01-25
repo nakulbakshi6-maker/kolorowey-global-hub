@@ -1,8 +1,8 @@
-import { Linkedin, Twitter, Youtube } from "lucide-react";
+import { Linkedin, Twitter, Youtube, ArrowUpRight } from "lucide-react";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
-  Platform: ["Overview", "Features", "Integrations", "Pricing", "API Docs"],
+  Platform: ["Overview", "Features", "Integrations", "API Docs", "Pricing"],
   Solutions: ["Publishers", "Advertisers", "Agencies", "Enterprise"],
   Resources: ["Blog", "Case Studies", "Webinars", "Documentation"],
   Company: ["About Us", "Careers", "Press", "Contact"],
@@ -11,30 +11,34 @@ const footerLinks = {
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-6 py-20">
         {/* Main Footer */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-12">
-          {/* Brand - Bigger logo */}
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-12 mb-16">
+          {/* Brand - Much bigger logo */}
           <div className="col-span-2">
-            <a href="#" className="inline-block mb-6">
+            <a href="#" className="inline-block mb-8">
               <img 
                 src={koloroweyLogo} 
                 alt="Kolorowey" 
-                className="h-16 w-auto brightness-0 invert"
+                className="h-20 w-auto brightness-0 invert"
               />
             </a>
-            <p className="text-background/60 text-sm mb-6 max-w-xs leading-relaxed">
+            <p className="text-background/50 text-sm mb-8 max-w-xs leading-relaxed">
               Unifying the global advertising ecosystem. Enterprise-grade infrastructure for the modern programmatic world.
             </p>
             {/* Social */}
             <div className="flex gap-3">
-              {[Linkedin, Twitter, Youtube].map((Icon, index) => (
+              {[
+                { icon: Linkedin, href: "#" },
+                { icon: Twitter, href: "#" },
+                { icon: Youtube, href: "#" },
+              ].map((social, index) => (
                 <a
                   key={index}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center text-background/60 hover:bg-background/20 hover:text-background transition-colors"
+                  href={social.href}
+                  className="w-11 h-11 rounded-full bg-background/5 flex items-center justify-center text-background/50 hover:bg-background/10 hover:text-background transition-colors"
                 >
-                  <Icon className="w-4 h-4" />
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -43,7 +47,7 @@ const Footer = () => {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-semibold text-background mb-4 text-sm">
+              <h4 className="font-semibold text-background mb-5 text-sm">
                 {category}
               </h4>
               <ul className="space-y-3">
@@ -51,9 +55,10 @@ const Footer = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-background/50 hover:text-background transition-colors"
+                      className="group inline-flex items-center gap-1 text-sm text-background/40 hover:text-background transition-colors"
                     >
                       {link}
+                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
                   </li>
                 ))}
@@ -64,15 +69,15 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-background/40">
+          <p className="text-sm text-background/30">
             © 2025 Kolorowey. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((item) => (
+          <div className="flex items-center gap-8">
+            {["Privacy", "Terms", "Cookies"].map((item) => (
               <a 
                 key={item}
                 href="#" 
-                className="text-sm text-background/40 hover:text-background transition-colors"
+                className="text-sm text-background/30 hover:text-background/60 transition-colors"
               >
                 {item}
               </a>

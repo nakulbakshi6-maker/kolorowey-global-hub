@@ -8,64 +8,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Kolorowey - Professional AdTech Aesthetic (Nexxen/Pubmatic/TTD/Google inspired) */
+/* Kolorowey - Distinctive Premium AdTech (Light & Unique) */
 
 @layer base {
   :root {
-    /* Clean white base */
-    --background: 0 0% 100%;
-    --foreground: 220 20% 14%;
+    /* Warm white base with subtle warmth */
+    --background: 40 30% 99%;
+    --foreground: 240 20% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 14%;
+    --card-foreground: 240 20% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 14%;
+    --popover-foreground: 240 20% 16%;
 
-    /* Professional Blue primary (similar to TTD/Google) */
-    --primary: 230 85% 55%;
+    /* Deep Indigo primary - sophisticated tech */
+    --primary: 245 70% 55%;
     --primary-foreground: 0 0% 100%;
 
-    /* Light gray surfaces */
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 25%;
+    /* Warm cream secondary */
+    --secondary: 40 25% 95%;
+    --secondary-foreground: 240 15% 30%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 40 20% 96%;
+    --muted-foreground: 240 10% 50%;
 
-    /* Vibrant accent (similar to Pubmatic/Nexxen orange-coral) */
-    --accent: 16 90% 55%;
+    /* Coral accent - energetic and distinctive */
+    --accent: 12 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 14% 90%;
-    --input: 220 14% 90%;
-    --ring: 230 85% 55%;
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 245 70% 55%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Professional Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(230 85% 55%) 0%, hsl(260 75% 60%) 50%, hsl(280 70% 55%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(220 20% 98%) 0%, hsl(0 0% 100%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 20% 98%) 100%);
+    /* Refined Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(245 70% 55%) 0%, hsl(280 60% 55%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(12 85% 60%) 0%, hsl(35 90% 55%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(40 30% 99%) 0%, hsl(40 25% 97%) 100%);
 
-    /* Clean Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 20% 14% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(220 20% 14% / 0.07), 0 2px 4px -2px hsl(220 20% 14% / 0.05);
-    --shadow-lg: 0 10px 15px -3px hsl(220 20% 14% / 0.08), 0 4px 6px -4px hsl(220 20% 14% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(220 20% 14% / 0.1), 0 8px 10px -6px hsl(220 20% 14% / 0.05);
+    /* Elegant Shadows */
+    --shadow-sm: 0 1px 3px 0 hsl(240 20% 16% / 0.04);
+    --shadow-md: 0 4px 12px -2px hsl(240 20% 16% / 0.06);
+    --shadow-lg: 0 12px 32px -4px hsl(240 20% 16% / 0.08);
+    --shadow-xl: 0 24px 48px -8px hsl(240 20% 16% / 0.1);
+    --shadow-glow: 0 0 40px -10px hsl(245 70% 55% / 0.25);
 
     /* Sidebar */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 20% 25%;
-    --sidebar-primary: 230 85% 55%;
+    --sidebar-background: 40 30% 99%;
+    --sidebar-foreground: 240 15% 30%;
+    --sidebar-primary: 245 70% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 220 20% 25%;
-    --sidebar-border: 220 14% 90%;
-    --sidebar-ring: 230 85% 55%;
+    --sidebar-accent: 40 25% 95%;
+    --sidebar-accent-foreground: 240 15% 30%;
+    --sidebar-border: 40 15% 90%;
+    --sidebar-ring: 245 70% 55%;
   }
 }
 
@@ -84,32 +85,30 @@
   }
 
   ::selection {
-    background: hsl(230 85% 55% / 0.15);
-    color: hsl(230 85% 45%);
+    background: hsl(245 70% 55% / 0.15);
+    color: hsl(245 70% 45%);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 }
 
 @layer components {
-  /* Professional Card */
-  .pro-card {
-    @apply bg-card rounded-xl border border-border;
-    box-shadow: var(--shadow-md);
+  /* Elevated Card */
+  .elevated-card {
+    @apply bg-card rounded-2xl border border-border/50;
+    box-shadow: var(--shadow-lg);
   }
 
-  .pro-card-hover {
-    @apply pro-card transition-all duration-300;
+  .elevated-card-hover {
+    @apply elevated-card transition-all duration-400;
   }
 
-  .pro-card-hover:hover {
-    @apply border-primary/20;
+  .elevated-card-hover:hover {
     box-shadow: var(--shadow-xl);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
   }
 
   /* Gradient Text */
@@ -118,44 +117,62 @@
     background-image: var(--gradient-hero);
   }
 
-  /* Professional Badge */
-  .pro-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
-    @apply bg-primary/10 text-primary;
+  .gradient-text-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-warm);
   }
 
-  /* Stats highlight */
-  .stat-value {
-    @apply text-4xl md:text-5xl font-extrabold tracking-tight;
+  /* Pill Badge */
+  .pill-badge {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold;
+    @apply text-primary border;
+    background: hsl(245 70% 55% / 0.08);
+    border-color: hsl(245 70% 55% / 0.15);
+  }
+
+  /* Stat Number */
+  .stat-number {
+    @apply text-5xl md:text-6xl font-extrabold tracking-tight;
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Subtle grid pattern */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(hsl(220 14% 90% / 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(220 14% 90% / 0.5) 1px, transparent 1px);
-    background-size: 64px 64px;
+  /* Floating shapes */
+  .float-shape {
+    @apply absolute rounded-full opacity-60;
+    background: var(--gradient-hero);
+    filter: blur(80px);
   }
 
-  /* Dot pattern */
-  .dot-pattern {
-    background-image: radial-gradient(hsl(220 14% 80% / 0.4) 1px, transparent 1px);
-    background-size: 20px 20px;
+  /* Underline link */
+  .link-underline {
+    @apply relative;
   }
 
-  /* Feature icon container */
-  .feature-icon {
-    @apply w-12 h-12 rounded-xl flex items-center justify-center;
-    @apply bg-gradient-to-br from-primary/10 to-primary/5;
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Feature card icon */
+  .icon-wrap {
+    @apply w-14 h-14 rounded-2xl flex items-center justify-center;
+    background: linear-gradient(135deg, hsl(245 70% 55% / 0.1) 0%, hsl(280 60% 55% / 0.05) 100%);
   }
 
   /* Marquee */
   .marquee {
-    animation: marquee 35s linear infinite;
+    animation: marquee 40s linear infinite;
   }
 
   @keyframes marquee {
@@ -166,20 +183,20 @@
   /* Stagger animation */
   .stagger-children > * {
     opacity: 0;
-    animation: fade-slide-in 0.6s ease-out forwards;
+    animation: stagger-in 0.5s ease-out forwards;
   }
 
   .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-children > *:nth-child(2) { animation-delay: 100ms; }
-  .stagger-children > *:nth-child(3) { animation-delay: 200ms; }
-  .stagger-children > *:nth-child(4) { animation-delay: 300ms; }
-  .stagger-children > *:nth-child(5) { animation-delay: 400ms; }
-  .stagger-children > *:nth-child(6) { animation-delay: 500ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 400ms; }
 
-  @keyframes fade-slide-in {
+  @keyframes stagger-in {
     from {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
@@ -193,11 +210,6 @@
     animation: fade-in-up 0.6s ease-out forwards;
     opacity: 0;
   }
-
-  .animation-delay-100 { animation-delay: 100ms; }
-  .animation-delay-200 { animation-delay: 200ms; }
-  .animation-delay-300 { animation-delay: 300ms; }
-  .animation-delay-400 { animation-delay: 400ms; }
 
   .text-balance {
     text-wrap: balance;
@@ -215,21 +227,22 @@
   }
 }
 
-/* Clean Scrollbar */
+/* Refined Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(220 14% 96%);
+  background: hsl(40 25% 96%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(220 14% 80%);
-  border-radius: 4px;
+  background: hsl(240 10% 80%);
+  border-radius: 5px;
+  border: 2px solid hsl(40 25% 96%);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(230 85% 55%);
+  background: hsl(245 70% 55%);
 }
