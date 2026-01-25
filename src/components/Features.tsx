@@ -4,121 +4,82 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: Layers,
-    title: "UNIFIED_STACK",
-    description: "One platform connecting DSPs, SSPs, ad exchanges, and data partners.",
-    code: "0x01",
+    title: "Unified Stack",
+    description: "One platform connecting DSPs, SSPs, ad exchanges, and data partners seamlessly.",
   },
   {
     icon: Globe,
-    title: "GLOBAL_REACH",
+    title: "Global Scale",
     description: "Access inventory across 180+ countries with localized optimization.",
-    code: "0x02",
   },
   {
     icon: Zap,
-    title: "REALTIME_RTB",
-    description: "Sub-10ms latency RTB infrastructure processing 50B+ daily requests.",
-    code: "0x03",
+    title: "Real-Time Bidding",
+    description: "Sub-10ms latency infrastructure processing 50B+ daily requests.",
   },
   {
     icon: Shield,
-    title: "PRIVACY_FIRST",
-    description: "GDPR, CCPA compliance with cookieless identity solutions.",
-    code: "0x04",
+    title: "Privacy-First",
+    description: "GDPR, CCPA compliance with cookieless identity solutions built-in.",
   },
   {
     icon: BarChart3,
-    title: "ML_ANALYTICS",
+    title: "Advanced Analytics",
     description: "Cross-platform attribution and predictive insights powered by ML.",
-    code: "0x05",
   },
   {
     icon: Workflow,
-    title: "OPEN_ECOSYSTEM",
-    description: "API-first architecture with 200+ pre-built integrations.",
-    code: "0x06",
+    title: "Open APIs",
+    description: "200+ pre-built integrations with full API access for custom workflows.",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 const Features = () => {
   return (
-    <section id="platform" className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 terminal-grid opacity-30" />
-
-      <div className="relative z-10 container mx-auto px-6">
+    <section id="platform" className="relative py-24 md:py-32 bg-background">
+      <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <span className="terminal-badge mb-6">
-            <span className="text-accent">$</span> PLATFORM_MODULES
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground mb-4">
-            INFRASTRUCTURE
+          <span className="pro-badge mb-4">Platform</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+            Everything you need to
             <br />
-            <span className="neon-text">BUILT_FOR_SCALE</span>
+            <span className="gradient-text">scale advertising</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl font-mono text-sm">
-            <span className="text-primary">&gt;</span> Enterprise-grade advertising technology stack
+          <p className="text-lg text-muted-foreground">
+            Enterprise-grade infrastructure built for the modern programmatic ecosystem.
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {features.map((feature) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              variants={itemVariants}
-              className="terminal-card-hover p-6 group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="pro-card-hover p-8"
             >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
-                  <feature.icon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="text-xs font-mono text-muted-foreground">
-                  {feature.code}
-                </span>
+              <div className="feature-icon mb-5">
+                <feature.icon className="w-6 h-6 text-primary" />
               </div>
-
-              {/* Content */}
-              <h3 className="text-base font-mono font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {feature.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
-
-              {/* Bottom accent */}
-              <div className="mt-6 h-px bg-border group-hover:bg-primary/50 transition-colors duration-300" />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

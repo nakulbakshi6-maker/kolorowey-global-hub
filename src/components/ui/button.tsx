@@ -5,26 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 font-mono",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-transparent hover:bg-secondary hover:text-foreground font-mono",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 font-mono",
-        ghost: "hover:bg-secondary hover:text-foreground font-mono",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm rounded-lg",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-lg",
+        outline: "border border-border bg-background hover:bg-secondary hover:text-foreground rounded-lg",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg",
+        ghost: "hover:bg-secondary hover:text-foreground rounded-lg",
         link: "text-primary underline-offset-4 hover:underline",
-        // Neon button
-        neon: "bg-primary text-primary-foreground hover:shadow-[0_0_20px_hsl(180_100%_50%/0.5)] font-mono tracking-wider",
-        // Outline with neon hover
-        "neon-outline": "border border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:border-primary font-mono tracking-wider",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 px-4 text-xs",
-        lg: "h-12 px-8",
-        xl: "h-14 px-10",
+        sm: "h-9 px-4 text-sm",
+        lg: "h-11 px-6",
+        xl: "h-12 px-8",
         icon: "h-10 w-10",
       },
     },
