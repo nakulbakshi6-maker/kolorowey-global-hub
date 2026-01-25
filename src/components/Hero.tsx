@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -7,156 +7,136 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background">
-        {/* Swiss Grid */}
-        <div className="absolute inset-0 swiss-grid opacity-50" />
+        {/* Terminal Grid */}
+        <div className="absolute inset-0 terminal-grid opacity-60" />
         
-        {/* Accent shapes */}
+        {/* Scanline overlay */}
+        <div className="absolute inset-0 data-stream opacity-50" />
+        
+        {/* Neon glow orbs */}
         <motion.div 
-          className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, hsl(180 100% 50% / 0.1) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, hsl(320 100% 60% / 0.08) 0%, transparent 70%)' }}
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Vertical scan line */}
+        <motion.div 
+          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+          animate={{ top: ['0%', '100%'] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Left - Main Content */}
-          <div className="lg:col-span-7 lg:pt-12">
-            {/* Badge */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-10"
-            >
-              <span className="editorial-badge">
-                Global AdTech Infrastructure
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] tracking-tight mb-8">
-                <span className="text-foreground">Unified</span>
-                <br />
-                <span className="text-foreground">Advertising</span>
-                <br />
-                <span className="gradient-text italic font-normal">Infrastructure</span>
-              </h1>
-            </motion.div>
-
-            {/* Subline */}
-            <motion.p 
-              className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Kolorowey connects publishers, advertisers, and platforms through 
-              a single, enterprise-grade infrastructure. Beyond the walled gardens.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div 
-              className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Button 
-                className="h-14 px-8 bg-accent text-accent-foreground hover:bg-accent/90 rounded-sm font-medium text-base group"
-              >
-                Start Integration
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button 
-                variant="outline" 
-                className="h-14 px-8 border-foreground/20 hover:border-foreground/40 hover:bg-transparent rounded-sm font-medium text-base"
-              >
-                View Platform
-              </Button>
-            </motion.div>
-          </div>
-
-          {/* Right - Stats */}
+        <div className="max-w-5xl">
+          {/* Terminal-style badge */}
           <motion.div 
-            className="lg:col-span-5"
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
-            {/* Vertical label */}
-            <div className="hidden lg:flex items-start gap-8 mb-8">
-              <span className="vertical-text text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                Key Metrics
-              </span>
-              <div className="precision-line flex-1 mt-6" />
-            </div>
+            <span className="terminal-badge">
+              <Zap className="w-3 h-3" />
+              <span className="animate-flicker">SYSTEM_STATUS: ONLINE</span>
+            </span>
+          </motion.div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-px bg-border">
-              {[
-                { value: "50B+", label: "Daily Impressions", suffix: "processed" },
-                { value: "180+", label: "Countries", suffix: "connected" },
-                { value: "99.9%", label: "Uptime SLA", suffix: "guaranteed" },
-                { value: "<10ms", label: "Latency", suffix: "average" },
-              ].map((stat, index) => (
-                <motion.div 
-                  key={stat.label}
-                  className="bg-card p-8 group hover:bg-secondary/50 transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                >
-                  <div className="luxury-number text-4xl md:text-5xl mb-3">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm font-semibold text-foreground mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                    {stat.suffix}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          {/* Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6 font-display">
+              <span className="text-foreground">ADTECH</span>
+              <br />
+              <span className="neon-text">UNFRAGMENTED</span>
+              <span className="cursor-blink text-primary"></span>
+            </h1>
+          </motion.div>
 
-            {/* Bottom link */}
-            <motion.a
-              href="#platform"
-              className="flex items-center gap-2 mt-6 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+          {/* Subheadline */}
+          <motion.p 
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-4 font-mono"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <span className="text-primary">&gt;</span> Beyond the walled gardens
+          </motion.p>
+
+          <motion.p 
+            className="text-base text-muted-foreground/70 max-w-xl mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Kolorowey unifies the fragmented advertising ecosystem. Connect publishers, 
+            advertisers, and platforms through a single infrastructure.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div 
+            className="flex flex-wrap items-center gap-4 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Button 
+              className="h-12 px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm tracking-wider group"
             >
-              Explore our technology
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </motion.a>
+              INITIALIZE_
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button 
+              variant="outline" 
+              className="h-12 px-8 border-primary/30 text-primary hover:bg-primary/10 hover:border-primary font-mono text-sm tracking-wider"
+            >
+              VIEW_DOCS
+            </Button>
+          </motion.div>
+
+          {/* Stats - Terminal Style */}
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/50 max-w-3xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {[
+              { value: "50B+", label: "DAILY_REQUESTS" },
+              { value: "180+", label: "REGIONS" },
+              { value: "99.9%", label: "UPTIME" },
+              { value: "<10ms", label: "LATENCY" },
+            ].map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="terminal-card p-6 group"
+              >
+                <div className="code-number text-3xl md:text-4xl font-mono font-bold mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-muted-foreground font-mono tracking-wider">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom line */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1.5, delay: 0.8 }}
-          />
-        </div>
-      </div>
+      {/* Bottom neon line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-neon" />
     </section>
   );
 };

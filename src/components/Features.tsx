@@ -4,45 +4,39 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: Layers,
-    title: "Unified Stack",
-    description:
-      "One platform connecting DSPs, SSPs, ad exchanges, and data partners. No more fragmented integrations.",
-    number: "01",
+    title: "UNIFIED_STACK",
+    description: "One platform connecting DSPs, SSPs, ad exchanges, and data partners.",
+    code: "0x01",
   },
   {
     icon: Globe,
-    title: "Global Reach",
-    description:
-      "Access inventory across 180+ countries with localized optimization and compliance built-in.",
-    number: "02",
+    title: "GLOBAL_REACH",
+    description: "Access inventory across 180+ countries with localized optimization.",
+    code: "0x02",
   },
   {
     icon: Zap,
-    title: "Real-Time Bidding",
-    description:
-      "Sub-10ms latency RTB infrastructure processing 50+ billion requests daily at scale.",
-    number: "03",
+    title: "REALTIME_RTB",
+    description: "Sub-10ms latency RTB infrastructure processing 50B+ daily requests.",
+    code: "0x03",
   },
   {
     icon: Shield,
-    title: "Privacy-First",
-    description:
-      "GDPR, CCPA, and global privacy compliance with cookieless identity solutions.",
-    number: "04",
+    title: "PRIVACY_FIRST",
+    description: "GDPR, CCPA compliance with cookieless identity solutions.",
+    code: "0x04",
   },
   {
     icon: BarChart3,
-    title: "Advanced Analytics",
-    description:
-      "Cross-platform attribution, real-time reporting, and predictive insights powered by ML.",
-    number: "05",
+    title: "ML_ANALYTICS",
+    description: "Cross-platform attribution and predictive insights powered by ML.",
+    code: "0x05",
   },
   {
     icon: Workflow,
-    title: "Open Ecosystem",
-    description:
-      "API-first architecture with 200+ pre-built integrations and custom workflow automation.",
-    number: "06",
+    title: "OPEN_ECOSYSTEM",
+    description: "API-first architecture with 200+ pre-built integrations.",
+    code: "0x06",
   },
 ];
 
@@ -50,72 +44,47 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
-} as const;
+};
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-} as const;
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const Features = () => {
   return (
     <section id="platform" className="relative py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-background" />
-      <div className="absolute inset-0 swiss-grid opacity-40" />
+      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 terminal-grid opacity-30" />
 
       <div className="relative z-10 container mx-auto px-6">
-        {/* Section Header */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="editorial-badge mb-6">
-              Platform
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1]">
-              Infrastructure
-              <br />
-              <span className="gradient-text italic">Built for Scale</span>
-            </h2>
-          </motion.div>
-          <motion.div 
-            className="flex items-end"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-              Enterprise-grade advertising technology that unifies your entire
-              programmatic ecosystem with precision.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Precision line */}
-        <motion.div 
-          className="precision-line mb-16"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
+        {/* Header */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        />
+          transition={{ duration: 0.6 }}
+        >
+          <span className="terminal-badge mb-6">
+            <span className="text-accent">$</span> PLATFORM_MODULES
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground mb-4">
+            INFRASTRUCTURE
+            <br />
+            <span className="neon-text">BUILT_FOR_SCALE</span>
+          </h2>
+          <p className="text-muted-foreground max-w-xl font-mono text-sm">
+            <span className="text-primary">&gt;</span> Enterprise-grade advertising technology stack
+          </p>
+        </motion.div>
 
         {/* Features Grid */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -125,25 +94,28 @@ const Features = () => {
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="bg-card p-10 group hover:bg-secondary/30 transition-colors duration-500 relative"
+              className="terminal-card-hover p-6 group"
             >
-              {/* Number */}
-              <span className="absolute top-8 right-8 text-5xl font-serif italic text-border group-hover:text-primary/20 transition-colors duration-500">
-                {feature.number}
-              </span>
-
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-sm bg-accent flex items-center justify-center mb-8 group-hover:bg-primary transition-colors duration-300">
-                <feature.icon className="w-6 h-6 text-accent-foreground" />
+              {/* Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+                  <feature.icon className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-xs font-mono text-muted-foreground">
+                  {feature.code}
+                </span>
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-serif text-foreground mb-3">
+              <h3 className="text-base font-mono font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
+
+              {/* Bottom accent */}
+              <div className="mt-6 h-px bg-border group-hover:bg-primary/50 transition-colors duration-300" />
             </motion.div>
           ))}
         </motion.div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
@@ -17,10 +17,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Platform", href: "#platform" },
-    { label: "Solutions", href: "#solutions" },
-    { label: "Partners", href: "#partners" },
-    { label: "About", href: "#about" },
+    { label: "PLATFORM", href: "#platform" },
+    { label: "SOLUTIONS", href: "#solutions" },
+    { label: "NETWORK", href: "#partners" },
+    { label: "DOCS", href: "#about" },
   ];
 
   return (
@@ -30,55 +30,58 @@ const Header = () => {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-border py-4"
-          : "bg-transparent py-6"
+          ? "bg-background/90 backdrop-blur-xl border-b border-primary/20 py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center gap-3">
             <motion.img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
-              className="h-14 w-auto"
-              whileHover={{ scale: 1.02 }}
+              className="h-10 w-auto"
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="swiss-underline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+                className="relative px-4 py-2 text-xs font-mono text-muted-foreground hover:text-primary transition-colors duration-300 tracking-wider group"
               >
+                <span className="text-primary/50 mr-1">&gt;</span>
                 {link.label}
+                <span className="absolute bottom-1 left-4 right-4 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             ))}
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <Button 
               variant="ghost" 
-              className="text-sm font-medium h-10 px-5"
+              className="text-xs font-mono tracking-wider h-9"
             >
-              Sign In
+              <Terminal className="w-3 h-3 mr-1" />
+              LOGIN
             </Button>
             <Button 
-              className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm font-medium h-10 px-6 rounded-sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-mono tracking-wider h-9 px-5"
             >
-              Get Started
+              GET_ACCESS
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-primary"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -94,7 +97,7 @@ const Header = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <nav className="py-8 space-y-1">
+              <nav className="py-6 space-y-1 border-t border-border mt-4">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.label}
@@ -102,18 +105,19 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="block px-4 py-3 text-foreground hover:text-primary transition-colors text-lg font-medium border-b border-border/50"
+                    className="block px-4 py-3 text-foreground hover:text-primary transition-colors font-mono text-sm tracking-wider"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
+                    <span className="text-primary mr-2">&gt;</span>
                     {link.label}
                   </motion.a>
                 ))}
-                <div className="flex flex-col gap-3 pt-6 px-4">
-                  <Button variant="outline" className="w-full justify-center h-12 rounded-sm">
-                    Sign In
+                <div className="flex flex-col gap-3 pt-4 px-4">
+                  <Button variant="outline" className="w-full justify-center h-11 font-mono text-xs tracking-wider">
+                    LOGIN
                   </Button>
-                  <Button className="w-full justify-center h-12 bg-accent text-accent-foreground rounded-sm">
-                    Get Started
+                  <Button className="w-full justify-center h-11 bg-primary text-primary-foreground font-mono text-xs tracking-wider">
+                    GET_ACCESS
                   </Button>
                 </div>
               </nav>

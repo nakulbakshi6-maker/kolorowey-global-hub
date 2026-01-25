@@ -1,59 +1,56 @@
-import { Linkedin, Twitter } from "lucide-react";
+import { Linkedin, Twitter, Github } from "lucide-react";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
-  Platform: ["Overview", "Features", "Integrations", "Pricing", "Changelog"],
-  Solutions: ["Publishers", "Advertisers", "Agencies", "Enterprise", "Partners"],
-  Resources: ["Documentation", "API Reference", "Case Studies", "Blog", "Webinars"],
-  Company: ["About", "Careers", "Press", "Contact", "Legal"],
+  PLATFORM: ["Overview", "Features", "Integrations", "Pricing", "Changelog"],
+  SOLUTIONS: ["Publishers", "Advertisers", "Agencies", "Enterprise", "Partners"],
+  DEVELOPERS: ["Documentation", "API Reference", "SDKs", "Status", "Changelog"],
+  COMPANY: ["About", "Careers", "Press", "Contact", "Legal"],
 };
 
 const Footer = () => {
   return (
-    <footer className="relative bg-accent text-accent-foreground">
-      {/* Top gold line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-primary/50" />
+    <footer className="relative bg-background border-t border-border">
+      {/* Top neon line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       
-      <div className="container mx-auto px-6 py-20">
+      <div className="container mx-auto px-6 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <a href="#" className="inline-block mb-8">
-              <img src={koloroweyLogo} alt="Kolorowey" className="h-12 w-auto brightness-0 invert" />
+            <a href="#" className="inline-block mb-6">
+              <img src={koloroweyLogo} alt="Kolorowey" className="h-10 w-auto" />
             </a>
-            <p className="text-accent-foreground/60 mb-8 max-w-xs text-sm leading-relaxed">
-              Unifying the global advertising ecosystem. Beyond the walled gardens, towards a connected future.
+            <p className="text-muted-foreground text-sm mb-6 max-w-xs font-mono leading-relaxed">
+              <span className="text-primary">&gt;</span> Unifying the global advertising ecosystem beyond the walled gardens.
             </p>
             {/* Social Links */}
-            <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-10 h-10 border border-accent-foreground/20 flex items-center justify-center text-accent-foreground/60 hover:text-primary hover:border-primary transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 border border-accent-foreground/20 flex items-center justify-center text-accent-foreground/60 hover:text-primary hover:border-primary transition-all duration-300"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
+            <div className="flex gap-2">
+              {[Linkedin, Twitter, Github].map((Icon, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className="w-9 h-9 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-semibold text-accent-foreground mb-5 text-xs uppercase tracking-[0.2em]">
+              <h4 className="font-mono font-bold text-foreground mb-4 text-xs tracking-wider">
                 {category}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-accent-foreground/50 hover:text-primary transition-colors"
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
                     >
                       {link}
                     </a>
@@ -65,16 +62,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-accent-foreground/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-xs text-accent-foreground/40">
-            © 2025 Kolorowey. All rights reserved.
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground font-mono">
+            © 2025 KOLOROWEY. ALL_RIGHTS_RESERVED.
           </p>
-          <div className="flex items-center gap-8">
-            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((item) => (
+          <div className="flex items-center gap-6">
+            {["Privacy", "Terms", "Cookies"].map((item) => (
               <a 
                 key={item}
                 href="#" 
-                className="text-xs text-accent-foreground/40 hover:text-primary transition-colors"
+                className="text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
               >
                 {item}
               </a>

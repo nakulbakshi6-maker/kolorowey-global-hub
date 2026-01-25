@@ -1,76 +1,83 @@
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/500.css';
-@import '@fontsource/playfair-display/600.css';
-@import '@fontsource/playfair-display/700.css';
-@import '@fontsource/playfair-display/400-italic.css';
-@import '@fontsource/dm-sans/400.css';
-@import '@fontsource/dm-sans/500.css';
-@import '@fontsource/dm-sans/600.css';
-@import '@fontsource/dm-sans/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+@import '@fontsource/jetbrains-mono/700.css';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Kolorowey - Luxury Swiss Editorial Aesthetic */
+/* Kolorowey - Neo-Retro Tech / Cyberpunk Aesthetic */
 
 @layer base {
   :root {
-    /* Deep Navy foundation - sophisticated and trustworthy */
-    --background: 220 25% 97%;
-    --foreground: 220 40% 13%;
+    /* Deep dark base - almost black with blue undertone */
+    --background: 230 25% 7%;
+    --foreground: 180 10% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 40% 13%;
+    --card: 230 25% 10%;
+    --card-foreground: 180 10% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 40% 13%;
+    --popover: 230 25% 10%;
+    --popover-foreground: 180 10% 92%;
 
-    /* Rich Gold primary - luxury accent */
-    --primary: 42 85% 55%;
-    --primary-foreground: 220 40% 10%;
+    /* Electric Cyan primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 25% 7%;
 
-    /* Muted navy secondary */
-    --secondary: 220 20% 94%;
-    --secondary-foreground: 220 30% 25%;
+    /* Dark elevated surfaces */
+    --secondary: 230 20% 14%;
+    --secondary-foreground: 180 10% 85%;
 
-    --muted: 220 15% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 230 20% 18%;
+    --muted-foreground: 230 10% 55%;
 
-    /* Deep Navy accent for contrast */
-    --accent: 220 45% 20%;
-    --accent-foreground: 0 0% 98%;
+    /* Hot Magenta accent */
+    --accent: 320 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 42 85% 55%;
+    --border: 230 20% 18%;
+    --input: 230 20% 18%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    /* Signature Gradients - Gold to Navy */
-    --gradient-hero: linear-gradient(135deg, hsl(42 85% 55%) 0%, hsl(32 80% 50%) 50%, hsl(220 45% 25%) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(42 85% 55%) 0%, hsl(32 75% 45%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(220 45% 15%) 0%, hsl(220 50% 8%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 97%) 0%, hsl(220 20% 94%) 100%);
+    /* Neon Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(320 100% 60%) 100%);
+    --gradient-glow: linear-gradient(180deg, hsl(180 100% 50% / 0.15) 0%, transparent 50%);
+    --gradient-dark: linear-gradient(180deg, hsl(230 25% 7%) 0%, hsl(230 30% 4%) 100%);
+    
+    /* Scanline effect */
+    --scanline: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(180 100% 50% / 0.03) 2px,
+      hsl(180 100% 50% / 0.03) 4px
+    );
 
-    /* Premium Shadows */
-    --shadow-soft: 0 4px 40px -8px hsl(220 40% 20% / 0.08);
-    --shadow-card: 0 8px 60px -12px hsl(220 40% 20% / 0.12);
-    --shadow-elevated: 0 24px 80px -20px hsl(220 40% 15% / 0.2);
-    --shadow-gold: 0 0 60px -15px hsl(42 85% 55% / 0.4);
+    /* Neon Shadows */
+    --shadow-neon-cyan: 0 0 30px -5px hsl(180 100% 50% / 0.5), 0 0 60px -10px hsl(180 100% 50% / 0.3);
+    --shadow-neon-magenta: 0 0 30px -5px hsl(320 100% 60% / 0.5), 0 0 60px -10px hsl(320 100% 60% / 0.3);
+    --shadow-card: 0 4px 40px -10px hsl(230 50% 5% / 0.8);
 
     /* Sidebar */
-    --sidebar-background: 220 25% 97%;
-    --sidebar-foreground: 220 30% 25%;
-    --sidebar-primary: 42 85% 55%;
-    --sidebar-primary-foreground: 220 40% 10%;
-    --sidebar-accent: 220 20% 94%;
-    --sidebar-accent-foreground: 220 30% 25%;
-    --sidebar-border: 220 20% 88%;
-    --sidebar-ring: 42 85% 55%;
+    --sidebar-background: 230 25% 7%;
+    --sidebar-foreground: 180 10% 85%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 20% 14%;
+    --sidebar-accent-foreground: 180 10% 85%;
+    --sidebar-border: 230 20% 18%;
+    --sidebar-ring: 180 100% 50%;
   }
 }
 
@@ -85,109 +92,119 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-feature-settings: "cv11", "ss01";
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Elegant Selection */
+  /* Neon text selection */
   ::selection {
-    background: hsl(42 85% 55% / 0.3);
-    color: hsl(220 40% 13%);
+    background: hsl(180 100% 50% / 0.3);
+    color: hsl(180 100% 70%);
   }
 
-  /* Playfair headings for luxury editorial */
+  /* Monospace headings for tech feel */
   h1, h2, h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 500;
+    font-family: 'Space Mono', 'JetBrains Mono', monospace;
+    font-weight: 700;
     letter-spacing: -0.02em;
   }
 }
 
 @layer components {
-  /* Swiss Precision Card */
-  .swiss-card {
-    @apply bg-card border border-border rounded-sm;
+  /* Terminal Card */
+  .terminal-card {
+    @apply bg-card border border-border rounded-sm relative overflow-hidden;
     box-shadow: var(--shadow-card);
   }
 
-  .swiss-card-hover {
-    @apply swiss-card transition-all duration-500 ease-out;
-  }
-
-  .swiss-card-hover:hover {
-    @apply border-primary/40;
-    box-shadow: var(--shadow-elevated);
-    transform: translateY(-2px);
-  }
-
-  /* Dark Luxury Card */
-  .dark-card {
-    @apply bg-accent text-accent-foreground rounded-sm;
-    box-shadow: var(--shadow-elevated);
-  }
-
-  /* Gold Gradient Text */
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-text);
-  }
-
-  /* Swiss Grid Lines */
-  .swiss-grid {
-    background-image: 
-      linear-gradient(hsl(220 20% 85% / 0.4) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(220 20% 85% / 0.4) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  /* Precision Line */
-  .precision-line {
-    @apply h-px bg-gradient-to-r from-transparent via-primary to-transparent;
-  }
-
-  /* Editorial Badge */
-  .editorial-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em];
-    @apply border border-primary/30 text-primary;
-    background: hsl(42 85% 55% / 0.08);
-  }
-
-  /* Luxury Number */
-  .luxury-number {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-style: italic;
-    color: hsl(42 85% 50%);
-  }
-
-  /* Swiss Underline */
-  .swiss-underline {
-    position: relative;
-    display: inline-block;
-  }
-
-  .swiss-underline::after {
+  .terminal-card::before {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: hsl(42 85% 55%);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    inset: 0;
+    background: var(--scanline);
+    pointer-events: none;
+    opacity: 0.5;
   }
 
-  .swiss-underline:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  .terminal-card-hover {
+    @apply terminal-card transition-all duration-300;
   }
 
-  /* Vertical Text */
-  .vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+  .terminal-card-hover:hover {
+    @apply border-primary/50;
+    box-shadow: var(--shadow-neon-cyan);
+  }
+
+  /* Neon Gradient Text */
+  .neon-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-neon);
+  }
+
+  /* Glowing text */
+  .glow-cyan {
+    color: hsl(180 100% 50%);
+    text-shadow: 0 0 10px hsl(180 100% 50% / 0.5), 0 0 30px hsl(180 100% 50% / 0.3);
+  }
+
+  .glow-magenta {
+    color: hsl(320 100% 60%);
+    text-shadow: 0 0 10px hsl(320 100% 60% / 0.5), 0 0 30px hsl(320 100% 60% / 0.3);
+  }
+
+  /* Terminal Grid */
+  .terminal-grid {
+    background-image: 
+      linear-gradient(hsl(180 100% 50% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(180 100% 50% / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Data Stream Background */
+  .data-stream {
+    background: 
+      linear-gradient(90deg, transparent 0%, hsl(180 100% 50% / 0.02) 50%, transparent 100%),
+      var(--scanline);
+  }
+
+  /* Terminal Badge */
+  .terminal-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-mono uppercase tracking-wider;
+    @apply border border-primary/40 text-primary bg-primary/5;
+  }
+
+  /* Code Block Style */
+  .code-number {
+    font-family: 'JetBrains Mono', monospace;
+    color: hsl(180 100% 50%);
+  }
+
+  /* Blinking cursor */
+  .cursor-blink::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* Neon Border */
+  .neon-border {
+    position: relative;
+  }
+
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--gradient-neon);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
   }
 
   /* Marquee */
@@ -203,32 +220,52 @@
   /* Stagger Animation */
   .stagger-children > * {
     opacity: 0;
-    animation: stagger-fade-in 0.7s ease-out forwards;
+    animation: stagger-glitch-in 0.5s ease-out forwards;
   }
 
   .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-children > *:nth-child(2) { animation-delay: 100ms; }
-  .stagger-children > *:nth-child(3) { animation-delay: 200ms; }
-  .stagger-children > *:nth-child(4) { animation-delay: 300ms; }
-  .stagger-children > *:nth-child(5) { animation-delay: 400ms; }
-  .stagger-children > *:nth-child(6) { animation-delay: 500ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 400ms; }
 
-  @keyframes stagger-fade-in {
-    from {
+  @keyframes stagger-glitch-in {
+    0% {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateX(-10px);
+      filter: blur(4px);
     }
-    to {
+    50% {
+      filter: blur(0);
+    }
+    100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
+  }
+
+  /* Glitch effect on hover */
+  .glitch-hover {
+    position: relative;
+  }
+
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease-out;
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
   }
 }
 
 @layer utilities {
-  /* Fade In Up */
   .animate-fade-in-up {
-    animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fade-in-up 0.6s ease-out forwards;
     opacity: 0;
   }
 
@@ -247,7 +284,7 @@
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -255,21 +292,21 @@
   }
 }
 
-/* Premium Scrollbar */
+/* Custom Scrollbar - Neon Style */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(220 25% 95%);
+  background: hsl(230 25% 10%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(220 30% 70%);
+  background: linear-gradient(180deg, hsl(180 100% 50%) 0%, hsl(320 100% 60%) 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(42 85% 55%);
+  background: hsl(180 100% 60%);
 }
