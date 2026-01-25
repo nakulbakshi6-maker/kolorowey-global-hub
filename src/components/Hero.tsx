@@ -1,103 +1,105 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
+      {/* Subtle background shapes */}
       <div className="absolute inset-0 bg-background">
-        {/* Floating gradient shapes - More dynamic */}
         <motion.div 
-          className="float-shape w-[700px] h-[700px] -top-60 -right-60"
+          className="float-shape w-[800px] h-[800px] -top-80 -right-80"
           animate={{ 
-            y: [0, 40, 0],
-            x: [0, 20, 0],
-            rotate: [0, 8, 0],
-            scale: [1, 1.1, 1],
+            y: [0, 50, 0],
+            x: [0, 30, 0],
+            scale: [1, 1.05, 1],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="float-shape-cyan w-[600px] h-[600px] -bottom-60 -left-60"
+          className="float-shape w-[600px] h-[600px] -bottom-80 -left-80 opacity-20"
           animate={{ 
             y: [0, -40, 0],
             x: [0, -20, 0],
-            rotate: [0, -8, 0],
-            scale: [1, 1.1, 1],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* Decorative lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 2, delay: 0.5 }}
         />
         <motion.div 
-          className="float-shape w-[300px] h-[300px] top-1/2 left-1/3 opacity-30"
-          animate={{ 
-            y: [0, 30, 0],
-            rotate: [0, 360],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 2, delay: 0.8 }}
         />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 pt-44 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left - Text content */}
           <div>
-            {/* Tagline Badge */}
+            {/* Tagline Badge - elegant dark */}
             <motion.div 
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              className="mb-10"
             >
-              <span className="tagline-badge shimmer">
-                <Sparkles className="w-4 h-4" />
+              <span className="tagline-badge">
                 AdTech Unfragmented
               </span>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+            {/* Headline - refined animation */}
+            <div className="overflow-hidden mb-8">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight"
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
               >
                 The unified
-              </motion.span>
-              <br />
-              <motion.span 
-                className="gradient-text"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden mb-8">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight gradient-text"
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
               >
                 infrastructure
-              </motion.span>
-              <br />
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden mb-8">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight"
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
               >
                 for AdTech
-              </motion.span>
-            </motion.h1>
+              </motion.h1>
+            </div>
 
             {/* Subheadline */}
             <motion.p 
               className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
               Connect publishers, advertisers, and platforms through a single 
-              enterprise-grade infrastructure. <span className="text-accent font-semibold">Beyond the walled gardens.</span>
+              enterprise-grade infrastructure. Beyond the walled gardens.
             </motion.p>
 
             {/* CTAs */}
@@ -105,76 +107,90 @@ const Hero = () => {
               className="flex flex-wrap items-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Button size="lg" className="h-14 px-8 rounded-full font-semibold text-base group pulse-glow shimmer">
+              <Button size="lg" className="h-14 px-8 rounded-full font-semibold text-base group">
                 Start Building
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
+                <motion.span
+                  className="ml-2"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </motion.span>
               </Button>
-              <Button variant="ghost" size="lg" className="h-14 px-6 rounded-full font-semibold text-base group hover:bg-accent/10">
-                <Play className="w-5 h-5 mr-2 fill-current text-accent" />
+              <Button variant="outline" size="lg" className="h-14 px-6 rounded-full font-semibold text-base group border-foreground/20 hover:bg-foreground hover:text-background">
+                <Play className="w-4 h-4 mr-2" />
                 Watch Demo
               </Button>
             </motion.div>
 
-            {/* Trust badges */}
+            {/* Trust indicators */}
             <motion.div 
-              className="mt-12 flex items-center gap-6 text-sm text-muted-foreground"
+              className="mt-14 flex items-center gap-8 text-sm text-muted-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-green-500"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
                 <span>Enterprise Ready</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-accent" />
-                <span>GDPR Compliant</span>
-              </div>
+              <div className="h-4 w-px bg-border" />
+              <span>GDPR Compliant</span>
+              <div className="h-4 w-px bg-border" />
+              <span>SOC 2 Certified</span>
             </motion.div>
           </div>
 
           {/* Right - Stats cards */}
           <motion.div 
             className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-5">
               {[
-                { value: "50B+", label: "Daily Impressions", delay: 0, accent: false },
-                { value: "180+", label: "Countries Connected", delay: 0.1, accent: true },
-                { value: "99.9%", label: "Uptime Guaranteed", delay: 0.2, accent: true },
-                { value: "<10ms", label: "Average Latency", delay: 0.3, accent: false },
-              ].map((stat) => (
+                { value: "50B+", label: "Daily Impressions", accent: true },
+                { value: "180+", label: "Countries" },
+                { value: "99.9%", label: "Uptime SLA" },
+                { value: "<10ms", label: "Latency", accent: true },
+              ].map((stat, index) => (
                 <motion.div 
                   key={stat.label}
-                  className="elevated-card-hover p-6 md:p-8 group cursor-pointer"
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 + stat.delay }}
+                  className="elevated-card-hover p-7 md:p-8 group cursor-pointer"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.7, 
+                    delay: 0.6 + index * 0.1,
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className={`stat-number mb-2 ${stat.accent ? 'gradient-text-cyan' : ''}`}>{stat.value}</div>
-                  <div className="text-sm text-muted-foreground font-medium group-hover:text-foreground transition-colors">{stat.label}</div>
+                  <div className={stat.accent ? 'stat-number-accent mb-2' : 'stat-number mb-2'}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Decorative floating elements */}
+            {/* Decorative elements */}
             <motion.div 
-              className="absolute -top-10 -right-10 w-24 h-24 rounded-2xl border border-primary/20"
-              style={{ background: 'linear-gradient(135deg, hsl(320 85% 55% / 0.1), transparent)' }}
-              animate={{ rotate: [0, 15, 0], y: [0, -15, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-8 -right-8 w-20 h-20 rounded-2xl border border-border"
+              animate={{ rotate: [0, 90, 0], y: [0, -10, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div 
-              className="absolute -bottom-6 -left-6 w-16 h-16 rounded-full border border-accent/20"
-              style={{ background: 'linear-gradient(135deg, hsl(185 85% 45% / 0.1), transparent)' }}
-              animate={{ rotate: [0, -15, 0], y: [0, 10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-6 -left-6 w-14 h-14 rounded-full border border-border"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
         </div>
