@@ -1,89 +1,127 @@
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const solutions = [
   {
-    title: "For Publishers",
+    title: "Publishers",
+    subtitle: "Maximize Revenue",
     description:
       "Maximize yield with header bidding, unified auctions, and direct demand partnerships. Take control of your inventory.",
     features: ["Header Bidding", "Yield Optimization", "Floor Price Management", "Direct Deals"],
-    gradient: "from-primary/20 to-primary/5",
+    number: "01",
   },
   {
-    title: "For Advertisers",
+    title: "Advertisers",
+    subtitle: "Reach Audiences",
     description:
       "Reach your audience across premium inventory with advanced targeting, brand safety, and transparent measurement.",
     features: ["Audience Targeting", "Brand Safety", "Cross-Device", "Attribution"],
-    gradient: "from-accent/20 to-accent/5",
+    number: "02",
   },
   {
-    title: "For Agencies",
+    title: "Agencies",
+    subtitle: "Scale Campaigns",
     description:
       "Manage campaigns at scale with white-label solutions, unified reporting, and automated optimization.",
     features: ["Campaign Management", "White-Label", "Bulk Operations", "Client Reporting"],
-    gradient: "from-primary/15 to-accent/10",
+    number: "03",
   },
 ];
 
 const Solutions = () => {
   return (
-    <section id="solutions" className="relative py-32 bg-card/30">
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-20" />
+    <section id="solutions" className="relative py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
+      <div className="absolute inset-0 mesh-bg opacity-40" />
 
       <div className="relative z-10 container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+        <motion.div 
+          className="max-w-4xl mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="premium-badge mb-6">
             Solutions
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Tailored for Every{" "}
-            <span className="gradient-text">Partner</span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.05] mb-6">
+            Tailored for Every
+            <br />
+            <span className="gradient-text italic">Partner</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Whether you're a publisher, advertiser, or agency, Kolorowey adapts to your needs.
+          <p className="text-xl text-muted-foreground max-w-2xl">
+            Whether you're a publisher, advertiser, or agency, Kolorowey adapts to your unique needs with precision.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Solutions Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {solutions.map((solution) => (
-            <div
+        {/* Solutions - Horizontal Scrolling Cards */}
+        <div className="space-y-6">
+          {solutions.map((solution, index) => (
+            <motion.div
               key={solution.title}
-              className="group relative glass-card overflow-hidden"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
             >
-              {/* Gradient background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${solution.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
+              <div className="glass-card overflow-hidden hover:border-primary/30 transition-all duration-500">
+                <div className="grid md:grid-cols-12 gap-8 p-8 md:p-10">
+                  {/* Number */}
+                  <div className="md:col-span-1 flex items-start">
+                    <span className="editorial-number text-5xl">
+                      {solution.number}
+                    </span>
+                  </div>
 
-              <div className="relative p-8">
-                {/* Title with arrow */}
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-2xl font-bold text-foreground">
-                    {solution.title}
-                  </h3>
-                  <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                  {/* Title & Subtitle */}
+                  <div className="md:col-span-3">
+                    <h3 className="text-3xl md:text-4xl font-serif text-foreground mb-2">
+                      {solution.title}
+                    </h3>
+                    <p className="text-primary font-medium">
+                      {solution.subtitle}
+                    </p>
+                  </div>
+
+                  {/* Description */}
+                  <div className="md:col-span-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {solution.description}
+                    </p>
+                  </div>
+
+                  {/* Features */}
+                  <div className="md:col-span-3">
+                    <div className="flex flex-wrap gap-2">
+                      {solution.features.map((feature) => (
+                        <span
+                          key={feature}
+                          className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="md:col-span-1 flex items-center justify-end">
+                    <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-300">
+                      <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  {solution.description}
-                </p>
-
-                {/* Features list */}
-                <div className="flex flex-wrap gap-2">
-                  {solution.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium"
-                    >
-                      {feature}
-                    </span>
-                  ))}
+                {/* Progress bar on hover */}
+                <div className="h-1 bg-muted">
+                  <div className="h-full bg-gradient-to-r from-primary to-accent w-0 group-hover:w-full transition-all duration-700" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
