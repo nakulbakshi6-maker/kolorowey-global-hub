@@ -1,72 +1,78 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
-      {/* Abstract geometric background */}
+      {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large gradient circle */}
         <motion.div 
-          className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] rounded-full opacity-[0.07]"
-          style={{ background: 'var(--gradient-brand)' }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full opacity-20"
+          style={{ background: 'linear-gradient(135deg, hsl(320 85% 55%), hsl(280 70% 55%))' }}
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 90, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Grid pattern overlay */}
+        <motion.div 
+          className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-15"
+          style={{ background: 'linear-gradient(135deg, hsl(185 85% 45%), hsl(200 80% 50%))' }}
+          animate={{ 
+            scale: [1.1, 1, 1.1],
+            rotate: [0, -90, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Grid pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(220 30% 10%) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(220 30% 10%) 1px, transparent 1px)
+              linear-gradient(hsl(230 45% 22%) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(230 45% 22%) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px'
+            backgroundSize: '80px 80px'
           }}
         />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pt-40 pb-24">
         <div className="max-w-5xl">
-          {/* Badge */}
+          {/* Badge with shimmer */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <span className="modern-badge">
+            <span className="shimmer-badge">
+              <Sparkles className="w-4 h-4" />
               AdTech Unfragmented
             </span>
           </motion.div>
 
-          {/* Massive headline */}
-          <div className="mb-8">
-            <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.95] tracking-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-            >
-              The unified
-            </motion.h1>
-            <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.95] tracking-tight gradient-text"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              infrastructure
-            </motion.h1>
-            <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.95] tracking-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-            >
-              for AdTech
-            </motion.h1>
+          {/* Massive headline with stagger */}
+          <div className="mb-8 space-y-2">
+            {["The unified", "infrastructure", "for AdTech"].map((text, index) => (
+              <div key={text} className="overflow-hidden">
+                <motion.h1 
+                  className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.95] tracking-tight ${
+                    index === 1 ? 'gradient-text' : ''
+                  }`}
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.1 + index * 0.1,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                >
+                  {text}
+                </motion.h1>
+              </div>
+            ))}
           </div>
 
           {/* Subheadline */}
@@ -74,35 +80,47 @@ const Hero = () => {
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             Connect publishers, advertisers, and platforms through a single 
-            enterprise-grade infrastructure. Beyond the walled gardens.
+            enterprise-grade infrastructure. <span className="text-accent font-semibold">Beyond the walled gardens.</span>
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs with micro-interactions */}
           <motion.div 
             className="flex flex-wrap items-center gap-4 mb-20"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <Button size="lg" className="h-14 px-8 rounded-full font-bold text-base group">
-              Start Building
-              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="h-14 px-8 rounded-full font-bold text-base group hover-glow relative overflow-hidden">
+              <span className="relative z-10 flex items-center">
+                Start Building
+                <motion.span
+                  className="ml-2"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </motion.span>
+              </span>
             </Button>
-            <Button variant="outline" size="lg" className="h-14 px-8 rounded-full font-bold text-base border-2 hover:bg-foreground hover:text-background">
-              <Play className="w-4 h-4 mr-2" />
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="h-14 px-8 rounded-full font-bold text-base border-2 group hover:border-accent hover:text-accent transition-all duration-300"
+            >
+              <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
               Watch Demo
             </Button>
           </motion.div>
 
-          {/* Stats row */}
+          {/* Stats row with hover effects */}
           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
           >
             {[
               { value: "50B+", label: "Daily Impressions" },
@@ -112,15 +130,20 @@ const Hero = () => {
             ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                className="border-l-2 border-foreground/10 pl-6"
+                className="group cursor-pointer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                whileHover={{ x: 5 }}
               >
-                <div className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-1 ${index % 2 === 0 ? 'gradient-text' : ''}`}>
-                  {stat.value}
+                <div className="border-l-2 border-accent/30 pl-6 group-hover:border-accent transition-colors duration-300">
+                  <div className="text-4xl md:text-5xl font-extrabold tracking-tight mb-1 gradient-text">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium group-hover:text-foreground transition-colors">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
