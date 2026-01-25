@@ -1,4 +1,4 @@
-import { Layers, Globe, Zap, Shield, BarChart3, Workflow } from "lucide-react";
+import { Layers, Globe, Zap, Shield, BarChart3, Workflow, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const features = [
@@ -43,6 +43,14 @@ const features = [
 const Features = () => {
   return (
     <section id="platform" className="relative py-32 bg-secondary overflow-hidden">
+      {/* Background accent */}
+      <motion.div 
+        className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-10"
+        style={{ background: 'var(--gradient-brand)' }}
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 15, repeat: Infinity }}
+      />
+
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-20">
@@ -60,42 +68,50 @@ const Features = () => {
               <span className="gradient-text">programmatic ecosystem</span>
             </h2>
           </motion.div>
-          <motion.p 
-            className="text-lg text-muted-foreground max-w-md"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Enterprise-grade infrastructure designed for scale, speed, and security.
-          </motion.p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 bg-border rounded-2xl overflow-hidden">
+        {/* Features Grid with hover effects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 bg-border/50 rounded-3xl overflow-hidden">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 md:p-10 group cursor-pointer hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="bg-card p-8 md:p-10 group cursor-pointer relative overflow-hidden"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="icon-box-outline group-hover:border-primary-foreground/20 transition-colors">
-                  <feature.icon className="w-6 h-6" />
+              {/* Hover gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-transparent transition-all duration-500" />
+              
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-6">
+                  <motion.div 
+                    className="icon-box"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <feature.icon className="w-6 h-6" />
+                  </motion.div>
+                  <span className="text-sm font-mono text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                    {feature.number}
+                  </span>
                 </div>
-                <span className="text-sm font-mono text-muted-foreground group-hover:text-primary-foreground/60 transition-colors">
-                  {feature.number}
-                </span>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  {feature.description}
+                </p>
+                <motion.a 
+                  href="#" 
+                  className="inline-flex items-center text-sm font-semibold text-accent opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  whileHover={{ x: 5 }}
+                >
+                  Learn more
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </motion.a>
               </div>
-              <h3 className="text-xl font-bold mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground group-hover:text-primary-foreground/70 leading-relaxed transition-colors">
-                {feature.description}
-              </p>
             </motion.div>
           ))}
         </div>
