@@ -195,207 +195,115 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - AdTech Ecosystem Visualization */}
+          {/* Right column - Balloon Animation */}
           <motion.div 
-            className="relative hidden lg:flex items-center justify-center h-[520px]"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="relative hidden lg:flex items-center justify-center h-[520px] w-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Ambient glow */}
-            <motion.div 
-              className="absolute w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
-              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), hsl(185 85% 45%), transparent 60%)' }}
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
-
-            {/* Central Hub - Kolorowey */}
-            <motion.div 
-              className="absolute z-20 w-24 h-24 rounded-2xl bg-gradient-to-br from-accent to-[hsl(280,70%,50%)] flex items-center justify-center shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-              animate={{ rotate: [0, 5, 0, -5, 0] }}
-              transition={{ duration: 6, repeat: Infinity }}
-            >
-              <span className="text-3xl font-bold text-white">K</span>
-            </motion.div>
-
-            {/* Ecosystem Nodes */}
+            {/* Balloons */}
             {[
-              { label: "Publishers", icon: "📰", x: -140, y: -80, color: "from-blue-500 to-blue-600" },
-              { label: "SSP", icon: "🔗", x: 140, y: -80, color: "from-purple-500 to-purple-600" },
-              { label: "DSP", icon: "🎯", x: 140, y: 80, color: "from-cyan-500 to-cyan-600" },
-              { label: "Advertisers", icon: "📢", x: -140, y: 80, color: "from-pink-500 to-pink-600" },
-            ].map((node, i) => (
+              { x: '15%', color: 'from-pink-400 to-pink-500', size: 80, delay: 0, duration: 4 },
+              { x: '35%', color: 'from-purple-400 to-purple-500', size: 70, delay: 0.5, duration: 4.5 },
+              { x: '55%', color: 'from-cyan-400 to-cyan-500', size: 90, delay: 0.2, duration: 3.8 },
+              { x: '75%', color: 'from-accent to-pink-500', size: 75, delay: 0.8, duration: 4.2 },
+              { x: '25%', color: 'from-blue-400 to-blue-500', size: 65, delay: 1, duration: 5 },
+              { x: '65%', color: 'from-violet-400 to-violet-500', size: 85, delay: 0.3, duration: 3.5 },
+              { x: '45%', color: 'from-rose-400 to-rose-500', size: 72, delay: 0.7, duration: 4.8 },
+              { x: '85%', color: 'from-teal-400 to-teal-500', size: 68, delay: 1.2, duration: 4.3 },
+            ].map((balloon, i) => (
               <motion.div
-                key={node.label}
-                className="absolute z-10"
-                style={{ left: `calc(50% + ${node.x}px)`, top: `calc(50% + ${node.y}px)`, transform: 'translate(-50%, -50%)' }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 + i * 0.1, type: "spring" }}
+                key={i}
+                className="absolute"
+                style={{ left: balloon.x, bottom: '10%' }}
+                animate={{ 
+                  y: [0, -20, 0],
+                  x: [0, i % 2 === 0 ? 10 : -10, 0],
+                  rotate: [0, i % 2 === 0 ? 5 : -5, 0],
+                }}
+                transition={{ 
+                  duration: balloon.duration, 
+                  repeat: Infinity, 
+                  delay: balloon.delay,
+                  ease: "easeInOut"
+                }}
               >
+                {/* Balloon body */}
                 <motion.div 
-                  className={`w-20 h-20 rounded-xl bg-gradient-to-br ${node.color} flex flex-col items-center justify-center shadow-lg border border-white/10`}
+                  className={`bg-gradient-to-b ${balloon.color} rounded-full relative`}
+                  style={{ 
+                    width: balloon.size, 
+                    height: balloon.size * 1.2,
+                    boxShadow: `inset -${balloon.size/5}px -${balloon.size/5}px ${balloon.size/3}px rgba(0,0,0,0.1), inset ${balloon.size/8}px ${balloon.size/8}px ${balloon.size/4}px rgba(255,255,255,0.3)`,
+                  }}
                   whileHover={{ scale: 1.1 }}
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
                 >
-                  <span className="text-2xl mb-1">{node.icon}</span>
-                  <span className="text-[9px] font-semibold text-white/90">{node.label}</span>
+                  {/* Highlight */}
+                  <div 
+                    className="absolute bg-white/40 rounded-full"
+                    style={{ 
+                      width: balloon.size * 0.25, 
+                      height: balloon.size * 0.35,
+                      top: balloon.size * 0.15,
+                      left: balloon.size * 0.2,
+                    }}
+                  />
+                  {/* Balloon knot */}
+                  <div 
+                    className={`absolute left-1/2 -translate-x-1/2 bg-gradient-to-b ${balloon.color}`}
+                    style={{
+                      width: balloon.size * 0.15,
+                      height: balloon.size * 0.12,
+                      bottom: -balloon.size * 0.06,
+                      clipPath: 'polygon(50% 100%, 0% 0%, 100% 0%)',
+                    }}
+                  />
                 </motion.div>
+                
+                {/* String */}
+                <motion.div 
+                  className="absolute left-1/2 -translate-x-1/2"
+                  style={{ 
+                    top: balloon.size * 1.2,
+                    width: 2,
+                    height: 80 + (i * 10),
+                    background: 'linear-gradient(to bottom, rgba(100,100,100,0.6), rgba(100,100,100,0.2))',
+                  }}
+                  animate={{ 
+                    rotate: [0, 3, -3, 0],
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity,
+                    delay: balloon.delay,
+                  }}
+                />
               </motion.div>
             ))}
 
-            {/* Connection lines with flowing data */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
-              <defs>
-                <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(320 85% 55%)" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="hsl(320 85% 55%)" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="hsl(320 85% 55%)" stopOpacity="0.3" />
-                </linearGradient>
-                <linearGradient id="lineGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(185 85% 45%)" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="hsl(185 85% 45%)" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="hsl(185 85% 45%)" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-              {/* Connection paths */}
-              {[
-                { from: { x: 110, y: 180 }, to: { x: 200, y: 260 } },
-                { from: { x: 290, y: 180 }, to: { x: 200, y: 260 } },
-                { from: { x: 200, y: 260 }, to: { x: 290, y: 340 } },
-                { from: { x: 200, y: 260 }, to: { x: 110, y: 340 } },
-              ].map((line, i) => (
-                <motion.line
-                  key={i}
-                  x1={line.from.x}
-                  y1={line.from.y}
-                  x2={line.to.x}
-                  y2={line.to.y}
-                  stroke={`url(#lineGradient${(i % 2) + 1})`}
-                  strokeWidth="2"
-                  strokeDasharray="8 4"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.8 + i * 0.1 }}
-                />
-              ))}
-            </svg>
-
-            {/* Flowing data packets */}
-            {[
-              { startX: -140, startY: -80, endX: 0, endY: 0, delay: 0, color: "bg-blue-400" },
-              { startX: 140, startY: -80, endX: 0, endY: 0, delay: 0.5, color: "bg-purple-400" },
-              { startX: 0, startY: 0, endX: 140, endY: 80, delay: 1, color: "bg-cyan-400" },
-              { startX: 0, startY: 0, endX: -140, endY: 80, delay: 1.5, color: "bg-pink-400" },
-            ].map((packet, i) => (
+            {/* Floating sparkles */}
+            {[...Array(12)].map((_, i) => (
               <motion.div
-                key={i}
-                className={`absolute z-30 w-3 h-3 rounded-full ${packet.color} shadow-lg`}
-                style={{ left: '50%', top: '50%' }}
-                animate={{
-                  x: [packet.startX, 0, packet.endX],
-                  y: [packet.startY, 0, packet.endY],
-                  opacity: [0, 1, 1, 0],
-                  scale: [0.5, 1, 1, 0.5],
+                key={`sparkle-${i}`}
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  background: ['hsl(320 85% 65%)', 'hsl(185 85% 55%)', 'hsl(280 70% 60%)', 'hsl(45 90% 60%)'][i % 4],
+                  left: `${10 + (i * 7)}%`,
+                  top: `${20 + (i % 5) * 15}%`,
                 }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: packet.delay,
-                  times: [0, 0.4, 0.6, 1],
+                animate={{
+                  y: [0, -30, 0],
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{ 
+                  duration: 3 + (i % 3), 
+                  repeat: Infinity, 
+                  delay: i * 0.3,
                 }}
               />
             ))}
-
-            {/* Real-time bid indicator */}
-            <motion.div 
-              className="absolute top-4 right-4 bg-[#0d1020]/90 backdrop-blur-sm rounded-lg px-4 py-3 border border-[#2a3555]"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2 }}
-            >
-              <div className="text-[10px] text-muted-foreground mb-1">LIVE BIDS</div>
-              <div className="flex items-center gap-2">
-                <motion.div 
-                  className="w-2 h-2 rounded-full bg-green-400"
-                  animate={{ opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 0.5, repeat: Infinity }}
-                />
-                <motion.span 
-                  className="text-lg font-bold gradient-text font-mono"
-                  animate={{ opacity: [1, 0.8, 1] }}
-                  transition={{ duration: 0.3, repeat: Infinity }}
-                >
-                  1,247,892
-                </motion.span>
-              </div>
-            </motion.div>
-
-            {/* Latency indicator */}
-            <motion.div 
-              className="absolute bottom-4 right-4 bg-[#0d1020]/90 backdrop-blur-sm rounded-lg px-4 py-3 border border-[#2a3555]"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.4 }}
-            >
-              <div className="text-[10px] text-muted-foreground mb-1">AVG LATENCY</div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-lg font-bold text-cyan-400 font-mono">8</span>
-                <span className="text-xs text-muted-foreground">ms</span>
-              </div>
-            </motion.div>
-
-            {/* Fill rate indicator */}
-            <motion.div 
-              className="absolute top-4 left-4 bg-[#0d1020]/90 backdrop-blur-sm rounded-lg px-4 py-3 border border-[#2a3555]"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.3 }}
-            >
-              <div className="text-[10px] text-muted-foreground mb-1">FILL RATE</div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-lg font-bold text-green-400 font-mono">94.7</span>
-                <span className="text-xs text-muted-foreground">%</span>
-              </div>
-            </motion.div>
-
-            {/* Revenue indicator */}
-            <motion.div 
-              className="absolute bottom-4 left-4 bg-[#0d1020]/90 backdrop-blur-sm rounded-lg px-4 py-3 border border-[#2a3555]"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.5 }}
-            >
-              <div className="text-[10px] text-muted-foreground mb-1">REVENUE/HR</div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-xs text-muted-foreground">$</span>
-                <motion.span 
-                  className="text-lg font-bold text-accent font-mono"
-                  animate={{ opacity: [1, 0.9, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  42,891
-                </motion.span>
-              </div>
-            </motion.div>
-
-            {/* Floating labels */}
-            <motion.div 
-              className="absolute top-1/2 -translate-y-1/2 left-0 text-[10px] font-medium text-muted-foreground"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              ← Supply
-            </motion.div>
-            <motion.div 
-              className="absolute top-1/2 -translate-y-1/2 right-0 text-[10px] font-medium text-muted-foreground"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-            >
-              Demand →
-            </motion.div>
           </motion.div>
         </div>
       </motion.div>
