@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Zap, Globe, Clock, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Globe, Clock, TrendingUp, MessageCircle } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -290,14 +290,13 @@ const Hero = () => {
           Connect publishers, advertisers, and platforms through a single 
           enterprise-grade infrastructure.{" "}
           <motion.span 
-            className="text-accent font-semibold inline-block"
+            className="text-accent font-semibold"
             animate={{ 
               textShadow: [
                 '0 0 0px hsl(320 85% 55% / 0)',
                 '0 0 30px hsl(320 85% 55% / 0.5)',
                 '0 0 0px hsl(320 85% 55% / 0)',
               ],
-              y: [0, -2, 0],
             }}
             transition={{ duration: 2.5, repeat: Infinity }}
           >
@@ -343,13 +342,8 @@ const Hero = () => {
               size="lg" 
               className="h-14 px-10 rounded-full font-bold text-base border-2 group hover:border-accent hover:text-accent transition-all duration-300 shadow-lg"
             >
-              <motion.span
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Play className="w-4 h-4 mr-2 fill-current" />
-              </motion.span>
-              Watch Demo
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Talk to Sales
             </Button>
           </motion.div>
         </motion.div>
