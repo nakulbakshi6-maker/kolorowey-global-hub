@@ -109,12 +109,9 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
           >
             <feature.icon className="w-6 h-6 text-white" />
           </motion.div>
-          <div className="flex items-center gap-2">
-            <div className="w-0.5 h-5 rounded-full bg-gradient-to-b from-accent to-highlight" />
-            <span className="text-xs font-bold text-accent uppercase tracking-widest">
-              {feature.number}
-            </span>
-          </div>
+          <span className="text-4xl font-black text-accent/10 absolute -top-2 -right-2 select-none">
+            {feature.number}
+          </span>
         </div>
         <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">
           {feature.title}
