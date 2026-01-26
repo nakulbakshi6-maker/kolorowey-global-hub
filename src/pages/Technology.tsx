@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useRef, useState, useEffect } from "react";
+import worldMapPremium from "@/assets/world-map-premium.png";
 
 const technologies = [
   {
@@ -393,10 +394,10 @@ const Technology = () => {
                     
                     <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
                     <div className="magnetic-card p-10">
-                        <div className="grid grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
                           {tech.specs.map((spec) => (
-                            <div key={spec.label} className="text-center min-w-0">
-                              <div className="text-2xl md:text-3xl lg:text-4xl font-extrabold gradient-text mb-2 whitespace-nowrap">
+                            <div key={spec.label} className="text-center min-w-0 px-2">
+                              <div className="text-2xl md:text-3xl xl:text-4xl font-extrabold gradient-text drop-shadow-sm mb-2 leading-none break-words hyphens-auto">
                                 {spec.value}
                               </div>
                               <div className="text-xs text-muted-foreground uppercase tracking-wider">
@@ -438,137 +439,91 @@ const Technology = () => {
               viewport={{ once: true }}
               className="magnetic-card p-8 md:p-12 relative overflow-hidden"
             >
-              <div className="aspect-[2/1] relative">
-                {/* World Map SVG */}
+              {/* Subtle grid */}
+              <div
+                className="absolute inset-0 opacity-25"
+                style={{
+                  backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--accent) / 0.22) 1px, transparent 0)`,
+                  backgroundSize: "28px 28px",
+                }}
+              />
+
+              <div className="relative aspect-[2/1]">
+                <img
+                  src={worldMapPremium}
+                  alt="Global infrastructure map"
+                  className="absolute inset-0 w-full h-full object-contain"
+                  loading="lazy"
+                />
+
+                {/* Connection lines (percent-based overlay) */}
                 <svg
-                  viewBox="0 0 1000 500"
-                  className="w-full h-full"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
                 >
-                  {/* Simplified world continents */}
-                  <g className="fill-muted-foreground/20 stroke-muted-foreground/30" strokeWidth="0.5">
-                    {/* North America */}
-                    <path d="M150,80 Q180,70 220,75 L260,85 Q280,100 290,130 L280,160 Q260,180 240,190 L200,195 Q170,180 160,150 L140,120 Q135,95 150,80 Z" />
-                    <path d="M100,100 Q120,90 140,95 L150,110 Q145,130 130,140 L110,135 Q95,120 100,100 Z" />
-                    
-                    {/* South America */}
-                    <path d="M240,240 Q260,230 280,240 L300,280 Q310,320 300,360 L280,400 Q260,420 240,410 L220,370 Q210,320 220,280 Q225,250 240,240 Z" />
-                    
-                    {/* Europe */}
-                    <path d="M450,80 Q480,70 520,75 L550,90 Q560,110 555,130 L530,145 Q500,150 470,145 L450,130 Q440,100 450,80 Z" />
-                    
-                    {/* Africa */}
-                    <path d="M460,180 Q490,170 530,175 L560,200 Q580,250 570,310 L540,360 Q510,380 480,370 L450,330 Q430,280 440,230 Q445,200 460,180 Z" />
-                    
-                    {/* Asia */}
-                    <path d="M560,60 Q620,50 700,55 L780,70 Q830,90 850,130 L860,180 Q850,220 820,240 L760,250 Q700,245 650,230 L600,200 Q560,160 555,120 Q550,80 560,60 Z" />
-                    
-                    {/* Southeast Asia & Indonesia */}
-                    <path d="M720,250 Q750,245 780,255 L800,280 Q790,310 760,320 L730,315 Q710,290 720,250 Z" />
-                    <path d="M760,330 L790,325 Q810,340 800,360 L770,365 Q750,350 760,330 Z" />
-                    
-                    {/* Australia */}
-                    <path d="M800,350 Q840,340 880,350 L910,380 Q920,420 900,450 L860,460 Q820,455 800,430 L790,390 Q785,365 800,350 Z" />
-                    
-                    {/* Japan */}
-                    <path d="M870,120 Q885,115 895,125 L900,150 Q895,165 880,170 L870,160 Q865,140 870,120 Z" />
-                  </g>
-                  
-                  {/* PoP Location Dots - North America */}
-                  {[
-                    { x: 160, y: 100, size: 8 },
-                    { x: 200, y: 120, size: 10 },
-                    { x: 240, y: 140, size: 8 },
-                    { x: 180, y: 150, size: 6 },
-                    { x: 220, y: 170, size: 7 },
-                  ].map((dot, i) => (
-                    <motion.circle
-                      key={`na-${i}`}
-                      cx={dot.x}
-                      cy={dot.y}
-                      r={dot.size}
-                      className="fill-accent"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2, delay: i * 0.2 }}
-                    />
-                  ))}
-                  
-                  {/* PoP Location Dots - Europe */}
-                  {[
-                    { x: 470, y: 95, size: 8 },
-                    { x: 500, y: 110, size: 10 },
-                    { x: 530, y: 100, size: 7 },
-                    { x: 490, y: 130, size: 6 },
-                    { x: 520, y: 125, size: 8 },
-                    { x: 460, y: 115, size: 6 },
-                  ].map((dot, i) => (
-                    <motion.circle
-                      key={`eu-${i}`}
-                      cx={dot.x}
-                      cy={dot.y}
-                      r={dot.size}
-                      className="fill-highlight"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2, delay: 0.5 + i * 0.15 }}
-                    />
-                  ))}
-                  
-                  {/* PoP Location Dots - Asia Pacific */}
-                  {[
-                    { x: 700, y: 100, size: 10 },
-                    { x: 750, y: 130, size: 8 },
-                    { x: 800, y: 150, size: 9 },
-                    { x: 880, y: 140, size: 7 },
-                    { x: 760, y: 280, size: 8 },
-                    { x: 850, y: 400, size: 9 },
-                    { x: 820, y: 180, size: 6 },
-                  ].map((dot, i) => (
-                    <motion.circle
-                      key={`ap-${i}`}
-                      cx={dot.x}
-                      cy={dot.y}
-                      r={dot.size}
-                      className="fill-accent"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2, delay: 1 + i * 0.15 }}
-                    />
-                  ))}
-                  
-                  {/* PoP Location Dots - Other Regions */}
-                  {[
-                    { x: 260, y: 300, size: 7 },
-                    { x: 280, y: 350, size: 6 },
-                    { x: 500, y: 250, size: 8 },
-                    { x: 520, y: 300, size: 7 },
-                  ].map((dot, i) => (
-                    <motion.circle
-                      key={`other-${i}`}
-                      cx={dot.x}
-                      cy={dot.y}
-                      r={dot.size}
-                      className="fill-highlight"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2, delay: 1.5 + i * 0.2 }}
-                    />
-                  ))}
-                  
-                  {/* Connection lines */}
-                  <g className="stroke-accent/20" strokeWidth="1" strokeDasharray="4 4">
-                    <line x1="200" y1="120" x2="500" y2="110" />
-                    <line x1="500" y1="110" x2="700" y2="100" />
-                    <line x1="700" y1="100" x2="850" y2="400" />
-                    <line x1="200" y1="120" x2="260" y2="300" />
-                    <line x1="500" y1="110" x2="500" y2="250" />
+                  <g className="stroke-accent/25" strokeWidth="1.2" strokeDasharray="6 7" strokeLinecap="round">
+                    <line x1="22" y1="32" x2="52" y2="30" />
+                    <line x1="52" y1="30" x2="76" y2="34" />
+                    <line x1="76" y1="34" x2="86" y2="74" />
+                    <line x1="22" y1="32" x2="26" y2="60" />
+                    <line x1="52" y1="30" x2="52" y2="56" />
                   </g>
                 </svg>
+
+                {/* PoP dots */}
+                {(
+                  [
+                    // North America
+                    { id: "na-1", left: "18%", top: "30%", tone: "accent" },
+                    { id: "na-2", left: "22%", top: "32%", tone: "accent" },
+                    { id: "na-3", left: "26%", top: "36%", tone: "accent" },
+                    { id: "na-4", left: "20%", top: "40%", tone: "accent" },
+                    // South America
+                    { id: "sa-1", left: "26%", top: "60%", tone: "highlight" },
+                    { id: "sa-2", left: "28%", top: "70%", tone: "highlight" },
+                    // Europe
+                    { id: "eu-1", left: "50%", top: "28%", tone: "highlight" },
+                    { id: "eu-2", left: "52%", top: "30%", tone: "highlight" },
+                    { id: "eu-3", left: "55%", top: "33%", tone: "highlight" },
+                    // Africa
+                    { id: "af-1", left: "52%", top: "56%", tone: "accent" },
+                    // Asia Pacific
+                    { id: "ap-1", left: "74%", top: "30%", tone: "accent" },
+                    { id: "ap-2", left: "78%", top: "36%", tone: "accent" },
+                    { id: "ap-3", left: "82%", top: "38%", tone: "accent" },
+                    { id: "ap-4", left: "86%", top: "40%", tone: "accent" },
+                    // Australia
+                    { id: "au-1", left: "86%", top: "74%", tone: "highlight" },
+                  ] as const
+                ).map((dot, i) => {
+                  const dotClass = dot.tone === "accent" ? "bg-accent ring-accent/20" : "bg-highlight ring-highlight/20";
+                  const pulseClass = dot.tone === "accent" ? "bg-accent/25" : "bg-highlight/25";
+
+                  return (
+                    <motion.div
+                      key={dot.id}
+                      className="absolute"
+                      style={{ left: dot.left, top: dot.top, transform: "translate(-50%, -50%)" }}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + i * 0.03 }}
+                    >
+                      <motion.span
+                        className={`absolute inset-0 rounded-full ${pulseClass}`}
+                        animate={{ scale: [1, 2.3, 1], opacity: [0.55, 0.12, 0.55] }}
+                        transition={{ repeat: Infinity, duration: 2.4, delay: i * 0.08, ease: "easeInOut" }}
+                      />
+                      <span
+                        className={`relative block w-3 h-3 md:w-3.5 md:h-3.5 rounded-full ${dotClass} ring-4`}
+                      />
+                    </motion.div>
+                  );
+                })}
               </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center">
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
                 {[
                   { value: "North America", count: "45 PoPs", color: "text-accent" },
                   { value: "Europe", count: "60 PoPs", color: "text-highlight" },
