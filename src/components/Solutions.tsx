@@ -12,6 +12,12 @@ const solutions = [
     features: ["Header Bidding", "Yield Optimization", "Floor Management", "Demand Partners", "Real-time Analytics"],
     stats: { value: "45%", label: "Average revenue lift" },
     gradient: "from-accent to-pink-400",
+    metrics: [
+      { value: "50B+", label: "Daily impressions" },
+      { value: "180+", label: "Demand partners" },
+      { value: "200+", label: "SSP integrations" },
+      { value: "99.9%", label: "Fill rate" },
+    ],
   },
   {
     id: "advertisers",
@@ -22,6 +28,12 @@ const solutions = [
     features: ["Audience Targeting", "Brand Safety", "Cross-Device", "Real-Time Reporting", "AI Optimization"],
     stats: { value: "3.2x", label: "ROAS improvement" },
     gradient: "from-highlight to-cyan-400",
+    metrics: [
+      { value: "2.5B+", label: "Daily reach" },
+      { value: "150+", label: "Countries" },
+      { value: "500+", label: "Targeting segments" },
+      { value: "98%", label: "Brand safety score" },
+    ],
   },
   {
     id: "agencies",
@@ -32,6 +44,12 @@ const solutions = [
     features: ["Campaign Management", "White-Label", "Custom Reporting", "API Access", "Multi-Client Support"],
     stats: { value: "60%", label: "Time saved on operations" },
     gradient: "from-violet-500 to-accent",
+    metrics: [
+      { value: "1000+", label: "Clients managed" },
+      { value: "50+", label: "White-label partners" },
+      { value: "100%", label: "API coverage" },
+      { value: "24/7", label: "Dedicated support" },
+    ],
   },
 ];
 
@@ -230,14 +248,9 @@ const Solutions = () => {
                   <p className="text-primary-foreground/60">{activeSolution.stats.label}</p>
                 </motion.div>
 
-                {/* Key metrics grid */}
+                {/* Key metrics grid - Dynamic per tab */}
                 <div className="relative z-10 grid grid-cols-2 gap-4 mt-6">
-                  {[
-                    { value: "50B+", label: "Daily bids" },
-                    { value: "180+", label: "Countries" },
-                    { value: "200+", label: "Integrations" },
-                    { value: "99.9%", label: "Uptime" },
-                  ].map((metric, index) => (
+                  {activeSolution.metrics.map((metric, index) => (
                     <motion.div 
                       key={metric.label}
                       className="border-l-2 border-primary-foreground/20 pl-4 group cursor-pointer"
