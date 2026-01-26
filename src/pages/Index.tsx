@@ -1,8 +1,10 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Solutions from "@/components/Solutions";
-import Partners from "@/components/Partners";
+import UnifiedPlatform from "@/components/UnifiedPlatform";
+import SupplyDemand from "@/components/SupplyDemand";
+import Environments from "@/components/Environments";
+import TechStack from "@/components/TechStack";
+import GlobalInfrastructure from "@/components/GlobalInfrastructure";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -12,9 +14,11 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <Features />
-        <Solutions />
-        <Partners />
+        <UnifiedPlatform />
+        <SupplyDemand />
+        <Environments />
+        <TechStack />
+        <GlobalInfrastructure />
         <CTA />
       </main>
       <Footer />
