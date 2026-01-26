@@ -195,218 +195,142 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Cute AdTech Bot */}
+          {/* Right column - Orbital System */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Ambient glow behind bot */}
+            {/* Ambient glow */}
             <motion.div 
-              className="absolute w-[350px] h-[350px] rounded-full blur-3xl opacity-40"
-              style={{ background: 'radial-gradient(circle, hsl(320 85% 65%), hsl(185 85% 55%), transparent 70%)' }}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
+              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), hsl(185 85% 45%), transparent 60%)' }}
+              animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             />
 
-            {/* Main Bot Container */}
-            <motion.div
-              className="relative"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {/* Bot Body - rounder and cuter */}
-              <motion.div 
-                className="relative w-56 h-56 rounded-[60px] bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-4 border-[#3a4575] shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-visible"
-                whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {/* Rosy cheeks */}
-                <motion.div 
-                  className="absolute top-20 left-2 w-8 h-5 rounded-full bg-pink-400/40 blur-sm"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div 
-                  className="absolute top-20 right-2 w-8 h-5 rounded-full bg-pink-400/40 blur-sm"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                />
-
-                {/* Big cute eyes */}
-                <div className="flex justify-center gap-10 pt-10">
-                  {[0, 1].map((i) => (
-                    <motion.div
-                      key={i}
-                      className="relative w-16 h-16"
-                      animate={{ scaleY: [1, 1, 0.15, 1, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.05, times: [0, 0.42, 0.47, 0.52, 1] }}
-                    >
-                      {/* Eye white */}
-                      <div className="absolute inset-0 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]" />
-                      {/* Iris */}
-                      <motion.div 
-                        className="absolute top-2 left-2 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-300 to-cyan-500"
-                        animate={{ x: [0, 3, -2, 0], y: [0, -2, 2, 0] }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                      >
-                        {/* Pupil */}
-                        <div className="absolute top-2 left-2 w-8 h-8 rounded-full bg-[#0a1020]">
-                          {/* Sparkle highlights */}
-                          <div className="absolute top-1 left-1 w-3 h-3 rounded-full bg-white" />
-                          <div className="absolute bottom-2 right-1 w-1.5 h-1.5 rounded-full bg-white/70" />
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Happy mouth */}
-                <motion.div 
-                  className="flex justify-center mt-3"
-                  animate={{ scaleX: [1, 1.15, 1], scaleY: [1, 0.9, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <div className="w-10 h-5 rounded-b-full bg-[#0a1020] border-t-2 border-pink-400" />
-                </motion.div>
-
-                {/* Decorative heart antenna */}
-                <motion.div 
-                  className="absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
-                  animate={{ rotate: [-8, 8, -8] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <motion.div 
-                    className="text-2xl"
-                    animate={{ scale: [1, 1.3, 1] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                  >
-                    💖
-                  </motion.div>
-                  <div className="w-1.5 h-5 bg-gradient-to-b from-pink-300 to-gray-500 rounded-full -mt-1" />
-                </motion.div>
-
-                {/* Little feet peeking out */}
-                <motion.div 
-                  className="absolute -bottom-4 left-10 w-8 h-6 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
-                  animate={{ rotate: [-5, 5, -5] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
-                <motion.div 
-                  className="absolute -bottom-4 right-10 w-8 h-6 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
-                  animate={{ rotate: [5, -5, 5] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
-                />
-              </motion.div>
-
-              {/* Waving arm */}
-              <motion.div 
-                className="absolute top-20 -right-12 origin-top-left"
-                animate={{ rotate: [0, 20, 0, 20, 0] }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <div className="w-10 h-16 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]" />
-                <motion.div className="absolute -bottom-1 left-1 text-lg">👋</motion.div>
-              </motion.div>
-
-              {/* Other arm holding data */}
-              <motion.div 
-                className="absolute top-24 -left-10 w-10 h-14 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
-                animate={{ rotate: [-5, 5, -5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </motion.div>
-
-            {/* Chat bubbles - cycling messages */}
-            <motion.div 
-              className="absolute -top-2 right-0 space-y-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              {/* Main speech bubble */}
-              <motion.div 
-                className="bg-white rounded-2xl rounded-bl-sm px-4 py-2.5 shadow-lg max-w-[180px]"
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <motion.div
-                  className="text-sm font-semibold text-gray-800"
-                  animate={{ opacity: [1, 0, 0, 1] }}
-                  transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
-                >
-                  Hi! I'm KoloBot! ✨
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* Floating mini chat bubbles */}
-            <motion.div 
-              className="absolute top-12 right-12 bg-gradient-to-r from-pink-100 to-cyan-100 rounded-full px-3 py-1 shadow-md"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-            >
-              <span className="text-xs font-medium text-gray-700">1.2M RPS 🚀</span>
-            </motion.div>
-
-            <motion.div 
-              className="absolute top-32 right-4 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full px-3 py-1 shadow-md"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 2.5 }}
-            >
-              <span className="text-xs font-medium text-gray-700">8ms latency ⚡</span>
-            </motion.div>
-
-            <motion.div 
-              className="absolute bottom-28 right-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full px-3 py-1 shadow-md"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 4 }}
-            >
-              <span className="text-xs font-medium text-gray-700">99.9% uptime 💪</span>
-            </motion.div>
-
-            {/* Floating hearts and sparkles */}
-            {['💫', '✨', '💖', '⭐', '🌟'].map((emoji, i) => (
+            {/* Orbital rings */}
+            {[180, 240, 300].map((size, i) => (
               <motion.div
                 key={i}
-                className="absolute text-lg"
+                className="absolute rounded-full border"
                 style={{
-                  left: `${15 + i * 18}%`,
-                  top: `${60 + (i % 3) * 12}%`,
+                  width: size,
+                  height: size,
+                  borderColor: `hsla(${185 + i * 40}, 70%, 50%, ${0.15 - i * 0.03})`,
                 }}
-                animate={{
-                  y: [0, -30, 0],
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.8, 1.2, 0.8],
-                  rotate: [0, 10, -10, 0],
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20 + i * 10, repeat: Infinity, ease: "linear" }}
+              />
+            ))}
+
+            {/* Center hub */}
+            <motion.div 
+              className="relative z-20 w-28 h-28 rounded-full bg-gradient-to-br from-[#1a1f35] to-[#0d1020] border-2 border-[#3a4575] shadow-[0_0_60px_rgba(236,72,153,0.3)] flex items-center justify-center"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <motion.div 
+                className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-[hsl(185,85%,45%)] opacity-80"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              />
+              <div className="absolute text-2xl font-bold text-white">K</div>
+            </motion.div>
+
+            {/* Orbiting elements */}
+            {[
+              { icon: "📊", label: "Publishers", angle: 0, radius: 90, duration: 12, color: "from-pink-500/20 to-pink-600/20", borderColor: "border-pink-500/40" },
+              { icon: "🎯", label: "Advertisers", angle: 120, radius: 90, duration: 12, color: "from-cyan-500/20 to-cyan-600/20", borderColor: "border-cyan-500/40" },
+              { icon: "🔗", label: "Platforms", angle: 240, radius: 90, duration: 12, color: "from-purple-500/20 to-purple-600/20", borderColor: "border-purple-500/40" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                className="absolute z-10"
+                style={{ 
+                  width: 90, 
+                  height: 90,
                 }}
-                transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: i * 0.6 }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: item.duration, repeat: Infinity, ease: "linear", delay: (item.angle / 360) * item.duration }}
               >
-                {emoji}
+                <motion.div 
+                  className={`absolute -top-11 left-1/2 -translate-x-1/2 w-20 h-20 rounded-2xl bg-gradient-to-br ${item.color} backdrop-blur-sm border ${item.borderColor} flex flex-col items-center justify-center gap-1 shadow-lg`}
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: item.duration, repeat: Infinity, ease: "linear", delay: (item.angle / 360) * item.duration }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  <span className="text-[10px] font-medium text-foreground/80">{item.label}</span>
+                </motion.div>
               </motion.div>
             ))}
 
-            {/* Status badge */}
-            <motion.div 
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full px-5 py-2 shadow-lg"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <div className="flex items-center gap-2">
-                <motion.span 
-                  className="text-lg"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+            {/* Outer orbiting stats */}
+            {[
+              { value: "1.2M", label: "RPS", angle: 45, radius: 150 },
+              { value: "8ms", label: "Latency", angle: 135, radius: 150 },
+              { value: "99.9%", label: "Uptime", angle: 225, radius: 150 },
+              { value: "50+", label: "Countries", angle: 315, radius: 150 },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="absolute z-10"
+                style={{
+                  left: `calc(50% + ${Math.cos((stat.angle * Math.PI) / 180) * stat.radius}px)`,
+                  top: `calc(50% + ${Math.sin((stat.angle * Math.PI) / 180) * stat.radius}px)`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1 + i * 0.15, type: "spring" }}
+              >
+                <motion.div 
+                  className="bg-[#0d1020]/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-[#2a3555] text-center min-w-[60px]"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                  whileHover={{ scale: 1.1, borderColor: "hsl(320 85% 55%)" }}
                 >
-                  🤖
-                </motion.span>
-                <span className="text-sm font-bold text-white">Ready to help!</span>
-              </div>
-            </motion.div>
+                  <div className="text-sm font-bold gradient-text">{stat.value}</div>
+                  <div className="text-[9px] text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              </motion.div>
+            ))}
+
+            {/* Connection lines pulse effect */}
+            {[0, 120, 240].map((angle, i) => (
+              <motion.div
+                key={angle}
+                className="absolute w-[2px] h-16 origin-bottom"
+                style={{
+                  background: `linear-gradient(to top, transparent, ${i === 0 ? 'hsl(320 85% 55%)' : i === 1 ? 'hsl(185 85% 45%)' : 'hsl(280 70% 55%)'}, transparent)`,
+                  transform: `rotate(${angle}deg)`,
+                  left: 'calc(50% - 1px)',
+                  top: 'calc(50% - 64px)',
+                }}
+                animate={{ opacity: [0.2, 0.6, 0.2], scaleY: [0.8, 1, 0.8] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+              />
+            ))}
+
+            {/* Floating particles */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1.5 h-1.5 rounded-full"
+                style={{
+                  background: i % 2 === 0 ? 'hsl(320 85% 55%)' : 'hsl(185 85% 45%)',
+                  left: `${30 + Math.random() * 40}%`,
+                  top: `${20 + Math.random() * 60}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{ duration: 3 + i * 0.3, repeat: Infinity, delay: i * 0.4 }}
+              />
+            ))}
           </motion.div>
         </div>
       </motion.div>
