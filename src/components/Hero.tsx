@@ -195,115 +195,102 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Animated 3D Cube Grid */}
+          {/* Right column - Stacked Platform Cards */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ perspective: '1000px' }}
           >
-            {/* Background ambient glow */}
-            <motion.div 
-              className="absolute w-80 h-80 rounded-full blur-3xl"
-              style={{
-                background: 'radial-gradient(circle, hsl(320 85% 55% / 0.25), transparent 70%)',
-              }}
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 5, repeat: Infinity }}
+            {/* Ambient background glow */}
+            <div 
+              className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
+              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), transparent 70%)' }}
             />
 
-            {/* Rotating 3D container */}
-            <motion.div
-              className="relative w-72 h-72"
-              animate={{ rotateY: [0, 360] }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              {/* Cube faces */}
+            {/* Stacked cards */}
+            <div className="relative w-[380px] h-[420px]">
               {[
-                { rotateY: 0, translateZ: 144, label: "DSP" },
-                { rotateY: 90, translateZ: 144, label: "SSP" },
-                { rotateY: 180, translateZ: 144, label: "DMP" },
-                { rotateY: 270, translateZ: 144, label: "CDP" },
-              ].map((face, i) => (
+                { title: "Publishers", metric: "2.4M+", desc: "Active Sites", offset: 0, delay: 0 },
+                { title: "Advertisers", metric: "850K", desc: "Campaigns", offset: 1, delay: 0.1 },
+                { title: "Data Points", metric: "180B", desc: "Daily Events", offset: 2, delay: 0.2 },
+              ].map((card, i) => (
                 <motion.div
-                  key={face.label}
-                  className="absolute inset-0 flex items-center justify-center"
+                  key={card.title}
+                  className="absolute inset-x-0 bg-card/90 backdrop-blur-xl border border-border/50 rounded-2xl p-6 shadow-xl"
                   style={{
-                    transform: `rotateY(${face.rotateY}deg) translateZ(${face.translateZ}px)`,
-                    backfaceVisibility: 'hidden',
+                    top: `${i * 30}px`,
+                    zIndex: 3 - i,
                   }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 + i * 0.1 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1 - i * 0.03,
+                  }}
+                  transition={{ duration: 0.6, delay: 0.5 + card.delay }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1,
+                    zIndex: 10,
+                    transition: { duration: 0.2 }
+                  }}
                 >
-                  <div className="w-64 h-64 rounded-2xl border border-accent/20 bg-card/30 backdrop-blur-sm flex flex-col items-center justify-center gap-4 p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-medium text-muted-foreground">{card.title}</span>
                     <motion.div 
-                      className="w-16 h-16 rounded-xl flex items-center justify-center"
-                      style={{ background: 'var(--gradient-brand)' }}
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                    >
-                      <Sparkles className="w-8 h-8 text-white" />
-                    </motion.div>
-                    <span className="text-xl font-bold">{face.label}</span>
-                    <span className="text-sm text-muted-foreground text-center">
-                      {["Demand-Side Platform", "Supply-Side Platform", "Data Management", "Customer Data"][i]}
-                    </span>
+                      className="w-2 h-2 rounded-full bg-green-500"
+                      animate={{ opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="text-4xl font-bold gradient-text">{card.metric}</span>
+                    <span className="text-sm text-muted-foreground">{card.desc}</span>
+                  </div>
+                  
+                  {/* Mini chart */}
+                  <div className="flex items-end gap-1 h-12 mt-4">
+                    {[35, 55, 40, 70, 50, 85, 65, 90, 75, 95, 80, 88].map((h, j) => (
+                      <motion.div
+                        key={j}
+                        className="flex-1 rounded-t-sm"
+                        style={{ 
+                          background: j % 3 === 0 ? 'hsl(320 85% 55%)' : 'hsl(var(--muted))',
+                          height: `${h}%`
+                        }}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${h}%` }}
+                        transition={{ duration: 0.4, delay: 0.8 + j * 0.03 + card.delay }}
+                      />
+                    ))}
                   </div>
                 </motion.div>
               ))}
 
-              {/* Center hub */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                style={{ transform: 'translateZ(0px)' }}
+              {/* Floating accent elements */}
+              <motion.div 
+                className="absolute -right-12 top-20 w-20 h-20 rounded-2xl border border-accent/30 bg-accent/5 backdrop-blur-sm flex items-center justify-center"
+                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <motion.div 
-                  className="w-24 h-24 rounded-full flex items-center justify-center"
-                  style={{ background: 'var(--gradient-brand)' }}
-                  animate={{ 
-                    boxShadow: [
-                      '0 0 30px hsl(320 85% 55% / 0.3)',
-                      '0 0 60px hsl(320 85% 55% / 0.5)',
-                      '0 0 30px hsl(320 85% 55% / 0.3)',
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <span className="text-white font-bold text-xs tracking-wider">UNIFIED</span>
-                </motion.div>
+                <div className="text-center">
+                  <div className="text-lg font-bold text-accent">99.9%</div>
+                  <div className="text-[10px] text-muted-foreground">Uptime</div>
+                </div>
               </motion.div>
-            </motion.div>
 
-            {/* Floating stats cards */}
-            <motion.div 
-              className="absolute -top-4 right-8 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="text-2xl font-bold gradient-text">50B+</div>
-              <div className="text-xs text-muted-foreground">Daily Requests</div>
-            </motion.div>
-
-            <motion.div 
-              className="absolute -bottom-4 left-8 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
-              <div className="text-2xl font-bold gradient-text">&lt;10ms</div>
-              <div className="text-xs text-muted-foreground">Latency</div>
-            </motion.div>
-
-            <motion.div 
-              className="absolute top-1/2 -right-4 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
-              animate={{ x: [0, 8, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              <div className="text-2xl font-bold gradient-text">180+</div>
-              <div className="text-xs text-muted-foreground">Countries</div>
-            </motion.div>
+              <motion.div 
+                className="absolute -left-8 bottom-32 w-16 h-16 rounded-xl border border-highlight/30 bg-highlight/5 backdrop-blur-sm flex items-center justify-center"
+                animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <div className="text-center">
+                  <div className="text-sm font-bold text-highlight">&lt;10</div>
+                  <div className="text-[9px] text-muted-foreground">ms</div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
