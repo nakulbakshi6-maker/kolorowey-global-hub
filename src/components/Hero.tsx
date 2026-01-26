@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { ArrowRight, Play, Sparkles, Zap, Globe, Clock, TrendingUp } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,6 +31,38 @@ const Hero = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
+
+  // Animated counter hook
+  const useAnimatedCounter = (end: number, duration: number = 2000, delay: number = 0) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true });
+    
+    useEffect(() => {
+      if (!isInView) return;
+      
+      const timeout = setTimeout(() => {
+        let startTime: number;
+        const animate = (currentTime: number) => {
+          if (!startTime) startTime = currentTime;
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          setCount(Math.floor(easeOut * end));
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+      }, delay);
+      
+      return () => clearTimeout(timeout);
+    }, [isInView, end, duration, delay]);
+    
+    return { count, ref };
+  };
+
+  const requestsCounter = useAnimatedCounter(1200000, 2000, 1200);
+  const latencyCounter = useAnimatedCounter(10, 1500, 1400);
+  const uptimeCounter = useAnimatedCounter(999, 1800, 1600);
+  const countriesCounter = useAnimatedCounter(50, 1200, 1800);
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 md:pt-40 pb-20">
@@ -322,45 +354,134 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Stats row */}
+        {/* Stats row with animated counters */}
         <motion.div 
-          className="flex flex-wrap items-center justify-center gap-10 md:gap-20"
+          className="flex flex-wrap items-center justify-center gap-8 md:gap-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
         >
           {[
-            { value: "1.2M+", label: "Requests/sec" },
-            { value: "<10ms", label: "Latency" },
-            { value: "99.9%", label: "Uptime" },
-            { value: "50+", label: "Countries" },
+            { 
+              counter: requestsCounter, 
+              format: (n: number) => n >= 1000000 ? `${(n / 1000000).toFixed(1)}M+` : `${(n / 1000).toFixed(0)}K+`,
+              label: "Requests/sec",
+              icon: TrendingUp,
+              color: "hsl(320 85% 55%)"
+            },
+            { 
+              counter: latencyCounter, 
+              format: (n: number) => `<${n}ms`,
+              label: "Latency",
+              icon: Zap,
+              color: "hsl(185 85% 45%)"
+            },
+            { 
+              counter: uptimeCounter, 
+              format: (n: number) => `${(n / 10).toFixed(1)}%`,
+              label: "Uptime",
+              icon: Clock,
+              color: "hsl(280 70% 55%)"
+            },
+            { 
+              counter: countriesCounter, 
+              format: (n: number) => `${n}+`,
+              label: "Countries",
+              icon: Globe,
+              color: "hsl(45 90% 50%)"
+            },
           ].map((stat, i) => (
             <motion.div 
               key={stat.label}
-              className="text-center"
+              ref={stat.counter.ref}
+              className="text-center relative group"
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 1.2 + i * 0.12, type: "spring", stiffness: 150 }}
-              whileHover={{ scale: 1.1, y: -5 }}
+              whileHover={{ scale: 1.1, y: -8 }}
             >
-              <motion.div 
-                className="text-3xl md:text-4xl font-bold gradient-text"
+              {/* Animated icon */}
+              <motion.div
+                className="mx-auto mb-3 w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${stat.color}20, ${stat.color}10)`,
+                  border: `1px solid ${stat.color}30`
+                }}
                 animate={{ 
-                  opacity: [0.85, 1, 0.85],
+                  rotate: [0, 5, -5, 0],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+              >
+                <stat.icon 
+                  className="w-5 h-5" 
+                  style={{ color: stat.color }}
+                />
+              </motion.div>
+              
+              {/* Animated counter value */}
+              <motion.div 
+                className="text-3xl md:text-4xl font-bold gradient-text tabular-nums"
+                animate={{ 
                   textShadow: [
                     '0 0 0px hsl(320 85% 55% / 0)',
-                    '0 0 15px hsl(320 85% 55% / 0.3)',
+                    '0 0 20px hsl(320 85% 55% / 0.3)',
                     '0 0 0px hsl(320 85% 55% / 0)',
                   ]
                 }}
                 transition={{ duration: 3, repeat: Infinity, delay: i * 0.6 }}
               >
-                {stat.value}
+                {stat.format(stat.counter.count)}
               </motion.div>
-              <div className="text-sm text-muted-foreground mt-2 font-medium">{stat.label}</div>
+              
+              {/* Label with underline animation */}
+              <div className="text-sm text-muted-foreground mt-2 font-medium relative">
+                {stat.label}
+                <motion.div 
+                  className="absolute -bottom-1 left-1/2 h-0.5 rounded-full"
+                  style={{ background: stat.color }}
+                  initial={{ width: 0, x: '-50%' }}
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+              
+              {/* Hover glow effect */}
+              <motion.div
+                className="absolute inset-0 -z-10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle, ${stat.color}15 0%, transparent 70%)`,
+                  filter: 'blur(20px)',
+                }}
+              />
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Floating decorative elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Orbiting dots */}
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={`orbit-${i}`}
+              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30 + i * 10, repeat: Infinity, ease: "linear" }}
+            >
+              <motion.div
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  top: '0%',
+                  left: '50%',
+                  background: ['hsl(320 85% 55%)', 'hsl(185 85% 45%)', 'hsl(280 70% 55%)'][i],
+                  boxShadow: `0 0 10px ${['hsl(320 85% 55% / 0.5)', 'hsl(185 85% 45% / 0.5)', 'hsl(280 70% 55% / 0.5)'][i]}`
+                }}
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+              />
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
