@@ -182,38 +182,9 @@ const Features = () => {
             <br />
             <span className="gradient-text">programmatic ecosystem</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Enterprise-grade infrastructure powering the next generation of digital advertising.
           </p>
-          
-          {/* Stats row */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-            {[
-              { value: "50B+", label: "Daily bid requests" },
-              { value: "180+", label: "Countries" },
-              { value: "<10ms", label: "Latency" },
-            ].map((stat, i) => (
-              <motion.div 
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-              >
-                <div 
-                  className="text-3xl md:text-4xl font-extrabold mb-1"
-                  style={{
-                    WebkitTextStroke: '1.5px hsl(var(--accent))',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
 
         {/* Features Grid with 3D hover effects */}
