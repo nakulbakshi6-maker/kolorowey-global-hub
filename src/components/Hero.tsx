@@ -195,160 +195,187 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Live Terminal Visualization */}
+          {/* Right column - Cute AdTech Bot */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Ambient glow */}
+            {/* Ambient glow behind bot */}
             <motion.div 
-              className="absolute w-[450px] h-[450px] rounded-full blur-3xl opacity-20"
-              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), transparent 60%)' }}
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 6, repeat: Infinity }}
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl opacity-30"
+              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), hsl(185 85% 45%), transparent 70%)' }}
+              animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
 
-            {/* Terminal window */}
-            <motion.div 
-              className="relative w-[420px] bg-[#0d1117] rounded-xl border border-[#30363d] shadow-2xl overflow-hidden"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+            {/* Main Bot Container */}
+            <motion.div
+              className="relative"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              {/* Terminal header */}
-              <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-[#30363d]">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="w-3 h-3 rounded-full bg-[#27ca40]" />
-                </div>
-                <span className="text-xs text-[#8b949e] font-mono">kolorowey-api</span>
-                <div className="flex items-center gap-1">
+              {/* Bot Body */}
+              <motion.div 
+                className="relative w-64 h-72 rounded-[40px] bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border-2 border-[#2a3050] shadow-2xl overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+              >
+                {/* Screen/Face */}
+                <div className="absolute top-8 left-6 right-6 h-32 rounded-2xl bg-gradient-to-br from-[#0d1525] to-[#0a0f1a] border border-[#2a3555] overflow-hidden">
+                  {/* Screen glow */}
                   <motion.div 
-                    className="w-2 h-2 rounded-full bg-green-500"
-                    animate={{ opacity: [1, 0.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="absolute inset-0 opacity-20"
+                    style={{ background: 'radial-gradient(ellipse at center, hsl(185 85% 45%), transparent 70%)' }}
+                    animate={{ opacity: [0.15, 0.3, 0.15] }}
+                    transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <span className="text-[10px] text-green-500 font-mono">LIVE</span>
-                </div>
-              </div>
-
-              {/* Terminal content */}
-              <div className="p-4 font-mono text-sm space-y-3 h-[340px] overflow-hidden">
-                {/* API logs */}
-                {[
-                  { method: "POST", endpoint: "/v1/bid/request", status: "200", time: "8ms", color: "green" },
-                  { method: "GET", endpoint: "/v1/campaigns/active", status: "200", time: "12ms", color: "green" },
-                  { method: "POST", endpoint: "/v1/analytics/event", status: "201", time: "5ms", color: "green" },
-                  { method: "GET", endpoint: "/v1/publishers/stats", status: "200", time: "15ms", color: "green" },
-                  { method: "POST", endpoint: "/v1/bid/response", status: "200", time: "6ms", color: "green" },
-                ].map((log, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-center gap-3 text-xs"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8 + i * 0.15 }}
-                  >
-                    <span className="text-[#8b949e]">{String(i + 1).padStart(2, '0')}</span>
-                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
-                      log.method === 'POST' ? 'bg-blue-500/20 text-blue-400' : 'bg-emerald-500/20 text-emerald-400'
-                    }`}>
-                      {log.method}
-                    </span>
-                    <span className="text-[#e6edf3] flex-1 truncate">{log.endpoint}</span>
-                    <span className="text-green-400">{log.status}</span>
-                    <span className="text-[#8b949e]">{log.time}</span>
-                  </motion.div>
-                ))}
-
-                {/* Divider */}
-                <motion.div 
-                  className="border-t border-[#30363d] my-3"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.5, duration: 0.5 }}
-                />
-
-                {/* Live stats */}
-                <motion.div
-                  className="bg-[#161b22] rounded-lg p-3 border border-[#30363d]"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.7 }}
-                >
-                  <div className="text-[10px] text-[#8b949e] mb-2 uppercase tracking-wider">Real-time Metrics</div>
-                  <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { label: "RPS", value: "1.2M" },
-                      { label: "Latency", value: "8ms" },
-                      { label: "Success", value: "99.9%" },
-                    ].map((stat, i) => (
-                      <motion.div 
-                        key={stat.label}
-                        className="text-center"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1.9 + i * 0.1 }}
+                  
+                  {/* Eyes */}
+                  <div className="flex justify-center gap-8 pt-6">
+                    {[0, 1].map((i) => (
+                      <motion.div
+                        key={i}
+                        className="relative w-10 h-10"
+                        animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
+                        transition={{ duration: 4, repeat: Infinity, delay: i * 0.1, times: [0, 0.45, 0.5, 0.55, 1] }}
                       >
+                        {/* Eye outer */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-b from-cyan-400 to-cyan-600 shadow-[0_0_20px_rgba(34,211,238,0.5)]" />
+                        {/* Eye inner/pupil */}
                         <motion.div 
-                          className="text-lg font-bold gradient-text"
-                          animate={{ opacity: [1, 0.7, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                          className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0a0f1a]"
+                          animate={{ x: [0, 2, -2, 0], y: [0, -1, 1, 0] }}
+                          transition={{ duration: 3, repeat: Infinity }}
                         >
-                          {stat.value}
+                          {/* Eye highlight */}
+                          <div className="absolute top-1 left-1 w-2 h-2 rounded-full bg-white opacity-80" />
                         </motion.div>
-                        <div className="text-[10px] text-[#8b949e]">{stat.label}</div>
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
-
-                {/* Typing indicator */}
-                <motion.div 
-                  className="flex items-center gap-2 text-[#8b949e]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 2.2 }}
-                >
-                  <span className="text-accent">❯</span>
-                  <motion.span
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
+                  
+                  {/* Mouth - animated expression */}
+                  <motion.div 
+                    className="flex justify-center mt-4"
+                    animate={{ scaleX: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
                   >
-                    _
-                  </motion.span>
-                </motion.div>
-              </div>
-            </motion.div>
+                    <div className="w-8 h-3 rounded-full bg-gradient-to-r from-pink-400 to-pink-500 shadow-[0_0_10px_rgba(244,114,182,0.5)]" />
+                  </motion.div>
+                </div>
 
-            {/* Floating code snippet */}
-            <motion.div 
-              className="absolute -top-2 -right-4 bg-[#161b22] rounded-lg border border-[#30363d] p-3 shadow-xl"
-              animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="font-mono text-[10px] space-y-1">
-                <div><span className="text-purple-400">const</span> <span className="text-blue-400">response</span> <span className="text-[#e6edf3]">=</span></div>
-                <div className="pl-2"><span className="text-yellow-400">await</span> <span className="text-green-400">kolorowey</span><span className="text-[#e6edf3]">.</span><span className="text-blue-400">bid</span><span className="text-[#e6edf3]">()</span></div>
-              </div>
-            </motion.div>
+                {/* Chest panel with data visualization */}
+                <div className="absolute bottom-8 left-6 right-6 h-20 rounded-xl bg-[#0d1525] border border-[#2a3555] p-3">
+                  {/* Mini data bars */}
+                  <div className="flex items-end justify-between h-full gap-1">
+                    {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8, 0.3, 0.75].map((height, i) => (
+                      <motion.div
+                        key={i}
+                        className="flex-1 rounded-t"
+                        style={{ 
+                          background: i % 2 === 0 
+                            ? 'linear-gradient(to top, hsl(320 85% 55%), hsl(320 85% 65%))' 
+                            : 'linear-gradient(to top, hsl(185 85% 45%), hsl(185 85% 55%))',
+                        }}
+                        animate={{ 
+                          height: [`${height * 100}%`, `${Math.random() * 40 + 40}%`, `${height * 100}%`],
+                        }}
+                        transition={{ duration: 2 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    ))}
+                  </div>
+                </div>
 
-            {/* Floating status badge */}
-            <motion.div 
-              className="absolute -bottom-2 -left-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full px-4 py-2 border border-green-500/30 shadow-lg"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
-              <div className="flex items-center gap-2">
+                {/* Decorative lights */}
                 <motion.div 
-                  className="w-2 h-2 rounded-full bg-green-500"
+                  className="absolute top-4 right-4 w-3 h-3 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
+                  animate={{ opacity: [1, 0.4, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+                <motion.div 
+                  className="absolute top-4 left-4 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </motion.div>
+
+              {/* Antenna */}
+              <motion.div 
+                className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
+                animate={{ rotate: [-5, 5, -5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <motion.div 
+                  className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 shadow-[0_0_15px_rgba(236,72,153,0.6)]"
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
-                <span className="text-xs font-medium text-green-400">All systems operational</span>
+                <div className="w-1 h-6 bg-gradient-to-b from-gray-400 to-gray-600 rounded-full" />
+              </motion.div>
+
+              {/* Arms */}
+              <motion.div 
+                className="absolute top-32 -left-10 w-8 h-20 rounded-full bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border border-[#2a3050]"
+                animate={{ rotate: [-10, 10, -10] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div 
+                className="absolute top-32 -right-10 w-8 h-20 rounded-full bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border border-[#2a3050]"
+                animate={{ rotate: [10, -10, 10] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              />
+            </motion.div>
+
+            {/* Floating data particles around bot */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-3 h-3 rounded-full"
+                style={{
+                  background: i % 2 === 0 ? 'hsl(320 85% 55%)' : 'hsl(185 85% 45%)',
+                  left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 45}%`,
+                  top: `${50 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  x: [0, i % 2 === 0 ? 10 : -10, 0],
+                  opacity: [0.4, 1, 0.4],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{ duration: 3 + i * 0.3, repeat: Infinity, delay: i * 0.4 }}
+              />
+            ))}
+
+            {/* Speech bubble */}
+            <motion.div 
+              className="absolute -top-4 -right-8 bg-white rounded-2xl rounded-bl-none px-4 py-2 shadow-lg"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5, type: "spring" }}
+            >
+              <motion.span 
+                className="text-sm font-bold bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent"
+                animate={{ opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Let's connect! 🚀
+              </motion.span>
+            </motion.div>
+
+            {/* Platform indicator */}
+            <motion.div 
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#1a1f35] to-[#0d1020] rounded-full px-6 py-2 border border-[#2a3555]"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="flex items-center gap-2">
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-green-400"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
+                <span className="text-xs font-medium text-cyan-300">KoloBot Online</span>
               </div>
             </motion.div>
           </motion.div>
