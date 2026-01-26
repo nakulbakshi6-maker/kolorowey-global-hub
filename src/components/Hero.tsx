@@ -195,190 +195,162 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Enhanced Stacked Platform Cards */}
+          {/* Right column - Live Terminal Visualization */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Multi-layer ambient glow */}
+            {/* Ambient glow */}
             <motion.div 
-              className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
+              className="absolute w-[450px] h-[450px] rounded-full blur-3xl opacity-20"
               style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), transparent 60%)' }}
               animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 6, repeat: Infinity }}
             />
+
+            {/* Terminal window */}
             <motion.div 
-              className="absolute w-80 h-80 rounded-full blur-2xl opacity-10"
-              style={{ background: 'radial-gradient(circle, hsl(185 85% 45%), transparent 70%)' }}
-              animate={{ scale: [1.1, 1, 1.1], x: [0, 20, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            {/* Stacked cards */}
-            <div className="relative w-[400px] h-[440px]">
-              {[
-                { title: "Publishers", metric: "2.4M+", desc: "Active Sites", icon: "📡", trend: "+12.4%", offset: 0, delay: 0 },
-                { title: "Advertisers", metric: "850K", desc: "Campaigns", icon: "🎯", trend: "+8.2%", offset: 1, delay: 0.1 },
-                { title: "Data Points", metric: "180B", desc: "Daily Events", icon: "⚡", trend: "+24.1%", offset: 2, delay: 0.2 },
-              ].map((card, i) => (
-                <motion.div
-                  key={card.title}
-                  className="absolute inset-x-0 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl border border-border/40 rounded-2xl p-6 shadow-2xl overflow-hidden group cursor-pointer"
-                  style={{
-                    top: `${i * 35}px`,
-                    zIndex: 3 - i,
-                  }}
-                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                  animate={{ 
-                    opacity: 1 - i * 0.08, 
-                    y: 0, 
-                    scale: 1 - i * 0.025,
-                  }}
-                  transition={{ duration: 0.7, delay: 0.5 + card.delay, type: "spring", stiffness: 100 }}
-                  whileHover={{ 
-                    y: -12, 
-                    scale: 1.02,
-                    opacity: 1,
-                    zIndex: 10,
-                    boxShadow: '0 25px 50px -12px hsl(320 85% 55% / 0.25)',
-                    transition: { duration: 0.25 }
-                  }}
-                >
-                  {/* Hover gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-highlight/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Shimmer effect on hover */}
+              className="relative w-[420px] bg-[#0d1117] rounded-xl border border-[#30363d] shadow-2xl overflow-hidden"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              {/* Terminal header */}
+              <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-[#30363d]">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#27ca40]" />
+                </div>
+                <span className="text-xs text-[#8b949e] font-mono">kolorowey-api</span>
+                <div className="flex items-center gap-1">
                   <motion.div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                    style={{
-                      background: 'linear-gradient(105deg, transparent 40%, hsl(320 85% 55% / 0.1) 45%, transparent 50%)',
-                      backgroundSize: '200% 100%',
-                    }}
-                    animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}
-                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
+                    className="w-2 h-2 rounded-full bg-green-500"
+                    animate={{ opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
                   />
+                  <span className="text-[10px] text-green-500 font-mono">LIVE</span>
+                </div>
+              </div>
 
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{card.icon}</span>
-                        <span className="text-sm font-semibold text-foreground/80">{card.title}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <motion.span 
-                          className="text-xs font-medium text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full"
-                          initial={{ opacity: 0, x: 10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 1 + card.delay }}
-                        >
-                          {card.trend}
-                        </motion.span>
-                        <motion.div 
-                          className="w-2 h-2 rounded-full bg-green-500"
-                          animate={{ 
-                            opacity: [1, 0.4, 1],
-                            scale: [1, 1.2, 1]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-baseline gap-3 mb-1">
-                      <motion.span 
-                        className="text-5xl font-extrabold gradient-text tracking-tight"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7 + card.delay, duration: 0.5 }}
+              {/* Terminal content */}
+              <div className="p-4 font-mono text-sm space-y-3 h-[340px] overflow-hidden">
+                {/* API logs */}
+                {[
+                  { method: "POST", endpoint: "/v1/bid/request", status: "200", time: "8ms", color: "green" },
+                  { method: "GET", endpoint: "/v1/campaigns/active", status: "200", time: "12ms", color: "green" },
+                  { method: "POST", endpoint: "/v1/analytics/event", status: "201", time: "5ms", color: "green" },
+                  { method: "GET", endpoint: "/v1/publishers/stats", status: "200", time: "15ms", color: "green" },
+                  { method: "POST", endpoint: "/v1/bid/response", status: "200", time: "6ms", color: "green" },
+                ].map((log, i) => (
+                  <motion.div
+                    key={i}
+                    className="flex items-center gap-3 text-xs"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8 + i * 0.15 }}
+                  >
+                    <span className="text-[#8b949e]">{String(i + 1).padStart(2, '0')}</span>
+                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                      log.method === 'POST' ? 'bg-blue-500/20 text-blue-400' : 'bg-emerald-500/20 text-emerald-400'
+                    }`}>
+                      {log.method}
+                    </span>
+                    <span className="text-[#e6edf3] flex-1 truncate">{log.endpoint}</span>
+                    <span className="text-green-400">{log.status}</span>
+                    <span className="text-[#8b949e]">{log.time}</span>
+                  </motion.div>
+                ))}
+
+                {/* Divider */}
+                <motion.div 
+                  className="border-t border-[#30363d] my-3"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 1.5, duration: 0.5 }}
+                />
+
+                {/* Live stats */}
+                <motion.div
+                  className="bg-[#161b22] rounded-lg p-3 border border-[#30363d]"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.7 }}
+                >
+                  <div className="text-[10px] text-[#8b949e] mb-2 uppercase tracking-wider">Real-time Metrics</div>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: "RPS", value: "1.2M" },
+                      { label: "Latency", value: "8ms" },
+                      { label: "Success", value: "99.9%" },
+                    ].map((stat, i) => (
+                      <motion.div 
+                        key={stat.label}
+                        className="text-center"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1.9 + i * 0.1 }}
                       >
-                        {card.metric}
-                      </motion.span>
-                      <span className="text-sm text-muted-foreground font-medium">{card.desc}</span>
-                    </div>
-                    
-                    {/* Enhanced mini chart */}
-                    <div className="flex items-end gap-1.5 h-14 mt-5 px-1">
-                      {[30, 50, 35, 65, 45, 80, 55, 90, 70, 95, 75, 85].map((h, j) => (
-                        <motion.div
-                          key={j}
-                          className="flex-1 rounded-t-sm relative overflow-hidden"
-                          style={{ 
-                            background: `linear-gradient(to top, ${j % 3 === 0 ? 'hsl(320 85% 55%)' : 'hsl(var(--muted))'}, ${j % 3 === 0 ? 'hsl(320 85% 65%)' : 'hsl(var(--muted) / 0.7)'})`,
-                          }}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ duration: 0.5, delay: 0.9 + j * 0.04 + card.delay, ease: "easeOut" }}
-                          whileHover={{ 
-                            scaleY: 1.1,
-                            filter: 'brightness(1.2)',
-                            transition: { duration: 0.1 }
-                          }}
+                        <motion.div 
+                          className="text-lg font-bold gradient-text"
+                          animate={{ opacity: [1, 0.7, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
                         >
-                          {j % 3 === 0 && (
-                            <motion.div 
-                              className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20"
-                              animate={{ opacity: [0.3, 0.6, 0.3] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: j * 0.1 }}
-                            />
-                          )}
+                          {stat.value}
                         </motion.div>
-                      ))}
-                    </div>
+                        <div className="text-[10px] text-[#8b949e]">{stat.label}</div>
+                      </motion.div>
+                    ))}
                   </div>
                 </motion.div>
-              ))}
 
-              {/* Enhanced floating accent elements */}
-              <motion.div 
-                className="absolute -right-16 top-16 w-24 h-24 rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
-                animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{ scale: 1.1, borderColor: 'hsl(320 85% 55% / 0.6)' }}
-              >
-                <div className="text-center">
-                  <motion.div 
-                    className="text-xl font-bold text-accent"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                {/* Typing indicator */}
+                <motion.div 
+                  className="flex items-center gap-2 text-[#8b949e]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.2 }}
+                >
+                  <span className="text-accent">❯</span>
+                  <motion.span
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
                   >
-                    99.9%
-                  </motion.div>
-                  <div className="text-[10px] text-muted-foreground font-medium">Uptime</div>
-                </div>
-              </motion.div>
+                    _
+                  </motion.span>
+                </motion.div>
+              </div>
+            </motion.div>
 
-              <motion.div 
-                className="absolute -left-12 bottom-28 w-20 h-20 rounded-xl border border-highlight/40 bg-gradient-to-br from-highlight/10 to-highlight/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
-                animate={{ y: [0, 12, 0], rotate: [0, -3, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                whileHover={{ scale: 1.1, borderColor: 'hsl(185 85% 45% / 0.6)' }}
-              >
-                <div className="text-center">
-                  <motion.div 
-                    className="text-lg font-bold text-highlight"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2.5, repeat: Infinity }}
-                  >
-                    &lt;10ms
-                  </motion.div>
-                  <div className="text-[9px] text-muted-foreground font-medium">Latency</div>
-                </div>
-              </motion.div>
+            {/* Floating code snippet */}
+            <motion.div 
+              className="absolute -top-2 -right-4 bg-[#161b22] rounded-lg border border-[#30363d] p-3 shadow-xl"
+              animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="font-mono text-[10px] space-y-1">
+                <div><span className="text-purple-400">const</span> <span className="text-blue-400">response</span> <span className="text-[#e6edf3]">=</span></div>
+                <div className="pl-2"><span className="text-yellow-400">await</span> <span className="text-green-400">kolorowey</span><span className="text-[#e6edf3]">.</span><span className="text-blue-400">bid</span><span className="text-[#e6edf3]">()</span></div>
+              </div>
+            </motion.div>
 
-              <motion.div 
-                className="absolute -right-8 bottom-12 w-16 h-16 rounded-lg border border-purple-500/40 bg-gradient-to-br from-purple-500/10 to-purple-500/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
-                animate={{ x: [0, 8, 0], y: [0, -5, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <div className="text-center">
-                  <div className="text-sm font-bold text-purple-400">180+</div>
-                  <div className="text-[8px] text-muted-foreground font-medium">Countries</div>
-                </div>
-              </motion.div>
-            </div>
+            {/* Floating status badge */}
+            <motion.div 
+              className="absolute -bottom-2 -left-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full px-4 py-2 border border-green-500/30 shadow-lg"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <div className="flex items-center gap-2">
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-green-500"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
+                <span className="text-xs font-medium text-green-400">All systems operational</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
