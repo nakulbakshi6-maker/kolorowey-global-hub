@@ -195,111 +195,148 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Abstract mesh visual */}
+          {/* Right column - Network node visualization */}
           <motion.div 
-            className="relative hidden lg:block h-[500px]"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="relative hidden lg:flex items-center justify-center h-[500px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            {/* Main gradient mesh */}
-            <div className="absolute inset-0 rounded-3xl overflow-hidden">
-              <motion.div 
-                className="absolute inset-0"
-                style={{
-                  background: `
-                    radial-gradient(ellipse 80% 50% at 50% 50%, hsl(320 85% 55% / 0.3) 0%, transparent 70%),
-                    radial-gradient(ellipse 60% 80% at 70% 20%, hsl(185 85% 45% / 0.25) 0%, transparent 60%),
-                    radial-gradient(ellipse 50% 60% at 30% 80%, hsl(280 70% 55% / 0.2) 0%, transparent 50%)
-                  `,
-                }}
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              />
-              
-              {/* Animated flowing lines */}
-              <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 400">
-                <motion.path
-                  d="M0,200 Q100,100 200,200 T400,200"
-                  fill="none"
-                  stroke="url(#gradient1)"
-                  strokeWidth="1"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, delay: 0.5 }}
-                />
-                <motion.path
-                  d="M0,250 Q150,150 250,250 T400,250"
-                  fill="none"
-                  stroke="url(#gradient2)"
-                  strokeWidth="1"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, delay: 0.7 }}
-                />
-                <motion.path
-                  d="M0,150 Q80,250 200,150 T400,150"
-                  fill="none"
-                  stroke="url(#gradient1)"
-                  strokeWidth="0.5"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, delay: 0.9 }}
-                />
-                <defs>
-                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(320 85% 55%)" />
-                    <stop offset="100%" stopColor="hsl(185 85% 45%)" />
-                  </linearGradient>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(185 85% 45%)" />
-                    <stop offset="100%" stopColor="hsl(280 70% 55%)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              {/* Floating orbs */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
+            <svg className="w-full h-full" viewBox="0 0 400 400">
+              {/* Connection lines */}
+              {[
+                { x1: 200, y1: 200, x2: 100, y2: 80 },
+                { x1: 200, y1: 200, x2: 320, y2: 100 },
+                { x1: 200, y1: 200, x2: 80, y2: 280 },
+                { x1: 200, y1: 200, x2: 340, y2: 260 },
+                { x1: 200, y1: 200, x2: 200, y2: 50 },
+                { x1: 200, y1: 200, x2: 200, y2: 350 },
+                { x1: 100, y1: 80, x2: 200, y2: 50 },
+                { x1: 320, y1: 100, x2: 200, y2: 50 },
+                { x1: 80, y1: 280, x2: 200, y2: 350 },
+                { x1: 340, y1: 260, x2: 200, y2: 350 },
+              ].map((line, i) => (
+                <motion.line
                   key={i}
-                  className="absolute rounded-full blur-xl"
-                  style={{
-                    width: 80 + i * 30,
-                    height: 80 + i * 30,
-                    background: i % 2 === 0 
-                      ? 'radial-gradient(circle, hsl(320 85% 55% / 0.4), transparent 70%)'
-                      : 'radial-gradient(circle, hsl(185 85% 45% / 0.3), transparent 70%)',
-                    left: `${20 + i * 20}%`,
-                    top: `${15 + i * 15}%`,
-                  }}
+                  x1={line.x1}
+                  y1={line.y1}
+                  x2={line.x2}
+                  y2={line.y2}
+                  stroke="url(#lineGradient)"
+                  strokeWidth="1"
+                  strokeOpacity="0.3"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5 + i * 0.1 }}
+                />
+              ))}
+
+              {/* Animated pulse along lines */}
+              {[0, 1, 2, 3].map((i) => (
+                <motion.circle
+                  key={`pulse-${i}`}
+                  r="3"
+                  fill="hsl(320 85% 55%)"
+                  initial={{ opacity: 0 }}
                   animate={{
-                    x: [0, 20 * (i % 2 === 0 ? 1 : -1), 0],
-                    y: [0, 15 * (i % 2 === 0 ? -1 : 1), 0],
+                    opacity: [0, 1, 0],
+                    cx: [200, [100, 320, 80, 340][i]],
+                    cy: [200, [80, 100, 280, 260][i]],
                   }}
                   transition={{
-                    duration: 6 + i * 2,
+                    duration: 2,
+                    delay: i * 0.5,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    repeatDelay: 1,
                   }}
                 />
               ))}
-            </div>
 
-            {/* Central glow */}
-            <motion.div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full"
-              style={{
-                background: 'radial-gradient(circle, hsl(320 85% 55% / 0.5), transparent 70%)',
-                filter: 'blur(40px)',
-              }}
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.5, 0.8, 0.5],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
+              {/* Center node */}
+              <motion.circle
+                cx="200"
+                cy="200"
+                r="24"
+                fill="url(#centerGradient)"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              />
+              <motion.circle
+                cx="200"
+                cy="200"
+                r="32"
+                fill="none"
+                stroke="hsl(320 85% 55%)"
+                strokeWidth="1"
+                strokeOpacity="0.3"
+                initial={{ scale: 0 }}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+
+              {/* Outer nodes */}
+              {[
+                { cx: 100, cy: 80, label: "DSP" },
+                { cx: 320, cy: 100, label: "SSP" },
+                { cx: 80, cy: 280, label: "DMP" },
+                { cx: 340, cy: 260, label: "CDP" },
+                { cx: 200, cy: 50, label: "Exchange" },
+                { cx: 200, cy: 350, label: "Publisher" },
+              ].map((node, i) => (
+                <motion.g key={node.label}>
+                  <motion.circle
+                    cx={node.cx}
+                    cy={node.cy}
+                    r="16"
+                    fill="hsl(var(--card))"
+                    stroke="hsl(var(--border))"
+                    strokeWidth="1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.8 + i * 0.1 }}
+                  />
+                  <motion.circle
+                    cx={node.cx}
+                    cy={node.cy}
+                    r="6"
+                    fill="url(#nodeGradient)"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, delay: 1 + i * 0.1 }}
+                  />
+                  <motion.text
+                    x={node.cx}
+                    y={node.cy + 32}
+                    textAnchor="middle"
+                    fill="hsl(var(--muted-foreground))"
+                    fontSize="10"
+                    fontWeight="500"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 1.2 + i * 0.1 }}
+                  >
+                    {node.label}
+                  </motion.text>
+                </motion.g>
+              ))}
+
+              {/* Gradients */}
+              <defs>
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(320 85% 55%)" />
+                  <stop offset="100%" stopColor="hsl(185 85% 45%)" />
+                </linearGradient>
+                <radialGradient id="centerGradient">
+                  <stop offset="0%" stopColor="hsl(320 85% 55%)" />
+                  <stop offset="100%" stopColor="hsl(280 70% 55%)" />
+                </radialGradient>
+                <radialGradient id="nodeGradient">
+                  <stop offset="0%" stopColor="hsl(185 85% 45%)" />
+                  <stop offset="100%" stopColor="hsl(200 80% 50%)" />
+                </radialGradient>
+              </defs>
+            </svg>
           </motion.div>
         </div>
       </motion.div>
