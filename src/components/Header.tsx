@@ -17,10 +17,11 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Platform", href: "#platform" },
-    { label: "Solutions", href: "#solutions" },
-    { label: "Partners", href: "#partners" },
-    { label: "Company", href: "#about" },
+    { label: "Publishers", href: "/publishers" },
+    { label: "Advertisers", href: "/advertisers" },
+    { label: "Technology", href: "/technology" },
+    { label: "Environment", href: "/environment" },
+    { label: "Resources", href: "/resources" },
   ];
 
   return (
@@ -58,6 +59,10 @@ const Header = () => {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = link.href;
+                }}
                 className="px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-all duration-200"
               >
                 {link.label}
