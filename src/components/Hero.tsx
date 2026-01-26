@@ -195,96 +195,111 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Visual element */}
+          {/* Right column - Abstract mesh visual */}
           <motion.div 
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative hidden lg:block h-[500px]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
-            {/* Floating dashboard mockup */}
-            <motion.div 
-              className="relative bg-card/80 backdrop-blur-xl rounded-3xl p-8 border border-border/50 shadow-2xl"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {/* Dashboard header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="text-xs text-muted-foreground font-mono">kolorowey.dashboard</div>
-              </div>
+            {/* Main gradient mesh */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <motion.div 
+                className="absolute inset-0"
+                style={{
+                  background: `
+                    radial-gradient(ellipse 80% 50% at 50% 50%, hsl(320 85% 55% / 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse 60% 80% at 70% 20%, hsl(185 85% 45% / 0.25) 0%, transparent 60%),
+                    radial-gradient(ellipse 50% 60% at 30% 80%, hsl(280 70% 55% / 0.2) 0%, transparent 50%)
+                  `,
+                }}
+                animate={{
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
               
-              {/* Stats grid */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {[
-                  { value: "50B+", label: "Daily Impressions", trend: "+12.4%" },
-                  { value: "99.9%", label: "Uptime", trend: "Stable" },
-                ].map((stat, i) => (
-                  <motion.div 
-                    key={stat.label}
-                    className="bg-secondary/50 rounded-xl p-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 + i * 0.1 }}
-                  >
-                    <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                    <div className="text-xs text-muted-foreground">{stat.label}</div>
-                    <div className="text-xs text-green-500 mt-1">{stat.trend}</div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Animated chart bars */}
-              <div className="flex items-end gap-2 h-24 px-2">
-                {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((height, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex-1 rounded-t-sm"
-                    style={{ background: i % 2 === 0 ? 'var(--gradient-brand)' : 'hsl(var(--muted))' }}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ duration: 0.5, delay: 1 + i * 0.05 }}
-                  />
-                ))}
-              </div>
-            </motion.div>
+              {/* Animated flowing lines */}
+              <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 400">
+                <motion.path
+                  d="M0,200 Q100,100 200,200 T400,200"
+                  fill="none"
+                  stroke="url(#gradient1)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 2, delay: 0.5 }}
+                />
+                <motion.path
+                  d="M0,250 Q150,150 250,250 T400,250"
+                  fill="none"
+                  stroke="url(#gradient2)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 2, delay: 0.7 }}
+                />
+                <motion.path
+                  d="M0,150 Q80,250 200,150 T400,150"
+                  fill="none"
+                  stroke="url(#gradient1)"
+                  strokeWidth="0.5"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 2, delay: 0.9 }}
+                />
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(320 85% 55%)" />
+                    <stop offset="100%" stopColor="hsl(185 85% 45%)" />
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(185 85% 45%)" />
+                    <stop offset="100%" stopColor="hsl(280 70% 55%)" />
+                  </linearGradient>
+                </defs>
+              </svg>
 
-            {/* Floating accent cards */}
-            <motion.div 
-              className="absolute -top-4 -right-4 bg-card border border-border/50 rounded-xl p-4 shadow-lg"
-              animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+              {/* Floating orbs */}
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute rounded-full blur-xl"
+                  style={{
+                    width: 80 + i * 30,
+                    height: 80 + i * 30,
+                    background: i % 2 === 0 
+                      ? 'radial-gradient(circle, hsl(320 85% 55% / 0.4), transparent 70%)'
+                      : 'radial-gradient(circle, hsl(185 85% 45% / 0.3), transparent 70%)',
+                    left: `${20 + i * 20}%`,
+                    top: `${15 + i * 15}%`,
+                  }}
+                  animate={{
+                    x: [0, 20 * (i % 2 === 0 ? 1 : -1), 0],
+                    y: [0, 15 * (i % 2 === 0 ? -1 : 1), 0],
+                  }}
+                  transition={{
+                    duration: 6 + i * 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Central glow */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full"
+              style={{
+                background: 'radial-gradient(circle, hsl(320 85% 55% / 0.5), transparent 70%)',
+                filter: 'blur(40px)',
+              }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-brand)' }}>
-                  <Sparkles className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <div className="text-sm font-bold">Real-time</div>
-                  <div className="text-xs text-muted-foreground">&lt;10ms latency</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="absolute -bottom-6 -left-6 bg-card border border-border/50 rounded-xl p-4 shadow-lg"
-              animate={{ y: [0, 8, 0], rotate: [0, -2, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-cyan)' }}>
-                  <Play className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <div className="text-sm font-bold">180+ Countries</div>
-                  <div className="text-xs text-muted-foreground">Global reach</div>
-                </div>
-              </div>
-            </motion.div>
+            />
           </motion.div>
         </div>
       </motion.div>
