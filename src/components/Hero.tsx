@@ -34,12 +34,12 @@ const Hero = () => {
 
   // Generate stars only once
   const stars = useMemo(() => 
-    [...Array(80)].map((_, i) => ({
+    [...Array(100)].map((_, i) => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      size: 1 + Math.random() * 2,
+      size: 3 + Math.random() * 4,
       delay: Math.random() * 5,
-      duration: 3 + Math.random() * 4,
+      duration: 2 + Math.random() * 3,
     })), []
   );
 
@@ -48,14 +48,14 @@ const Hero = () => {
       
       {/* === CURSOR GLOW EFFECT === */}
       <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
+        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none z-20"
         style={{
           x: smoothMouseX,
           y: smoothMouseY,
           translateX: '-50%',
           translateY: '-50%',
-          background: 'radial-gradient(circle, hsl(320 85% 55% / 0.15) 0%, hsl(280 70% 55% / 0.08) 40%, transparent 70%)',
-          filter: 'blur(40px)',
+          background: 'radial-gradient(circle, hsl(320 85% 55% / 0.35) 0%, hsl(280 70% 55% / 0.2) 40%, transparent 70%)',
+          filter: 'blur(60px)',
         }}
       />
 
@@ -66,16 +66,18 @@ const Hero = () => {
         {stars.map((star, i) => (
           <motion.div
             key={`star-${i}`}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full z-10"
             style={{
               left: star.left,
               top: star.top,
               width: star.size,
               height: star.size,
+              background: i % 3 === 0 ? 'hsl(320 85% 55%)' : i % 3 === 1 ? 'hsl(280 70% 50%)' : 'hsl(185 85% 45%)',
+              boxShadow: `0 0 ${star.size * 4}px ${star.size * 2}px ${i % 3 === 0 ? 'hsl(320 85% 55% / 0.8)' : i % 3 === 1 ? 'hsl(280 70% 50% / 0.8)' : 'hsl(185 85% 45% / 0.8)'}`,
             }}
             animate={{
-              opacity: [0.1, 0.8, 0.1],
-              scale: [1, 1.3, 1],
+              opacity: [0.5, 1, 0.5],
+              scale: [1, 1.8, 1],
             }}
             transition={{
               duration: star.duration,
