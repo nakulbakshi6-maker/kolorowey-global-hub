@@ -14,7 +14,7 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 md:pt-40">
       {/* Animated mesh gradient background */}
       <motion.div className="absolute inset-0 overflow-hidden" style={{ y }}>
         {/* Primary gradient blob */}
