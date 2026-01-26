@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useRef, useState, useEffect } from "react";
-import worldMapPremium from "@/assets/world-map-premium.png";
+import worldMapNavy from "@/assets/world-map-navy.png";
 
 const technologies = [
   {
@@ -393,11 +393,11 @@ const Technology = () => {
                     </div>
                     
                     <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                    <div className="magnetic-card p-10">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+                      <div className="magnetic-card p-8 lg:p-10">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                           {tech.specs.map((spec) => (
-                            <div key={spec.label} className="text-center min-w-0 px-2">
-                              <div className="text-2xl md:text-3xl xl:text-4xl font-extrabold gradient-text drop-shadow-sm mb-2 leading-none break-words hyphens-auto">
+                            <div key={spec.label} className="text-center">
+                              <div className="text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold gradient-text mb-2 leading-tight whitespace-nowrap">
                                 {spec.value}
                               </div>
                               <div className="text-xs text-muted-foreground uppercase tracking-wider">
@@ -450,9 +450,9 @@ const Technology = () => {
 
               <div className="relative aspect-[2/1]">
                 <img
-                  src={worldMapPremium}
+                  src={worldMapNavy}
                   alt="Global infrastructure map"
-                  className="absolute inset-0 w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-contain opacity-90"
                   loading="lazy"
                 />
 
