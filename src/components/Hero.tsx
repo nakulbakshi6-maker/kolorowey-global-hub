@@ -195,99 +195,187 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Stacked Platform Cards */}
+          {/* Right column - Enhanced Stacked Platform Cards */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Ambient background glow */}
-            <div 
-              className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
-              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), transparent 70%)' }}
+            {/* Multi-layer ambient glow */}
+            <motion.div 
+              className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
+              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), transparent 60%)' }}
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="absolute w-80 h-80 rounded-full blur-2xl opacity-10"
+              style={{ background: 'radial-gradient(circle, hsl(185 85% 45%), transparent 70%)' }}
+              animate={{ scale: [1.1, 1, 1.1], x: [0, 20, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
 
             {/* Stacked cards */}
-            <div className="relative w-[380px] h-[420px]">
+            <div className="relative w-[400px] h-[440px]">
               {[
-                { title: "Publishers", metric: "2.4M+", desc: "Active Sites", offset: 0, delay: 0 },
-                { title: "Advertisers", metric: "850K", desc: "Campaigns", offset: 1, delay: 0.1 },
-                { title: "Data Points", metric: "180B", desc: "Daily Events", offset: 2, delay: 0.2 },
+                { title: "Publishers", metric: "2.4M+", desc: "Active Sites", icon: "📡", trend: "+12.4%", offset: 0, delay: 0 },
+                { title: "Advertisers", metric: "850K", desc: "Campaigns", icon: "🎯", trend: "+8.2%", offset: 1, delay: 0.1 },
+                { title: "Data Points", metric: "180B", desc: "Daily Events", icon: "⚡", trend: "+24.1%", offset: 2, delay: 0.2 },
               ].map((card, i) => (
                 <motion.div
                   key={card.title}
-                  className="absolute inset-x-0 bg-card/90 backdrop-blur-xl border border-border/50 rounded-2xl p-6 shadow-xl"
+                  className="absolute inset-x-0 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl border border-border/40 rounded-2xl p-6 shadow-2xl overflow-hidden group cursor-pointer"
                   style={{
-                    top: `${i * 30}px`,
+                    top: `${i * 35}px`,
                     zIndex: 3 - i,
                   }}
-                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
                   animate={{ 
-                    opacity: 1, 
+                    opacity: 1 - i * 0.08, 
                     y: 0, 
-                    scale: 1 - i * 0.03,
+                    scale: 1 - i * 0.025,
                   }}
-                  transition={{ duration: 0.6, delay: 0.5 + card.delay }}
+                  transition={{ duration: 0.7, delay: 0.5 + card.delay, type: "spring", stiffness: 100 }}
                   whileHover={{ 
-                    y: -8, 
-                    scale: 1,
+                    y: -12, 
+                    scale: 1.02,
+                    opacity: 1,
                     zIndex: 10,
-                    transition: { duration: 0.2 }
+                    boxShadow: '0 25px 50px -12px hsl(320 85% 55% / 0.25)',
+                    transition: { duration: 0.25 }
                   }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-muted-foreground">{card.title}</span>
-                    <motion.div 
-                      className="w-2 h-2 rounded-full bg-green-500"
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-4xl font-bold gradient-text">{card.metric}</span>
-                    <span className="text-sm text-muted-foreground">{card.desc}</span>
-                  </div>
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-highlight/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
-                  {/* Mini chart */}
-                  <div className="flex items-end gap-1 h-12 mt-4">
-                    {[35, 55, 40, 70, 50, 85, 65, 90, 75, 95, 80, 88].map((h, j) => (
-                      <motion.div
-                        key={j}
-                        className="flex-1 rounded-t-sm"
-                        style={{ 
-                          background: j % 3 === 0 ? 'hsl(320 85% 55%)' : 'hsl(var(--muted))',
-                          height: `${h}%`
-                        }}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.4, delay: 0.8 + j * 0.03 + card.delay }}
-                      />
-                    ))}
+                  {/* Shimmer effect on hover */}
+                  <motion.div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                    style={{
+                      background: 'linear-gradient(105deg, transparent 40%, hsl(320 85% 55% / 0.1) 45%, transparent 50%)',
+                      backgroundSize: '200% 100%',
+                    }}
+                    animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
+                  />
+
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{card.icon}</span>
+                        <span className="text-sm font-semibold text-foreground/80">{card.title}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <motion.span 
+                          className="text-xs font-medium text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full"
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 1 + card.delay }}
+                        >
+                          {card.trend}
+                        </motion.span>
+                        <motion.div 
+                          className="w-2 h-2 rounded-full bg-green-500"
+                          animate={{ 
+                            opacity: [1, 0.4, 1],
+                            scale: [1, 1.2, 1]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-baseline gap-3 mb-1">
+                      <motion.span 
+                        className="text-5xl font-extrabold gradient-text tracking-tight"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.7 + card.delay, duration: 0.5 }}
+                      >
+                        {card.metric}
+                      </motion.span>
+                      <span className="text-sm text-muted-foreground font-medium">{card.desc}</span>
+                    </div>
+                    
+                    {/* Enhanced mini chart */}
+                    <div className="flex items-end gap-1.5 h-14 mt-5 px-1">
+                      {[30, 50, 35, 65, 45, 80, 55, 90, 70, 95, 75, 85].map((h, j) => (
+                        <motion.div
+                          key={j}
+                          className="flex-1 rounded-t-sm relative overflow-hidden"
+                          style={{ 
+                            background: `linear-gradient(to top, ${j % 3 === 0 ? 'hsl(320 85% 55%)' : 'hsl(var(--muted))'}, ${j % 3 === 0 ? 'hsl(320 85% 65%)' : 'hsl(var(--muted) / 0.7)'})`,
+                          }}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${h}%` }}
+                          transition={{ duration: 0.5, delay: 0.9 + j * 0.04 + card.delay, ease: "easeOut" }}
+                          whileHover={{ 
+                            scaleY: 1.1,
+                            filter: 'brightness(1.2)',
+                            transition: { duration: 0.1 }
+                          }}
+                        >
+                          {j % 3 === 0 && (
+                            <motion.div 
+                              className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20"
+                              animate={{ opacity: [0.3, 0.6, 0.3] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: j * 0.1 }}
+                            />
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               ))}
 
-              {/* Floating accent elements */}
+              {/* Enhanced floating accent elements */}
               <motion.div 
-                className="absolute -right-12 top-20 w-20 h-20 rounded-2xl border border-accent/30 bg-accent/5 backdrop-blur-sm flex items-center justify-center"
-                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+                className="absolute -right-16 top-16 w-24 h-24 rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
+                animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.1, borderColor: 'hsl(320 85% 55% / 0.6)' }}
               >
                 <div className="text-center">
-                  <div className="text-lg font-bold text-accent">99.9%</div>
-                  <div className="text-[10px] text-muted-foreground">Uptime</div>
+                  <motion.div 
+                    className="text-xl font-bold text-accent"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    99.9%
+                  </motion.div>
+                  <div className="text-[10px] text-muted-foreground font-medium">Uptime</div>
                 </div>
               </motion.div>
 
               <motion.div 
-                className="absolute -left-8 bottom-32 w-16 h-16 rounded-xl border border-highlight/30 bg-highlight/5 backdrop-blur-sm flex items-center justify-center"
-                animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -left-12 bottom-28 w-20 h-20 rounded-xl border border-highlight/40 bg-gradient-to-br from-highlight/10 to-highlight/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
+                animate={{ y: [0, 12, 0], rotate: [0, -3, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                whileHover={{ scale: 1.1, borderColor: 'hsl(185 85% 45% / 0.6)' }}
               >
                 <div className="text-center">
-                  <div className="text-sm font-bold text-highlight">&lt;10</div>
-                  <div className="text-[9px] text-muted-foreground">ms</div>
+                  <motion.div 
+                    className="text-lg font-bold text-highlight"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2.5, repeat: Infinity }}
+                  >
+                    &lt;10ms
+                  </motion.div>
+                  <div className="text-[9px] text-muted-foreground font-medium">Latency</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="absolute -right-8 bottom-12 w-16 h-16 rounded-lg border border-purple-500/40 bg-gradient-to-br from-purple-500/10 to-purple-500/5 backdrop-blur-xl flex items-center justify-center shadow-lg"
+                animate={{ x: [0, 8, 0], y: [0, -5, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <div className="text-center">
+                  <div className="text-sm font-bold text-purple-400">180+</div>
+                  <div className="text-[8px] text-muted-foreground font-medium">Countries</div>
                 </div>
               </motion.div>
             </div>
