@@ -169,12 +169,12 @@ const Solutions = () => {
                       transition={{ duration: 0.3, delay: index * 0.08 }}
                       className="flex items-center gap-3 group"
                     >
-                      <motion.div 
-                        className={`w-5 h-5 rounded-full flex items-center justify-center bg-gradient-to-br ${activeSolution.gradient}`}
-                        whileHover={{ scale: 1.2 }}
+                      <div 
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ background: 'var(--gradient-brand)' }}
                       >
                         <Check className="w-3 h-3 text-white" />
-                      </motion.div>
+                      </div>
                       <span className="text-sm font-medium group-hover:text-accent transition-colors">
                         {feature}
                       </span>

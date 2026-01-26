@@ -102,7 +102,8 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
       <div className="relative z-10" style={{ transform: 'translateZ(20px)' }}>
         <div className="flex items-start justify-between mb-6">
           <motion.div 
-            className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${feature.color}`}
+            className="w-14 h-14 rounded-xl flex items-center justify-center"
+            style={{ background: 'var(--gradient-brand)' }}
             whileHover={{ scale: 1.15, rotate: 10 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
