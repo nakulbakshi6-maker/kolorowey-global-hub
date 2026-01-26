@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Megaphone } from "lucide-react";
+import { ArrowRight, Building2, Megaphone, Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -10,54 +10,77 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-32 md:pt-40 pb-24">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+      {/* Grid background */}
+      <div className="absolute inset-0 grid-bg opacity-30" />
       
-      {/* Subtle background gradient */}
+      {/* Gradient orbs */}
       <motion.div className="absolute inset-0 overflow-hidden" style={{ y }}>
         <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] opacity-30"
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px]"
           style={{
-            background: 'radial-gradient(ellipse at center top, hsl(320 85% 85% / 0.5) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at center, hsl(192 80% 50% / 0.15) 0%, transparent 50%)',
           }}
         />
         <div 
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] opacity-20"
+          className="absolute top-1/2 left-0 w-[600px] h-[600px]"
           style={{
-            background: 'radial-gradient(circle, hsl(185 85% 85% / 0.5) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, hsl(320 85% 55% / 0.1) 0%, transparent 50%)',
           }}
         />
         <div 
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] opacity-20"
+          className="absolute bottom-0 right-0 w-[800px] h-[800px]"
           style={{
-            background: 'radial-gradient(circle, hsl(280 70% 85% / 0.5) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, hsl(185 85% 45% / 0.1) 0%, transparent 50%)',
           }}
         />
       </motion.div>
 
+      {/* Floating particles */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full bg-primary/30"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.8, 0.3],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
+
       {/* Main content */}
       <motion.div 
-        className="relative z-10 container mx-auto px-6 text-center max-w-4xl"
+        className="relative z-10 container mx-auto px-6 text-center max-w-5xl"
         style={{ opacity }}
       >
-        {/* Tagline badge */}
+        {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-8 flex justify-center"
         >
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium tracking-wide">
-            The Future of Programmatic
+          <span className="premium-badge">
+            The Future of Programmatic Advertising
           </span>
         </motion.div>
 
         {/* Main headline */}
         <motion.h1 
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6"
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
@@ -69,12 +92,23 @@ const Hero = () => {
 
         {/* Subheadline */}
         <motion.p 
-          className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-12 font-light"
+          className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           Beyond the Walled Gardens
+        </motion.p>
+
+        {/* Description */}
+        <motion.p 
+          className="text-base md:text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+        >
+          The unified programmatic platform connecting premium publishers and advertisers 
+          across all channels with transparent, privacy-first infrastructure.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -90,7 +124,7 @@ const Hero = () => {
           >
             <Button 
               size="lg" 
-              className="h-14 px-8 rounded-full font-semibold text-base group bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
+              className="h-14 px-8 rounded-full font-semibold text-base group shadow-lg glow-teal"
             >
               <Building2 className="w-5 h-5 mr-2" />
               For Publishers
@@ -104,7 +138,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="h-14 px-8 rounded-full font-semibold text-base group border-2 hover:bg-secondary"
+              className="h-14 px-8 rounded-full font-semibold text-base group border-border hover:border-primary/50 hover:bg-primary/5"
             >
               <Megaphone className="w-5 h-5 mr-2" />
               For Advertisers
@@ -113,22 +147,34 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Trust indicators */}
+        {/* Watch demo link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-8"
+        >
+          <button className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <Play className="w-4 h-4 text-primary" />
+            </span>
+            Watch Platform Demo
+          </button>
+        </motion.div>
+
+        {/* Stats */}
         <motion.div 
-          className="mt-20 pt-12 border-t border-border/50"
+          className="mt-24 pt-12 border-t border-border/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
-          <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest font-medium">
-            Trusted by leading publishers & advertisers worldwide
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {[
               { value: "50B+", label: "Daily Impressions" },
               { value: "180+", label: "Countries" },
               { value: "200+", label: "Integrations" },
-              { value: "99.9%", label: "Uptime" },
+              { value: "99.9%", label: "Uptime SLA" },
             ].map((stat, i) => (
               <motion.div 
                 key={stat.label}
@@ -137,10 +183,10 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
               >
-                <div className="text-2xl md:text-3xl font-bold text-foreground">
+                <div className="text-3xl md:text-4xl font-bold gradient-text">
                   {stat.value}
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -160,7 +206,7 @@ const Hero = () => {
           transition={{ duration: 2, repeat: Infinity }}
         >
           <motion.div 
-            className="w-1.5 h-1.5 rounded-full bg-accent"
+            className="w-1.5 h-1.5 rounded-full bg-primary"
             animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
