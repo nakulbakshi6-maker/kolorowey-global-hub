@@ -36,8 +36,13 @@ const technologies = [
 
 const TechStack = () => {
   return (
-    <section className="py-24 md:py-32 bg-secondary/30">
-      <div className="container mx-auto px-6">
+    <section className="py-24 md:py-32 section-darker relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-20 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, hsl(192 80% 50% / 0.2) 0%, transparent 60%)' }}
+      />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div 
           className="text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -45,11 +50,11 @@ const TechStack = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-            Built for Scale
+          <span className="premium-badge mb-6 inline-block">
+            Technology
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Core Technology Stack
+            Core <span className="gradient-text">Tech Stack</span>
           </h2>
           <p className="text-lg text-muted-foreground">
             Enterprise-grade infrastructure engineered for performance, reliability, and security.
@@ -60,15 +65,14 @@ const TechStack = () => {
           {technologies.map((tech, index) => (
             <motion.div
               key={tech.title}
-              className="p-8 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all group"
+              className="glass-card p-8 group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6 group-hover:from-accent/30 group-hover:to-accent/10 transition-all">
-                <tech.icon className="w-7 h-7 text-accent" />
+              <div className="icon-box-outline mb-6 group-hover:border-primary/50 group-hover:bg-primary/10 transition-all">
+                <tech.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">{tech.title}</h3>
               <p className="text-muted-foreground">{tech.description}</p>
