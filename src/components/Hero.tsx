@@ -195,295 +195,115 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Enhanced Network Visualization */}
+          {/* Right column - Animated 3D Cube Grid */}
           <motion.div 
             className="relative hidden lg:flex items-center justify-center h-[520px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            style={{ perspective: '1000px' }}
           >
-            {/* Background glow */}
+            {/* Background ambient glow */}
             <motion.div 
-              className="absolute inset-0 rounded-full opacity-30 blur-3xl"
+              className="absolute w-80 h-80 rounded-full blur-3xl"
               style={{
-                background: 'radial-gradient(circle at center, hsl(320 85% 55% / 0.4), transparent 60%)',
+                background: 'radial-gradient(circle, hsl(320 85% 55% / 0.25), transparent 70%)',
               }}
-              animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.35, 0.2] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 5, repeat: Infinity }}
             />
 
-            <svg className="w-full h-full relative z-10" viewBox="0 0 400 400">
-              {/* Outer rotating ring */}
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="160"
-                fill="none"
-                stroke="url(#ringGradient)"
-                strokeWidth="0.5"
-                strokeDasharray="8 4"
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                style={{ transformOrigin: 'center' }}
-              />
-              
-              {/* Inner rotating ring */}
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="120"
-                fill="none"
-                stroke="url(#ringGradient)"
-                strokeWidth="0.5"
-                strokeDasharray="4 8"
-                initial={{ rotate: 0 }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                style={{ transformOrigin: 'center' }}
-              />
-
-              {/* Connection lines with glow */}
+            {/* Rotating 3D container */}
+            <motion.div
+              className="relative w-72 h-72"
+              animate={{ rotateY: [0, 360] }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              {/* Cube faces */}
               {[
-                { x1: 200, y1: 200, x2: 90, y2: 90 },
-                { x1: 200, y1: 200, x2: 310, y2: 90 },
-                { x1: 200, y1: 200, x2: 70, y2: 260 },
-                { x1: 200, y1: 200, x2: 330, y2: 260 },
-                { x1: 200, y1: 200, x2: 200, y2: 40 },
-                { x1: 200, y1: 200, x2: 200, y2: 360 },
-                { x1: 90, y1: 90, x2: 200, y2: 40 },
-                { x1: 310, y1: 90, x2: 200, y2: 40 },
-                { x1: 70, y1: 260, x2: 200, y2: 360 },
-                { x1: 330, y1: 260, x2: 200, y2: 360 },
-                { x1: 90, y1: 90, x2: 70, y2: 260 },
-                { x1: 310, y1: 90, x2: 330, y2: 260 },
-              ].map((line, i) => (
-                <g key={i}>
-                  <motion.line
-                    x1={line.x1}
-                    y1={line.y1}
-                    x2={line.x2}
-                    y2={line.y2}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="2"
-                    strokeOpacity="0.15"
-                    filter="url(#glow)"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.2, delay: 0.3 + i * 0.08 }}
-                  />
-                  <motion.line
-                    x1={line.x1}
-                    y1={line.y1}
-                    x2={line.x2}
-                    y2={line.y2}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="1"
-                    strokeOpacity="0.4"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.2, delay: 0.3 + i * 0.08 }}
-                  />
-                </g>
-              ))}
-
-              {/* Data packets traveling along lines */}
-              {[
-                { path: "M200,200 L90,90", delay: 0 },
-                { path: "M200,200 L310,90", delay: 0.3 },
-                { path: "M200,200 L70,260", delay: 0.6 },
-                { path: "M200,200 L330,260", delay: 0.9 },
-                { path: "M200,200 L200,40", delay: 1.2 },
-                { path: "M200,200 L200,360", delay: 1.5 },
-              ].map((item, i) => (
-                <motion.circle
-                  key={`packet-${i}`}
-                  r="4"
-                  fill="hsl(320 85% 55%)"
-                  filter="url(#glow)"
+                { rotateY: 0, translateZ: 144, label: "DSP" },
+                { rotateY: 90, translateZ: 144, label: "SSP" },
+                { rotateY: 180, translateZ: 144, label: "DMP" },
+                { rotateY: 270, translateZ: 144, label: "CDP" },
+              ].map((face, i) => (
+                <motion.div
+                  key={face.label}
+                  className="absolute inset-0 flex items-center justify-center"
+                  style={{
+                    transform: `rotateY(${face.rotateY}deg) translateZ(${face.translateZ}px)`,
+                    backfaceVisibility: 'hidden',
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
                 >
-                  <animateMotion
-                    dur="2s"
-                    repeatCount="indefinite"
-                    begin={`${item.delay}s`}
-                    path={item.path}
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0;1;1;0"
-                    dur="2s"
-                    repeatCount="indefinite"
-                    begin={`${item.delay}s`}
-                  />
-                </motion.circle>
+                  <div className="w-64 h-64 rounded-2xl border border-accent/20 bg-card/30 backdrop-blur-sm flex flex-col items-center justify-center gap-4 p-6">
+                    <motion.div 
+                      className="w-16 h-16 rounded-xl flex items-center justify-center"
+                      style={{ background: 'var(--gradient-brand)' }}
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                    >
+                      <Sparkles className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <span className="text-xl font-bold">{face.label}</span>
+                    <span className="text-sm text-muted-foreground text-center">
+                      {["Demand-Side Platform", "Supply-Side Platform", "Data Management", "Customer Data"][i]}
+                    </span>
+                  </div>
+                </motion.div>
               ))}
 
-              {/* Reverse data packets */}
-              {[
-                { path: "M90,90 L200,200", delay: 1 },
-                { path: "M310,90 L200,200", delay: 1.3 },
-                { path: "M70,260 L200,200", delay: 1.6 },
-                { path: "M330,260 L200,200", delay: 1.9 },
-              ].map((item, i) => (
-                <motion.circle
-                  key={`packet-rev-${i}`}
-                  r="3"
-                  fill="hsl(185 85% 45%)"
-                  filter="url(#glow)"
-                >
-                  <animateMotion
-                    dur="2s"
-                    repeatCount="indefinite"
-                    begin={`${item.delay}s`}
-                    path={item.path}
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0;1;1;0"
-                    dur="2s"
-                    repeatCount="indefinite"
-                    begin={`${item.delay}s`}
-                  />
-                </motion.circle>
-              ))}
-
-              {/* Center node - Main hub */}
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="36"
-                fill="url(#centerGradient)"
-                filter="url(#glow)"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-              />
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="44"
-                fill="none"
-                stroke="hsl(320 85% 55%)"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-                initial={{ scale: 0 }}
-                animate={{ scale: [1, 1.15, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="52"
-                fill="none"
-                stroke="hsl(320 85% 55%)"
-                strokeWidth="0.5"
-                strokeOpacity="0.2"
-                initial={{ scale: 0 }}
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-              />
-              <motion.text
-                x="200"
-                y="205"
-                textAnchor="middle"
-                fill="white"
-                fontSize="11"
-                fontWeight="700"
-                letterSpacing="0.5"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
+              {/* Center hub */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ transform: 'translateZ(0px)' }}
               >
-                KOLOROWEY
-              </motion.text>
+                <motion.div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center"
+                  style={{ background: 'var(--gradient-brand)' }}
+                  animate={{ 
+                    boxShadow: [
+                      '0 0 30px hsl(320 85% 55% / 0.3)',
+                      '0 0 60px hsl(320 85% 55% / 0.5)',
+                      '0 0 30px hsl(320 85% 55% / 0.3)',
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <span className="text-white font-bold text-xs tracking-wider">UNIFIED</span>
+                </motion.div>
+              </motion.div>
+            </motion.div>
 
-              {/* Outer nodes with enhanced styling */}
-              {[
-                { cx: 90, cy: 90, label: "DSP", color: "320 85% 55%" },
-                { cx: 310, cy: 90, label: "SSP", color: "185 85% 45%" },
-                { cx: 70, cy: 260, label: "DMP", color: "280 70% 55%" },
-                { cx: 330, cy: 260, label: "CDP", color: "200 80% 50%" },
-                { cx: 200, cy: 40, label: "Exchange", color: "320 85% 55%" },
-                { cx: 200, cy: 360, label: "Publisher", color: "185 85% 45%" },
-              ].map((node, i) => (
-                <motion.g key={node.label}>
-                  {/* Node pulse ring */}
-                  <motion.circle
-                    cx={node.cx}
-                    cy={node.cy}
-                    r="24"
-                    fill="none"
-                    stroke={`hsl(${node.color})`}
-                    strokeWidth="0.5"
-                    strokeOpacity="0.3"
-                    animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-                  />
-                  {/* Node background */}
-                  <motion.circle
-                    cx={node.cx}
-                    cy={node.cy}
-                    r="20"
-                    fill="hsl(var(--card))"
-                    stroke={`hsl(${node.color} / 0.5)`}
-                    strokeWidth="1.5"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.6 + i * 0.1, type: "spring" }}
-                  />
-                  {/* Node inner glow */}
-                  <motion.circle
-                    cx={node.cx}
-                    cy={node.cy}
-                    r="8"
-                    fill={`hsl(${node.color})`}
-                    filter="url(#glow)"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 }}
-                  />
-                  {/* Node label */}
-                  <motion.text
-                    x={node.cx}
-                    y={node.cy + 38}
-                    textAnchor="middle"
-                    fill="hsl(var(--foreground))"
-                    fontSize="11"
-                    fontWeight="600"
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 1 + i * 0.1 }}
-                  >
-                    {node.label}
-                  </motion.text>
-                </motion.g>
-              ))}
+            {/* Floating stats cards */}
+            <motion.div 
+              className="absolute -top-4 right-8 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="text-2xl font-bold gradient-text">50B+</div>
+              <div className="text-xs text-muted-foreground">Daily Requests</div>
+            </motion.div>
 
-              {/* Filters and gradients */}
-              <defs>
-                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(320 85% 55%)" />
-                  <stop offset="50%" stopColor="hsl(280 70% 55%)" />
-                  <stop offset="100%" stopColor="hsl(185 85% 45%)" />
-                </linearGradient>
-                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(320 85% 55%)" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="hsl(185 85% 45%)" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="hsl(320 85% 55%)" stopOpacity="0.5" />
-                </linearGradient>
-                <radialGradient id="centerGradient">
-                  <stop offset="0%" stopColor="hsl(320 85% 60%)" />
-                  <stop offset="100%" stopColor="hsl(280 70% 45%)" />
-                </radialGradient>
-              </defs>
-            </svg>
+            <motion.div 
+              className="absolute -bottom-4 left-8 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <div className="text-2xl font-bold gradient-text">&lt;10ms</div>
+              <div className="text-xs text-muted-foreground">Latency</div>
+            </motion.div>
+
+            <motion.div 
+              className="absolute top-1/2 -right-4 bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl p-4 shadow-lg"
+              animate={{ x: [0, 8, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+              <div className="text-2xl font-bold gradient-text">180+</div>
+              <div className="text-xs text-muted-foreground">Countries</div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
