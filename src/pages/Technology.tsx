@@ -452,14 +452,13 @@ const Technology = () => {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
                 {[
-                  { value: "North America", count: "45 PoPs", color: "text-accent" },
-                  { value: "Europe", count: "60 PoPs", color: "text-highlight" },
-                  { value: "Asia Pacific", count: "70 PoPs", color: "text-accent" },
-                  { value: "Rest of World", count: "25 PoPs", color: "text-highlight" },
+                  { value: "North America", color: "text-[hsl(325_80%_55%)]" },
+                  { value: "Europe", color: "text-[hsl(188_80%_50%)]" },
+                  { value: "Asia Pacific", color: "text-[hsl(142_70%_45%)]" },
+                  { value: "Rest of World", color: "text-[hsl(38_90%_55%)]" },
                 ].map((region) => (
                   <div key={region.value}>
-                    <div className="font-bold text-lg text-foreground">{region.value}</div>
-                    <div className={`text-sm font-semibold ${region.color}`}>{region.count}</div>
+                    <div className={`font-bold text-lg ${region.color}`}>{region.value}</div>
                   </div>
                 ))}
               </div>
