@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Globe, Clock, TrendingUp, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -230,41 +230,24 @@ const Hero = () => {
       >
         {/* Badge */}
         <motion.div 
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 150 }}
-          className="mb-10 md:mb-12 flex justify-center"
+          transition={{ duration: 0.6, type: "spring", stiffness: 150 }}
+          className="mb-8 md:mb-10 flex justify-center"
         >
-          <motion.span 
-            className="shimmer-badge"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            animate={{ 
-              boxShadow: [
-                '0 0 20px hsl(320 85% 55% / 0.2)',
-                '0 0 40px hsl(320 85% 55% / 0.4)',
-                '0 0 20px hsl(320 85% 55% / 0.2)',
-              ]
-            }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            <motion.span
-              animate={{ rotate: [0, 15, 0, -15, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Sparkles className="w-4 h-4" />
-            </motion.span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
+            <Sparkles className="w-4 h-4" />
             AdTech Unfragmented
-          </motion.span>
+          </span>
         </motion.div>
 
         {/* Headline */}
-        <div className="mb-10 md:mb-14 space-y-2 md:space-y-3">
+        <div className="mb-8 md:mb-10 space-y-1">
           {["The unified", "infrastructure", "for AdTech"].map((text, index) => (
             <div key={text} className="overflow-hidden">
               <motion.h1 
-                className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1] tracking-tight ${
-                  index === 1 ? 'gradient-text' : ''
+                className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight ${
+                  index === 1 ? 'gradient-text' : 'text-foreground'
                 }`}
                 initial={{ y: 120, opacity: 0, rotateX: -20 }}
                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
@@ -282,68 +265,43 @@ const Hero = () => {
 
         {/* Subheadline */}
         <motion.p 
-          className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 md:mb-16 leading-relaxed"
+          className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto mb-10 md:mb-12 leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           Connect publishers, advertisers, and platforms through a single 
           enterprise-grade infrastructure.{" "}
-          <motion.span 
-            className="text-accent font-semibold"
-            animate={{ 
-              textShadow: [
-                '0 0 0px hsl(320 85% 55% / 0)',
-                '0 0 30px hsl(320 85% 55% / 0.5)',
-                '0 0 0px hsl(320 85% 55% / 0)',
-              ],
-            }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          >
+          <span className="text-accent font-medium">
             Beyond the walled gardens.
-          </motion.span>
+          </span>
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTA */}
         <motion.div 
-          className="flex flex-wrap items-center justify-center gap-5 mb-20 md:mb-24"
+          className="flex justify-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
           <motion.div 
-            whileHover={{ scale: 1.05, y: -2 }} 
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            <Button size="lg" className="h-14 px-10 rounded-full font-bold text-base group hover-glow relative overflow-hidden shadow-lg shadow-accent/20">
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-accent to-[hsl(280,70%,55%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
-              <span className="relative z-10 flex items-center">
-                Start Building
-                <motion.span
-                  className="ml-2"
-                  animate={{ x: [0, 6, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </motion.span>
-              </span>
-            </Button>
-          </motion.div>
-          <motion.div 
-            whileHover={{ scale: 1.05, y: -2 }} 
+            whileHover={{ scale: 1.05, y: -3 }} 
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
             <Button 
-              variant="outline" 
               size="lg" 
-              className="h-14 px-10 rounded-full font-bold text-base border-2 group hover:border-accent hover:text-accent transition-all duration-300 shadow-lg"
+              className="h-14 px-10 rounded-full font-semibold text-base group relative overflow-hidden shadow-xl shadow-primary/25 bg-primary hover:bg-primary/90"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Talk to Sales
+              <Calendar className="w-5 h-5 mr-3" />
+              Book a Demo
+              <motion.span
+                className="ml-2"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.span>
             </Button>
           </motion.div>
         </motion.div>
