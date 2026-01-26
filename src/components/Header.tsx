@@ -17,6 +17,7 @@ const Header = () => {
   }, []);
 
   const navLinks = [
+    { label: "Platform", href: "/" },
     { label: "Publishers", href: "/publishers" },
     { label: "Advertisers", href: "/advertisers" },
     { label: "Technology", href: "/technology" },
@@ -43,7 +44,7 @@ const Header = () => {
             : ""
         }`}>
           {/* Logo - Extra large */}
-          <a href="#" className="flex items-center group">
+          <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="flex items-center group">
             <img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
