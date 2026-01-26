@@ -109,7 +109,7 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
           >
             <feature.icon className="w-6 h-6 text-white" />
           </motion.div>
-          <span className="text-4xl font-black text-accent/10 absolute -top-2 -right-2 select-none">
+          <span className="text-4xl font-black text-accent/25 absolute -top-2 -right-2 select-none">
             {feature.number}
           </span>
         </div>
