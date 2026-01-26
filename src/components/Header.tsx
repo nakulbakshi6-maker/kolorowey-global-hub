@@ -67,9 +67,6 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="#" className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors link-underline py-2">
-              Sign In
-            </a>
             <Button className="rounded-full px-6 font-semibold group">
               Get Started
               <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
@@ -109,10 +106,7 @@ const Header = () => {
                     {link.label}
                   </motion.a>
                 ))}
-                <div className="pt-4 px-4 space-y-3">
-                  <Button variant="outline" className="w-full justify-center h-12 rounded-xl font-semibold">
-                    Sign In
-                  </Button>
+                <div className="pt-4 px-4">
                   <Button className="w-full justify-center h-12 rounded-xl font-semibold">
                     Get Started
                   </Button>
