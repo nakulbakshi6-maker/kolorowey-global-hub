@@ -3,8 +3,9 @@ import { Server, Settings, Globe, Tv, Fingerprint, ArrowRight, Sparkles, Zap, Sh
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useRef, useState, useEffect } from "react";
-import worldMapNavy from "@/assets/world-map-navy.png";
+import { useRef, useState, useEffect, Suspense, lazy } from "react";
+
+const WorldMap = lazy(() => import("@/components/WorldMap"));
 
 const technologies = [
   {
@@ -393,11 +394,11 @@ const Technology = () => {
                     </div>
                     
                     <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                      <div className="magnetic-card p-8 lg:p-10">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                      <div className="magnetic-card p-6 lg:p-10">
+                        <div className="flex flex-col sm:flex-row sm:justify-around gap-6">
                           {tech.specs.map((spec) => (
-                            <div key={spec.label} className="text-center">
-                              <div className="text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold gradient-text mb-2 leading-tight whitespace-nowrap">
+                            <div key={spec.label} className="text-center flex-1">
+                              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-extrabold gradient-text mb-2 leading-tight">
                                 {spec.value}
                               </div>
                               <div className="text-xs text-muted-foreground uppercase tracking-wider">
@@ -437,91 +438,17 @@ const Technology = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="magnetic-card p-8 md:p-12 relative overflow-hidden"
+              className="magnetic-card p-6 md:p-10 relative overflow-hidden"
             >
-              {/* Subtle grid */}
-              <div
-                className="absolute inset-0 opacity-25"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--accent) / 0.22) 1px, transparent 0)`,
-                  backgroundSize: "28px 28px",
-                }}
-              />
-
-              <div className="relative aspect-[2/1]">
-                <img
-                  src={worldMapNavy}
-                  alt="Global infrastructure map"
-                  className="absolute inset-0 w-full h-full object-contain opacity-90"
-                  loading="lazy"
-                />
-
-                {/* Connection lines (percent-based overlay) */}
-                <svg
-                  className="absolute inset-0 w-full h-full"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <g className="stroke-accent/25" strokeWidth="1.2" strokeDasharray="6 7" strokeLinecap="round">
-                    <line x1="22" y1="32" x2="52" y2="30" />
-                    <line x1="52" y1="30" x2="76" y2="34" />
-                    <line x1="76" y1="34" x2="86" y2="74" />
-                    <line x1="22" y1="32" x2="26" y2="60" />
-                    <line x1="52" y1="30" x2="52" y2="56" />
-                  </g>
-                </svg>
-
-                {/* PoP dots */}
-                {(
-                  [
-                    // North America
-                    { id: "na-1", left: "18%", top: "30%", tone: "accent" },
-                    { id: "na-2", left: "22%", top: "32%", tone: "accent" },
-                    { id: "na-3", left: "26%", top: "36%", tone: "accent" },
-                    { id: "na-4", left: "20%", top: "40%", tone: "accent" },
-                    // South America
-                    { id: "sa-1", left: "26%", top: "60%", tone: "highlight" },
-                    { id: "sa-2", left: "28%", top: "70%", tone: "highlight" },
-                    // Europe
-                    { id: "eu-1", left: "50%", top: "28%", tone: "highlight" },
-                    { id: "eu-2", left: "52%", top: "30%", tone: "highlight" },
-                    { id: "eu-3", left: "55%", top: "33%", tone: "highlight" },
-                    // Africa
-                    { id: "af-1", left: "52%", top: "56%", tone: "accent" },
-                    // Asia Pacific
-                    { id: "ap-1", left: "74%", top: "30%", tone: "accent" },
-                    { id: "ap-2", left: "78%", top: "36%", tone: "accent" },
-                    { id: "ap-3", left: "82%", top: "38%", tone: "accent" },
-                    { id: "ap-4", left: "86%", top: "40%", tone: "accent" },
-                    // Australia
-                    { id: "au-1", left: "86%", top: "74%", tone: "highlight" },
-                  ] as const
-                ).map((dot, i) => {
-                  const dotClass = dot.tone === "accent" ? "bg-accent ring-accent/20" : "bg-highlight ring-highlight/20";
-                  const pulseClass = dot.tone === "accent" ? "bg-accent/25" : "bg-highlight/25";
-
-                  return (
-                    <motion.div
-                      key={dot.id}
-                      className="absolute"
-                      style={{ left: dot.left, top: dot.top, transform: "translate(-50%, -50%)" }}
-                      initial={{ opacity: 0, scale: 0.85 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 + i * 0.03 }}
-                    >
-                      <motion.span
-                        className={`absolute inset-0 rounded-full ${pulseClass}`}
-                        animate={{ scale: [1, 2.3, 1], opacity: [0.55, 0.12, 0.55] }}
-                        transition={{ repeat: Infinity, duration: 2.4, delay: i * 0.08, ease: "easeInOut" }}
-                      />
-                      <span
-                        className={`relative block w-3 h-3 md:w-3.5 md:h-3.5 rounded-full ${dotClass} ring-4`}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
+              <Suspense
+                fallback={
+                  <div className="aspect-[2/1] flex items-center justify-center bg-secondary/50 rounded-xl">
+                    <div className="animate-pulse text-muted-foreground">Loading map...</div>
+                  </div>
+                }
+              >
+                <WorldMap />
+              </Suspense>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
                 {[
