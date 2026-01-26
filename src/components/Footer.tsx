@@ -1,15 +1,36 @@
+import { forwardRef } from "react";
 import { Linkedin, Twitter, Youtube, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
-  Platform: ["Overview", "Features", "Integrations", "API Docs", "Pricing"],
-  Solutions: ["Publishers", "Advertisers", "Agencies", "Enterprise"],
-  Resources: ["Blog", "Case Studies", "Webinars", "Documentation"],
-  Company: ["About Us", "Careers", "Press", "Contact"],
+  Platform: [
+    { label: "Overview", href: "/" },
+    { label: "Features", href: "/" },
+    { label: "Technology", href: "/technology" },
+    { label: "Environments", href: "/environment" },
+  ],
+  Solutions: [
+    { label: "Publishers", href: "/publishers" },
+    { label: "Advertisers", href: "/advertisers" },
+    { label: "Agencies", href: "/advertisers" },
+    { label: "Enterprise", href: "/technology" },
+  ],
+  Resources: [
+    { label: "Blog", href: "/resources" },
+    { label: "Case Studies", href: "/resources" },
+    { label: "Documentation", href: "/resources" },
+    { label: "FAQs", href: "/resources" },
+  ],
+  Company: [
+    { label: "About Us", href: "/" },
+    { label: "Careers", href: "/" },
+    { label: "Press", href: "/resources" },
+    { label: "Contact", href: "/" },
+  ],
 };
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   return (
     <footer style={{ background: 'var(--gradient-navy)' }} className="text-white relative overflow-hidden">
       {/* Subtle animated gradient */}
@@ -123,18 +144,22 @@ const Footer = () => {
               <ul className="space-y-3">
                 {links.map((link, linkIndex) => (
                   <motion.li 
-                    key={link}
+                    key={link.label}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.2 + linkIndex * 0.05 }}
                   >
                     <motion.a
-                      href="#"
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = link.href;
+                      }}
                       className="group inline-flex items-center gap-1 text-sm text-white/40 hover:text-accent transition-colors"
                       whileHover={{ x: 5 }}
                     >
-                      {link}
+                      {link.label}
                       <motion.span
                         initial={{ opacity: 0, x: -5 }}
                         whileHover={{ opacity: 1, x: 0 }}
@@ -214,6 +239,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;

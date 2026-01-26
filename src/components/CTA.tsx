@@ -1,12 +1,13 @@
+import { forwardRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
-const CTA = () => {
+const CTA = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section className="relative py-32 overflow-hidden" style={{ background: 'var(--gradient-navy)' }}>
+    <section ref={ref} className="relative py-32 overflow-hidden" style={{ background: 'var(--gradient-navy)' }}>
       {/* Animated gradient orbs with enhanced motion */}
-      <motion.div 
+      <motion.div
         className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl"
         style={{ background: 'linear-gradient(135deg, hsl(320 85% 55% / 0.6), transparent)' }}
         animate={{ 
@@ -204,6 +205,8 @@ const CTA = () => {
       </div>
     </section>
   );
-};
+});
+
+CTA.displayName = "CTA";
 
 export default CTA;

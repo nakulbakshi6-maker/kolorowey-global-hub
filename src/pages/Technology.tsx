@@ -507,7 +507,12 @@ const Technology = () => {
                     Talk to Engineering
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <Button size="xl" variant="outline" className="rounded-full border-white/30 text-white hover:bg-white/10">
+                  <Button 
+                    size="xl" 
+                    variant="outline" 
+                    className="rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white"
+                    onClick={() => window.location.href = '/resources'}
+                  >
                     View Documentation
                   </Button>
                 </div>
