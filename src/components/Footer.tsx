@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { Linkedin, Twitter, Youtube, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
@@ -30,7 +29,7 @@ const footerLinks = {
   ],
 };
 
-const Footer = forwardRef<HTMLElement>((_, ref) => {
+const Footer = () => {
   return (
     <footer style={{ background: 'var(--gradient-navy)' }} className="text-white relative overflow-hidden">
       {/* Subtle animated gradient */}
@@ -239,8 +238,6 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </footer>
   );
-});
-
-Footer.displayName = "Footer";
+};
 
 export default Footer;
