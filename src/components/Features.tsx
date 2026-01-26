@@ -110,12 +110,8 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
             <feature.icon className="w-6 h-6 text-white" />
           </motion.div>
           <span 
-            className="text-4xl font-extrabold select-none"
-            style={{
-              WebkitTextStroke: '1.5px hsl(var(--accent))',
-              WebkitTextFillColor: 'transparent',
-              opacity: 0.4,
-            }}
+            className="text-xs font-bold px-2.5 py-1 rounded-full text-white"
+            style={{ background: 'var(--gradient-brand)' }}
           >
             {feature.number}
           </span>
