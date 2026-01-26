@@ -25,8 +25,8 @@ const solutions = [
 const Solutions = () => {
   return (
     <section id="solutions" className="relative py-32 bg-background overflow-hidden">
-      {/* Background gradient accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full" style={{ background: 'var(--gradient-navy)' }} />
+      {/* Background gradient accent - hidden on mobile for better readability */}
+      <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block" style={{ background: 'var(--gradient-navy)' }} />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
