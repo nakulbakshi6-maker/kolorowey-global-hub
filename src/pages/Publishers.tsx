@@ -281,7 +281,11 @@ const Publishers = () => {
                         </span>
                       ))}
                     </div>
-                    <Button variant="outline" className="rounded-full group">
+                    <Button 
+                      variant="outline" 
+                      className="rounded-full group"
+                      onClick={() => window.location.href = '/technology'}
+                    >
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -363,7 +367,12 @@ const Publishers = () => {
                     Book a Demo
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <Button size="xl" variant="outline" className="rounded-full border-white/30 text-white hover:bg-white/10">
+                  <Button 
+                    size="xl" 
+                    variant="outline" 
+                    className="rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white"
+                    onClick={() => window.location.href = '/resources'}
+                  >
                     View Documentation
                   </Button>
                 </div>
