@@ -204,178 +204,207 @@ const Hero = () => {
           >
             {/* Ambient glow behind bot */}
             <motion.div 
-              className="absolute w-[400px] h-[400px] rounded-full blur-3xl opacity-30"
-              style={{ background: 'radial-gradient(circle, hsl(320 85% 55%), hsl(185 85% 45%), transparent 70%)' }}
-              animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute w-[350px] h-[350px] rounded-full blur-3xl opacity-40"
+              style={{ background: 'radial-gradient(circle, hsl(320 85% 65%), hsl(185 85% 55%), transparent 70%)' }}
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
 
             {/* Main Bot Container */}
             <motion.div
               className="relative"
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {/* Bot Body */}
-              <motion.div 
-                className="relative w-64 h-72 rounded-[40px] bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border-2 border-[#2a3050] shadow-2xl overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-              >
-                {/* Screen/Face */}
-                <div className="absolute top-8 left-6 right-6 h-32 rounded-2xl bg-gradient-to-br from-[#0d1525] to-[#0a0f1a] border border-[#2a3555] overflow-hidden">
-                  {/* Screen glow */}
-                  <motion.div 
-                    className="absolute inset-0 opacity-20"
-                    style={{ background: 'radial-gradient(ellipse at center, hsl(185 85% 45%), transparent 70%)' }}
-                    animate={{ opacity: [0.15, 0.3, 0.15] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  
-                  {/* Eyes */}
-                  <div className="flex justify-center gap-8 pt-6">
-                    {[0, 1].map((i) => (
-                      <motion.div
-                        key={i}
-                        className="relative w-10 h-10"
-                        animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
-                        transition={{ duration: 4, repeat: Infinity, delay: i * 0.1, times: [0, 0.45, 0.5, 0.55, 1] }}
-                      >
-                        {/* Eye outer */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-b from-cyan-400 to-cyan-600 shadow-[0_0_20px_rgba(34,211,238,0.5)]" />
-                        {/* Eye inner/pupil */}
-                        <motion.div 
-                          className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0a0f1a]"
-                          animate={{ x: [0, 2, -2, 0], y: [0, -1, 1, 0] }}
-                          transition={{ duration: 3, repeat: Infinity }}
-                        >
-                          {/* Eye highlight */}
-                          <div className="absolute top-1 left-1 w-2 h-2 rounded-full bg-white opacity-80" />
-                        </motion.div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  {/* Mouth - animated expression */}
-                  <motion.div 
-                    className="flex justify-center mt-4"
-                    animate={{ scaleX: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="w-8 h-3 rounded-full bg-gradient-to-r from-pink-400 to-pink-500 shadow-[0_0_10px_rgba(244,114,182,0.5)]" />
-                  </motion.div>
-                </div>
-
-                {/* Chest panel with data visualization */}
-                <div className="absolute bottom-8 left-6 right-6 h-20 rounded-xl bg-[#0d1525] border border-[#2a3555] p-3">
-                  {/* Mini data bars */}
-                  <div className="flex items-end justify-between h-full gap-1">
-                    {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8, 0.3, 0.75].map((height, i) => (
-                      <motion.div
-                        key={i}
-                        className="flex-1 rounded-t"
-                        style={{ 
-                          background: i % 2 === 0 
-                            ? 'linear-gradient(to top, hsl(320 85% 55%), hsl(320 85% 65%))' 
-                            : 'linear-gradient(to top, hsl(185 85% 45%), hsl(185 85% 55%))',
-                        }}
-                        animate={{ 
-                          height: [`${height * 100}%`, `${Math.random() * 40 + 40}%`, `${height * 100}%`],
-                        }}
-                        transition={{ duration: 2 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Decorative lights */}
-                <motion.div 
-                  className="absolute top-4 right-4 w-3 h-3 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
-                  animate={{ opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                <motion.div 
-                  className="absolute top-4 left-4 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.div>
-
-              {/* Antenna */}
-              <motion.div 
-                className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-                animate={{ rotate: [-5, 5, -5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.div 
-                  className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 shadow-[0_0_15px_rgba(236,72,153,0.6)]"
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
-                <div className="w-1 h-6 bg-gradient-to-b from-gray-400 to-gray-600 rounded-full" />
-              </motion.div>
-
-              {/* Arms */}
-              <motion.div 
-                className="absolute top-32 -left-10 w-8 h-20 rounded-full bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border border-[#2a3050]"
-                animate={{ rotate: [-10, 10, -10] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div 
-                className="absolute top-32 -right-10 w-8 h-20 rounded-full bg-gradient-to-b from-[#1a1f35] to-[#0d1020] border border-[#2a3050]"
-                animate={{ rotate: [10, -10, 10] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              />
-            </motion.div>
-
-            {/* Floating data particles around bot */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-3 h-3 rounded-full"
-                style={{
-                  background: i % 2 === 0 ? 'hsl(320 85% 55%)' : 'hsl(185 85% 45%)',
-                  left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 45}%`,
-                  top: `${50 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  x: [0, i % 2 === 0 ? 10 : -10, 0],
-                  opacity: [0.4, 1, 0.4],
-                  scale: [0.8, 1.2, 0.8],
-                }}
-                transition={{ duration: 3 + i * 0.3, repeat: Infinity, delay: i * 0.4 }}
-              />
-            ))}
-
-            {/* Speech bubble */}
-            <motion.div 
-              className="absolute -top-4 -right-8 bg-white rounded-2xl rounded-bl-none px-4 py-2 shadow-lg"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5, type: "spring" }}
-            >
-              <motion.span 
-                className="text-sm font-bold bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent"
-                animate={{ opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Let's connect! 🚀
-              </motion.span>
-            </motion.div>
-
-            {/* Platform indicator */}
-            <motion.div 
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#1a1f35] to-[#0d1020] rounded-full px-6 py-2 border border-[#2a3555]"
-              animate={{ y: [0, 5, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="flex items-center gap-2">
+              {/* Bot Body - rounder and cuter */}
+              <motion.div 
+                className="relative w-56 h-56 rounded-[60px] bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-4 border-[#3a4575] shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-visible"
+                whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {/* Rosy cheeks */}
                 <motion.div 
-                  className="w-2 h-2 rounded-full bg-green-400"
-                  animate={{ scale: [1, 1.3, 1] }}
+                  className="absolute top-20 left-2 w-8 h-5 rounded-full bg-pink-400/40 blur-sm"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <motion.div 
+                  className="absolute top-20 right-2 w-8 h-5 rounded-full bg-pink-400/40 blur-sm"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                />
+
+                {/* Big cute eyes */}
+                <div className="flex justify-center gap-10 pt-10">
+                  {[0, 1].map((i) => (
+                    <motion.div
+                      key={i}
+                      className="relative w-16 h-16"
+                      animate={{ scaleY: [1, 1, 0.15, 1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.05, times: [0, 0.42, 0.47, 0.52, 1] }}
+                    >
+                      {/* Eye white */}
+                      <div className="absolute inset-0 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]" />
+                      {/* Iris */}
+                      <motion.div 
+                        className="absolute top-2 left-2 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-300 to-cyan-500"
+                        animate={{ x: [0, 3, -2, 0], y: [0, -2, 2, 0] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      >
+                        {/* Pupil */}
+                        <div className="absolute top-2 left-2 w-8 h-8 rounded-full bg-[#0a1020]">
+                          {/* Sparkle highlights */}
+                          <div className="absolute top-1 left-1 w-3 h-3 rounded-full bg-white" />
+                          <div className="absolute bottom-2 right-1 w-1.5 h-1.5 rounded-full bg-white/70" />
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Happy mouth */}
+                <motion.div 
+                  className="flex justify-center mt-3"
+                  animate={{ scaleX: [1, 1.15, 1], scaleY: [1, 0.9, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <div className="w-10 h-5 rounded-b-full bg-[#0a1020] border-t-2 border-pink-400" />
+                </motion.div>
+
+                {/* Decorative heart antenna */}
+                <motion.div 
+                  className="absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
+                  animate={{ rotate: [-8, 8, -8] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <motion.div 
+                    className="text-2xl"
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                  >
+                    💖
+                  </motion.div>
+                  <div className="w-1.5 h-5 bg-gradient-to-b from-pink-300 to-gray-500 rounded-full -mt-1" />
+                </motion.div>
+
+                {/* Little feet peeking out */}
+                <motion.div 
+                  className="absolute -bottom-4 left-10 w-8 h-6 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
+                  animate={{ rotate: [-5, 5, -5] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
-                <span className="text-xs font-medium text-cyan-300">KoloBot Online</span>
+                <motion.div 
+                  className="absolute -bottom-4 right-10 w-8 h-6 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
+                  animate={{ rotate: [5, -5, 5] }}
+                  transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+                />
+              </motion.div>
+
+              {/* Waving arm */}
+              <motion.div 
+                className="absolute top-20 -right-12 origin-top-left"
+                animate={{ rotate: [0, 20, 0, 20, 0] }}
+                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
+              >
+                <div className="w-10 h-16 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]" />
+                <motion.div className="absolute -bottom-1 left-1 text-lg">👋</motion.div>
+              </motion.div>
+
+              {/* Other arm holding data */}
+              <motion.div 
+                className="absolute top-24 -left-10 w-10 h-14 rounded-full bg-gradient-to-b from-[#2a3355] to-[#1a1f35] border-2 border-[#3a4575]"
+                animate={{ rotate: [-5, 5, -5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </motion.div>
+
+            {/* Chat bubbles - cycling messages */}
+            <motion.div 
+              className="absolute -top-2 right-0 space-y-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              {/* Main speech bubble */}
+              <motion.div 
+                className="bg-white rounded-2xl rounded-bl-sm px-4 py-2.5 shadow-lg max-w-[180px]"
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <motion.div
+                  className="text-sm font-semibold text-gray-800"
+                  animate={{ opacity: [1, 0, 0, 1] }}
+                  transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
+                >
+                  Hi! I'm KoloBot! ✨
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Floating mini chat bubbles */}
+            <motion.div 
+              className="absolute top-12 right-12 bg-gradient-to-r from-pink-100 to-cyan-100 rounded-full px-3 py-1 shadow-md"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+            >
+              <span className="text-xs font-medium text-gray-700">1.2M RPS 🚀</span>
+            </motion.div>
+
+            <motion.div 
+              className="absolute top-32 right-4 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full px-3 py-1 shadow-md"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 2.5 }}
+            >
+              <span className="text-xs font-medium text-gray-700">8ms latency ⚡</span>
+            </motion.div>
+
+            <motion.div 
+              className="absolute bottom-28 right-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full px-3 py-1 shadow-md"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.5], y: [20, 0, 0, -10] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 4 }}
+            >
+              <span className="text-xs font-medium text-gray-700">99.9% uptime 💪</span>
+            </motion.div>
+
+            {/* Floating hearts and sparkles */}
+            {['💫', '✨', '💖', '⭐', '🌟'].map((emoji, i) => (
+              <motion.div
+                key={i}
+                className="absolute text-lg"
+                style={{
+                  left: `${15 + i * 18}%`,
+                  top: `${60 + (i % 3) * 12}%`,
+                }}
+                animate={{
+                  y: [0, -30, 0],
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8],
+                  rotate: [0, 10, -10, 0],
+                }}
+                transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: i * 0.6 }}
+              >
+                {emoji}
+              </motion.div>
+            ))}
+
+            {/* Status badge */}
+            <motion.div 
+              className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full px-5 py-2 shadow-lg"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="flex items-center gap-2">
+                <motion.span 
+                  className="text-lg"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+                >
+                  🤖
+                </motion.span>
+                <span className="text-sm font-bold text-white">Ready to help!</span>
               </div>
             </motion.div>
           </motion.div>
