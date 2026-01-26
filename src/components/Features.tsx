@@ -109,13 +109,16 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
           >
             <feature.icon className="w-6 h-6 text-white" />
           </motion.div>
-          <motion.span 
-            className="text-sm font-mono text-muted-foreground group-hover:text-accent transition-colors duration-300"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 3, repeat: Infinity, delay: index * 0.2 }}
+          <span 
+            className="text-4xl font-extrabold select-none"
+            style={{
+              WebkitTextStroke: '1.5px hsl(var(--accent))',
+              WebkitTextFillColor: 'transparent',
+              opacity: 0.4,
+            }}
           >
             {feature.number}
-          </motion.span>
+          </span>
         </div>
         <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">
           {feature.title}
@@ -160,56 +163,58 @@ const Features = () => {
       />
 
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-20">
-          <motion.div
-            className="max-w-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+        {/* Header - Centered with elegant stats row */}
+        <motion.div
+          className="text-center max-w-4xl mx-auto mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.span 
+            className="outline-badge mb-6 inline-block"
+            whileHover={{ scale: 1.05 }}
           >
-            <motion.span 
-              className="outline-badge mb-6 inline-block"
-              whileHover={{ scale: 1.05 }}
-            >
-              Platform
-            </motion.span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
-              Built for the modern
-              <br />
-              <motion.span 
-                className="gradient-text inline-block"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
-                style={{ backgroundSize: '200% auto' }}
-              >
-                programmatic ecosystem
-              </motion.span>
-            </h2>
-          </motion.div>
+            Platform
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+            Built for the modern
+            <br />
+            <span className="gradient-text">programmatic ecosystem</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+            Enterprise-grade infrastructure powering the next generation of digital advertising.
+          </p>
           
-          {/* Animated counter */}
-          <motion.div 
-            className="flex gap-8"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="text-right">
+          {/* Stats row */}
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            {[
+              { value: "50B+", label: "Daily bid requests" },
+              { value: "180+", label: "Countries" },
+              { value: "<10ms", label: "Latency" },
+            ].map((stat, i) => (
               <motion.div 
-                className="text-4xl font-extrabold gradient-text"
-                whileHover={{ scale: 1.05 }}
+                key={stat.label}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
               >
-                6
+                <div 
+                  className="text-3xl md:text-4xl font-extrabold mb-1"
+                  style={{
+                    WebkitTextStroke: '1.5px hsl(var(--accent))',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
               </motion.div>
-              <div className="text-sm text-muted-foreground">Core Features</div>
-            </div>
-          </motion.div>
-        </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Features Grid with 3D hover effects */}
         <div 
