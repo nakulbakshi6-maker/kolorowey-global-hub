@@ -143,7 +143,7 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide">
-              Office
+              Headquarters
             </h4>
             <p className="text-sm text-white/40 leading-relaxed">
               World Trade Centre,<br />
@@ -163,8 +163,9 @@ const Footer = () => {
         >
           <div className="flex items-center gap-3">
             <motion.span 
-              className="text-xs font-bold tracking-[0.2em] text-accent uppercase"
-              animate={{ opacity: [0.6, 1, 0.6] }}
+              className="text-xs font-bold tracking-[0.2em] uppercase bg-clip-text text-transparent"
+              style={{ backgroundImage: 'var(--gradient-brand)' }}
+              animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               AdTech Unfragmented
