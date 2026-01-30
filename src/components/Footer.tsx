@@ -1,7 +1,6 @@
 import { Linkedin, ArrowRight, MapPin, Mail, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const footerLinks = {
   Platform: [
@@ -117,13 +116,13 @@ const Footer = () => {
               transition={{ duration: 0.6 }}
             >
               <Link to="/" className="inline-block mb-6 group">
-                <motion.img 
-                  src={koloroweyLogo} 
-                  alt="Kolorowey" 
-                  className="h-16 w-auto brightness-0 invert"
-                  whileHover={{ scale: 1.02, rotate: 2 }}
+                <motion.span 
+                  className="text-3xl font-bold text-white tracking-tight"
+                  whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400 }}
-                />
+                >
+                  kolorowey
+                </motion.span>
               </Link>
               
               <motion.p 
