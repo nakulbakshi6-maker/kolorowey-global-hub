@@ -88,14 +88,17 @@ const Footer = () => {
                 {category}
               </h4>
               <ul className="space-y-2.5">
-                {links.map((link, linkIndex) => (
+                {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-sm text-white/40 hover:text-accent transition-colors duration-200"
-                    >
-                      {link.label}
-                    </Link>
+                    <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                      <Link
+                        to={link.href}
+                        className="text-sm text-white/40 hover:text-accent transition-colors duration-200 inline-flex items-center gap-1 group"
+                      >
+                        <span className="w-0 group-hover:w-2 h-px bg-accent transition-all duration-200" />
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   </li>
                 ))}
               </ul>
@@ -114,23 +117,28 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a 
+                <motion.a 
                   href="mailto:hello@kolorowey.com" 
-                  className="text-sm text-white/40 hover:text-accent transition-colors duration-200"
+                  className="text-sm text-white/40 hover:text-accent transition-colors duration-200 inline-flex items-center gap-2 group"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
                 >
+                  <Mail className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   hello@kolorowey.com
-                </a>
+                </motion.a>
               </li>
               <li>
-                <a
+                <motion.a
                   href="https://www.linkedin.com/company/koloroweymedia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-accent transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-accent transition-all duration-200 group"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <Linkedin className="w-3.5 h-3.5" />
+                  <Linkedin className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-200" />
                   LinkedIn
-                </a>
+                </motion.a>
               </li>
             </ul>
           </motion.div>
@@ -177,13 +185,16 @@ const Footer = () => {
           </div>
           <div className="flex items-center gap-6">
             {["Privacy", "Terms", "Cookies"].map((item) => (
-              <a 
+              <motion.a 
                 key={item}
                 href="#" 
-                className="text-sm text-white/30 hover:text-accent transition-colors"
+                className="text-sm text-white/30 hover:text-accent transition-colors relative group"
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
               >
                 {item}
-              </a>
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+              </motion.a>
             ))}
           </div>
         </motion.div>
