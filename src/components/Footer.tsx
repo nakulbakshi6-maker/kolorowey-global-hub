@@ -105,145 +105,120 @@ const Footer = () => {
           transition={{ duration: 15, repeat: Infinity }}
         />
 
-        <div className="container mx-auto px-6 py-16 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-            {/* Brand Column */}
+        <div className="container mx-auto px-6 py-12 relative z-10">
+          {/* Main Content Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
+            {/* Tagline & Description */}
             <motion.div 
-              className="lg:col-span-4"
+              className="lg:col-span-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Link to="/" className="inline-block mb-6 group">
-                <motion.span 
-                  className="text-3xl font-bold text-white tracking-tight"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  kolorowey
-                </motion.span>
-              </Link>
-              
               <motion.p 
-                className="text-xs font-bold tracking-[0.2em] text-accent uppercase mb-4"
-                animate={{ opacity: [0.6, 1, 0.6] }}
+                className="text-sm font-bold tracking-[0.15em] text-accent uppercase mb-3"
+                animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 AdTech Unfragmented
               </motion.p>
               
-              <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+              <p className="text-white/50 text-sm leading-relaxed">
                 Unifying the global advertising ecosystem with enterprise-grade infrastructure for the modern programmatic world.
               </p>
             </motion.div>
 
             {/* Navigation Columns */}
-            <div className="lg:col-span-4 grid grid-cols-2 gap-8">
-              {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
-                <motion.div 
-                  key={category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 + categoryIndex * 0.1 }}
-                >
-                  <h4 className="font-bold text-white mb-5 text-sm flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    {category}
-                  </h4>
-                  <ul className="space-y-3">
-                    {links.map((link, linkIndex) => (
-                      <motion.li 
-                        key={link.label}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: 0.2 + linkIndex * 0.05 }}
+            {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
+              <motion.div 
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 + categoryIndex * 0.1 }}
+              >
+                <h4 className="font-bold text-white mb-4 text-sm flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  {category}
+                </h4>
+                <ul className="space-y-2.5">
+                  {links.map((link, linkIndex) => (
+                    <motion.li 
+                      key={link.label}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.2 + linkIndex * 0.05 }}
+                    >
+                      <Link
+                        to={link.href}
+                        className="group inline-flex items-center text-sm text-white/40 hover:text-accent transition-all duration-300"
                       >
-                        <Link
-                          to={link.href}
-                          className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-accent transition-all duration-300"
+                        <motion.span 
+                          className="relative"
+                          whileHover={{ x: 4 }}
                         >
-                          <motion.span 
-                            className="relative"
-                            whileHover={{ x: 5 }}
-                          >
-                            {link.label}
-                            <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
-                          </motion.span>
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
+                          {link.label}
+                          <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                        </motion.span>
+                      </Link>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
 
             {/* Contact Column */}
             <motion.div 
-              className="lg:col-span-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <h4 className="font-bold text-white mb-5 text-sm flex items-center gap-2">
+              <h4 className="font-bold text-white mb-4 text-sm flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-highlight" />
                 Contact
               </h4>
               
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3">
                 <motion.div 
-                  className="flex items-start gap-3 text-sm text-white/50 group cursor-pointer"
+                  className="flex items-start gap-2.5 text-sm text-white/40 group cursor-pointer"
                   whileHover={{ x: 3 }}
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                    <MapPin className="w-4 h-4 text-accent" />
-                  </div>
-                  <span className="pt-1.5 group-hover:text-white/70 transition-colors">
+                  <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="group-hover:text-white/60 transition-colors leading-relaxed">
                     World Trade Centre, Nauroji Nagar, Safdarjung Enclave, New Delhi, Delhi 110029
                   </span>
                 </motion.div>
                 
                 <motion.a 
                   href="mailto:hello@kolorowey.com" 
-                  className="flex items-center gap-3 text-sm text-white/50 hover:text-white/70 transition-colors group"
+                  className="flex items-center gap-2.5 text-sm text-white/40 hover:text-white/60 transition-colors group"
                   whileHover={{ x: 3 }}
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                    <Mail className="w-4 h-4 text-accent" />
-                  </div>
+                  <Mail className="w-4 h-4 text-accent flex-shrink-0" />
                   <span>hello@kolorowey.com</span>
                 </motion.a>
-              </div>
 
-              {/* LinkedIn */}
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-white/30 uppercase tracking-wider">Follow us</span>
+                {/* LinkedIn */}
                 <motion.a
                   href="https://www.linkedin.com/company/koloroweymedia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300 relative overflow-hidden group border border-white/10 hover:border-accent/50"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2.5 text-sm text-white/40 hover:text-white/60 transition-colors group mt-1"
+                  whileHover={{ x: 3 }}
                 >
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
-                  <Linkedin className="w-5 h-5 relative z-10" />
+                  <Linkedin className="w-4 h-4 text-accent flex-shrink-0" />
+                  <span>LinkedIn</span>
                 </motion.a>
               </div>
             </motion.div>
           </div>
 
-          {/* Divider with gradient */}
-          <div className="relative my-10">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            </div>
+          {/* Divider */}
+          <div className="my-8">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
 
           {/* Bottom Bar */}
