@@ -410,7 +410,7 @@ const Contact = () => {
                 
                 <div className="space-y-4">
                   <a 
-                    href="mailto:hello@kolorowey.com" 
+                    href="mailto:reach@kolorowey.com" 
                     className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
@@ -418,7 +418,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Email</p>
-                      <p className="text-sm font-medium text-foreground">hello@kolorowey.com</p>
+                      <p className="text-sm font-medium text-foreground">reach@kolorowey.com</p>
                     </div>
                   </a>
                   
