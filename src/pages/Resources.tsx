@@ -130,7 +130,7 @@ const Resources = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <Button size="xl" className="rounded-full group">
+                <Button size="xl" className="rounded-full group" onClick={() => window.location.href = '/contact'}>
                   Get Started
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>

@@ -171,7 +171,7 @@ const Environment = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Button size="xl" className="rounded-full group">
+                <Button size="xl" className="rounded-full group" onClick={() => window.location.href = '/contact'}>
                   Explore Environments
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -460,20 +460,15 @@ const Environment = () => {
                 <p className="text-primary-foreground/70 mb-10 max-w-xl mx-auto text-lg">
                   Access premium inventory across every environment from a single platform.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="xl" variant="secondary" className="rounded-full group">
-                    Book a Demo
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  <Button 
-                    size="xl" 
-                    variant="outline" 
-                    className="rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white"
-                    onClick={() => window.location.href = '/advertisers'}
-                  >
-                    View Advertising Solutions
-                  </Button>
-                </div>
+                <Button 
+                  size="xl" 
+                  variant="secondary" 
+                  className="rounded-full group"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Book a Demo
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </div>
             </motion.div>
           </div>

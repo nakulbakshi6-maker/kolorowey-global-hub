@@ -260,7 +260,7 @@ const Technology = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Button size="xl" className="rounded-full group">
+                <Button size="xl" className="rounded-full group" onClick={() => window.location.href = '/contact'}>
                   Explore Technology
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -484,20 +484,15 @@ const Technology = () => {
                 <p className="text-primary-foreground/70 mb-10 max-w-xl mx-auto text-lg">
                   Our technology handles the complexity so you can focus on growth.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="xl" variant="secondary" className="rounded-full group">
-                    Talk to Engineering
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  <Button 
-                    size="xl" 
-                    variant="outline" 
-                    className="rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white"
-                    onClick={() => window.location.href = '/resources'}
-                  >
-                    View Documentation
-                  </Button>
-                </div>
+                <Button 
+                  size="xl" 
+                  variant="secondary" 
+                  className="rounded-full group"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Get Started
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </div>
             </motion.div>
           </div>
