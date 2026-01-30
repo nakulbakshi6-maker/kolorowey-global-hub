@@ -73,7 +73,10 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button className="rounded-full px-6 font-semibold group">
+            <Button 
+              className="rounded-full px-6 font-semibold group"
+              onClick={() => window.location.href = '/contact'}
+            >
               Get Started
               <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </Button>
@@ -113,7 +116,10 @@ const Header = () => {
                   </motion.a>
                 ))}
                 <div className="pt-4 px-4">
-                  <Button className="w-full justify-center h-12 rounded-xl font-semibold">
+                  <Button 
+                    className="w-full justify-center h-12 rounded-xl font-semibold"
+                    onClick={() => window.location.href = '/contact'}
+                  >
                     Get Started
                   </Button>
                 </div>

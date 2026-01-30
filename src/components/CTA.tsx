@@ -138,6 +138,7 @@ const CTA = () => {
                 <Button 
                   size="lg" 
                   className="h-14 px-10 bg-white text-primary hover:bg-white/90 rounded-full font-bold text-base group relative overflow-hidden transition-all duration-300"
+                  onClick={() => window.location.href = '/contact'}
                 >
                   <motion.div 
                     className="absolute inset-0 bg-gradient-to-r from-accent/20 to-highlight/20"
@@ -147,7 +148,7 @@ const CTA = () => {
                   />
                   <span className="relative z-10 flex items-center">
                     <Zap className="w-5 h-5 mr-2" />
-                    Get Started Free
+                    Get Started
                     <motion.span 
                       className="ml-2"
                       animate={{ x: [0, 5, 0] }}
@@ -166,8 +167,9 @@ const CTA = () => {
                   variant="outline" 
                   size="lg" 
                   className="h-14 px-10 border-2 border-white/30 text-white bg-transparent hover:bg-white/10 hover:border-accent rounded-full font-bold text-base transition-all duration-300"
+                  onClick={() => window.location.href = '/contact'}
                 >
-                  Talk to Sales
+                  Book a Demo
                 </Button>
               </motion.div>
             </motion.div>
