@@ -87,18 +87,16 @@ const Footer = () => {
               <h4 className="font-semibold text-white mb-4 text-sm tracking-wide">
                 {category}
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                      <Link
-                        to={link.href}
-                        className="text-sm text-white/40 hover:text-accent transition-colors duration-200 inline-flex items-center gap-1 group"
-                      >
-                        <span className="w-0 group-hover:w-2 h-px bg-accent transition-all duration-200" />
-                        {link.label}
-                      </Link>
-                    </motion.div>
+                    <Link
+                      to={link.href}
+                      className="text-sm text-white/50 hover:text-white transition-all duration-300 relative inline-block group"
+                    >
+                      {link.label}
+                      <span className="absolute -bottom-0.5 left-0 w-full h-px bg-gradient-to-r from-accent to-highlight scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -115,30 +113,26 @@ const Footer = () => {
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide">
               Contact
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               <li>
-                <motion.a 
+                <a 
                   href="mailto:hello@kolorowey.com" 
-                  className="text-sm text-white/40 hover:text-accent transition-colors duration-200 inline-flex items-center gap-2 group"
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
+                  className="text-sm text-white/50 hover:text-white transition-all duration-300 inline-flex items-center gap-2 group"
                 >
-                  <Mail className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                  <Mail className="w-4 h-4 text-accent group-hover:rotate-12 transition-transform duration-300" />
                   hello@kolorowey.com
-                </motion.a>
+                </a>
               </li>
               <li>
-                <motion.a
+                <a
                   href="https://www.linkedin.com/company/koloroweymedia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-accent transition-all duration-200 group"
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-all duration-300 group"
                 >
-                  <Linkedin className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-200" />
+                  <Linkedin className="w-4 h-4 text-accent group-hover:rotate-12 transition-transform duration-300" />
                   LinkedIn
-                </motion.a>
+                </a>
               </li>
             </ul>
           </motion.div>
@@ -185,16 +179,13 @@ const Footer = () => {
           </div>
           <div className="flex items-center gap-6">
             {["Privacy", "Terms", "Cookies"].map((item) => (
-              <motion.a 
+              <a 
                 key={item}
                 href="#" 
-                className="text-sm text-white/30 hover:text-accent transition-colors relative group"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
+                className="text-sm text-white/30 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
               >
                 {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
-              </motion.a>
+              </a>
             ))}
           </div>
         </motion.div>
