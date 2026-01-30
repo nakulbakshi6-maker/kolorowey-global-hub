@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
@@ -92,8 +93,21 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Send email via edge function
+    const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      body: result.data,
+    });
+
+    if (error || !data?.success) {
+      console.error('Error sending contact email:', error || data?.error);
+      setIsSubmitting(false);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly at reach@kolorowey.com",
+        variant: "destructive",
+      });
+      return;
+    }
     
     setIsSubmitting(false);
     setIsSubmitted(true);
