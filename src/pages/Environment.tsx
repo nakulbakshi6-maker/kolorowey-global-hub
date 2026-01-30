@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Globe, Smartphone, AppWindow, Tv, Building2, Gamepad2, Volume2, ArrowRight, Check, Zap, Monitor, Radio } from "lucide-react";
+import { Globe, TabletSmartphone, AppWindow, Tv, Building2, Gamepad2, Volume2, ArrowRight, Check, Zap, Monitor, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ const environments = [
     stats: { impressions: "3B+", viewability: "92%", ctr: "0.45%" },
   },
   {
-    icon: Smartphone,
+    icon: TabletSmartphone,
     title: "Mobile Web",
     subtitle: "Smartphones & Tablets",
     description: "Mobile-optimized ad experiences for browsers on smartphones and tablets. AMP-compatible for lightning-fast delivery without compromising Core Web Vitals.",
