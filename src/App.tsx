@@ -10,6 +10,7 @@ import Advertisers from "./pages/Advertisers";
 import Technology from "./pages/Technology";
 import Environment from "./pages/Environment";
 import Resources from "./pages/Resources";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/technology" element={<Technology />} />
           <Route path="/environment" element={<Environment />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
