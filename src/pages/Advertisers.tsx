@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Store, MousePointer, Users, Lock, Tv, Building2, ArrowRight, Check, Sparkles, Target, BarChart, Globe, Layers, Zap } from "lucide-react";
+import { Store, MousePointer, Users, Lock, Tv, Building2, ArrowRight, Check, Target, BarChart, Globe, Layers, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -138,7 +138,6 @@ const Advertisers = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <Sparkles className="w-3 h-3" />
                 For Advertisers
               </motion.span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">

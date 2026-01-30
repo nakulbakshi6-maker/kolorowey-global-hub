@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 const CTA = () => {
@@ -78,7 +78,7 @@ const CTA = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <Sparkles className="w-10 h-10 text-white relative z-10" />
+              <Zap className="w-10 h-10 text-white relative z-10" />
             </motion.div>
 
             <motion.p 

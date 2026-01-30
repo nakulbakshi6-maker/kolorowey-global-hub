@@ -1,4 +1,4 @@
-import { ArrowRight, Building2, Megaphone, Users, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Megaphone, Users, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -93,7 +93,6 @@ const Solutions = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <Sparkles className="w-3 h-3" />
             Solutions
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">

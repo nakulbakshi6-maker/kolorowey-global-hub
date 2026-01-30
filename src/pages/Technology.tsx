@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Server, Settings, Globe, Tv, Fingerprint, ArrowRight, Sparkles, Zap, Shield, Clock, Activity, Cpu, Database, Network, Lock } from "lucide-react";
+import { Server, Settings, Globe, Tv, Fingerprint, ArrowRight, Zap, Shield, Clock, Activity, Cpu, Database, Network, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -219,7 +219,6 @@ const Technology = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <Sparkles className="w-3 h-3" />
                 Technology
               </motion.span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
