@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { BookOpen, FileText, Code, HelpCircle, ArrowRight, Sparkles, ExternalLink, Zap } from "lucide-react";
+import { BookOpen, FileText, Code, HelpCircle, ArrowRight, ExternalLink, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -112,7 +112,6 @@ const Resources = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <Sparkles className="w-3 h-3" />
                 Resources
               </motion.span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">

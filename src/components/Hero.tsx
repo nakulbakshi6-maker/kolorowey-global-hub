@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-react";
+import { ArrowRight, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -236,7 +236,6 @@ const Hero = () => {
           className="mb-10 md:mb-12 flex justify-center"
         >
           <span className="shimmer-badge">
-            <Sparkles className="w-4 h-4" />
             AdTech Unfragmented
           </span>
         </motion.div>
