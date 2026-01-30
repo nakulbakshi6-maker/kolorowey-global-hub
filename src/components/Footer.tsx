@@ -1,4 +1,4 @@
-import { Linkedin, ArrowRight, MapPin, Mail, Phone } from "lucide-react";
+import { Linkedin, ArrowRight, MapPin, Mail, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
@@ -17,98 +17,130 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer style={{ background: 'var(--gradient-navy)' }} className="text-white relative overflow-hidden">
-      {/* Subtle animated gradient */}
-      <motion.div 
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl"
-        style={{ background: 'var(--gradient-brand)' }}
-        animate={{ 
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-        }}
-        transition={{ duration: 20, repeat: Infinity }}
-      />
-
-      <div className="container mx-auto px-6 py-16 relative z-10">
-        {/* Main Footer - Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
-          {/* Left Side - Brand & Contact */}
-          <motion.div 
-            className="lg:col-span-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.a 
-              href="/" 
-              className="inline-block mb-6 group"
-              whileHover={{ scale: 1.02 }}
+    <footer className="relative overflow-hidden">
+      {/* CTA Banner Section */}
+      <div className="relative py-20 overflow-hidden" style={{ background: 'var(--gradient-brand)' }}>
+        {/* Floating particles */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1.5 h-1.5 rounded-full bg-white/30"
+            style={{
+              left: `${5 + i * 8}%`,
+              top: `${20 + (i % 4) * 20}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.7, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + i * 0.3,
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+          />
+        ))}
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <motion.img 
-                src={koloroweyLogo} 
-                alt="Kolorowey" 
-                className="h-20 w-auto brightness-0 invert"
-                whileHover={{ rotate: 2 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              />
-            </motion.a>
+              <div className="flex items-center gap-3 mb-4">
+                <motion.div
+                  className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  <Sparkles className="w-5 h-5 text-white" />
+                </motion.div>
+                <span className="text-white/70 text-sm font-medium uppercase tracking-wider">Get Started</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                Ready to transform your
+              </h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-white/80">
+                advertising infrastructure?
+              </h3>
+            </motion.div>
             
-            <motion.p 
-              className="text-xs font-bold tracking-widest text-white/40 uppercase mb-4"
-              animate={{ opacity: [0.4, 0.6, 0.4] }}
-              transition={{ duration: 3, repeat: Infinity }}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              AdTech Unfragmented
-            </motion.p>
-            
-            <p className="text-white/50 text-sm mb-8 max-w-sm leading-relaxed">
-              Unifying the global advertising ecosystem with enterprise-grade infrastructure for the modern programmatic world.
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-4 mb-8">
-              <motion.div 
-                className="flex items-start gap-3 text-sm text-white/50"
-                whileHover={{ x: 3, color: 'hsl(325 80% 55%)' }}
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-primary font-bold text-lg shadow-2xl hover:shadow-white/25 transition-all duration-300 group"
               >
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>World Trade Centre, Nauroji Nagar, Safdarjung Enclave, New Delhi, Delhi 110029</span>
-              </motion.div>
-              <motion.a 
-                href="mailto:hello@kolorowey.com" 
-                className="flex items-center gap-3 text-sm text-white/50 hover:text-accent transition-colors"
-                whileHover={{ x: 3 }}
-              >
-                <Mail className="w-4 h-4 flex-shrink-0" />
-                hello@kolorowey.com
-              </motion.a>
-            </div>
+                Contact Us
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </motion.span>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
-            {/* LinkedIn */}
-            <motion.a
-              href="https://www.linkedin.com/company/koloroweymedia"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
+      {/* Main Footer */}
+      <div style={{ background: 'var(--gradient-navy)' }} className="text-white relative">
+        {/* Decorative gradient orb */}
+        <motion.div 
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-10 blur-3xl pointer-events-none"
+          style={{ background: 'var(--gradient-brand)' }}
+          animate={{ 
+            scale: [1, 1.15, 1],
+            x: [0, 30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+
+        <div className="container mx-auto px-6 py-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+            {/* Brand Column */}
+            <motion.div 
+              className="lg:col-span-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <motion.div 
-                className="absolute inset-0 bg-accent"
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <Linkedin className="w-5 h-5 relative z-10" />
-            </motion.a>
-          </motion.div>
+              <Link to="/" className="inline-block mb-6 group">
+                <motion.img 
+                  src={koloroweyLogo} 
+                  alt="Kolorowey" 
+                  className="h-16 w-auto brightness-0 invert"
+                  whileHover={{ scale: 1.02, rotate: 2 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                />
+              </Link>
+              
+              <motion.p 
+                className="text-xs font-bold tracking-[0.2em] text-accent uppercase mb-4"
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                AdTech Unfragmented
+              </motion.p>
+              
+              <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+                Unifying the global advertising ecosystem with enterprise-grade infrastructure for the modern programmatic world.
+              </p>
+            </motion.div>
 
-          {/* Right Side - Navigation & CTA */}
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
-              {/* Navigation Links */}
+            {/* Navigation Columns */}
+            <div className="lg:col-span-4 grid grid-cols-2 gap-8">
               {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
                 <motion.div 
                   key={category}
@@ -117,7 +149,8 @@ const Footer = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 + categoryIndex * 0.1 }}
                 >
-                  <h4 className="font-bold text-white mb-5 text-sm">
+                  <h4 className="font-bold text-white mb-5 text-sm flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                     {category}
                   </h4>
                   <ul className="space-y-3">
@@ -131,10 +164,14 @@ const Footer = () => {
                       >
                         <Link
                           to={link.href}
-                          className="group inline-flex items-center gap-1 text-sm text-white/40 hover:text-accent transition-colors"
+                          className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-accent transition-all duration-300"
                         >
-                          <motion.span whileHover={{ x: 5 }}>
+                          <motion.span 
+                            className="relative"
+                            whileHover={{ x: 5 }}
+                          >
                             {link.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
                           </motion.span>
                         </Link>
                       </motion.li>
@@ -142,72 +179,100 @@ const Footer = () => {
                   </ul>
                 </motion.div>
               ))}
+            </div>
 
-              {/* CTA Card */}
-              <motion.div
-                className="sm:col-span-1"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <h4 className="font-bold text-white mb-5 text-sm">
-                  Get Started
-                </h4>
-                <p className="text-white/40 text-sm mb-4">
-                  Ready to transform your advertising?
-                </p>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+            {/* Contact Column */}
+            <motion.div 
+              className="lg:col-span-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <h4 className="font-bold text-white mb-5 text-sm flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-highlight" />
+                Contact
+              </h4>
+              
+              <div className="space-y-4 mb-6">
+                <motion.div 
+                  className="flex items-start gap-3 text-sm text-white/50 group cursor-pointer"
+                  whileHover={{ x: 3 }}
                 >
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-300 group"
-                    style={{ background: 'var(--gradient-brand)' }}
-                  >
-                    Contact Us
-                    <motion.span
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.span>
-                  </Link>
+                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <MapPin className="w-4 h-4 text-accent" />
+                  </div>
+                  <span className="pt-1.5 group-hover:text-white/70 transition-colors">
+                    World Trade Centre, Nauroji Nagar, Safdarjung Enclave, New Delhi, Delhi 110029
+                  </span>
                 </motion.div>
-              </motion.div>
+                
+                <motion.a 
+                  href="mailto:hello@kolorowey.com" 
+                  className="flex items-center gap-3 text-sm text-white/50 hover:text-white/70 transition-colors group"
+                  whileHover={{ x: 3 }}
+                >
+                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <Mail className="w-4 h-4 text-accent" />
+                  </div>
+                  <span>hello@kolorowey.com</span>
+                </motion.a>
+              </div>
+
+              {/* LinkedIn */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-white/30 uppercase tracking-wider">Follow us</span>
+                <motion.a
+                  href="https://www.linkedin.com/company/koloroweymedia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300 relative overflow-hidden group border border-white/10 hover:border-accent/50"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                  />
+                  <Linkedin className="w-5 h-5 relative z-10" />
+                </motion.a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Divider with gradient */}
+          <div className="relative my-10">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             </div>
           </div>
-        </div>
 
-        {/* Bottom Bar */}
-        <motion.div 
-          className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <p className="text-sm text-white/30">
-            © 2026 Kolorowey. All rights reserved.
-          </p>
-          <div className="flex items-center gap-8">
-            {["Privacy", "Terms", "Cookies"].map((item, index) => (
-              <motion.a 
-                key={item}
-                href="#" 
-                className="text-sm text-white/30 hover:text-accent transition-colors"
-                whileHover={{ y: -2, scale: 1.05 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                {item}
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
+          {/* Bottom Bar */}
+          <motion.div 
+            className="flex flex-col md:flex-row items-center justify-between gap-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <p className="text-sm text-white/30">
+              © 2026 Kolorowey. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((item, index) => (
+                <motion.a 
+                  key={item}
+                  href="#" 
+                  className="text-sm text-white/30 hover:text-accent transition-colors relative group"
+                  whileHover={{ y: -1 }}
+                >
+                  {item}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </footer>
   );
