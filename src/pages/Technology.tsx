@@ -12,7 +12,7 @@ const technologies = [
     icon: Server,
     title: "Ad Server",
     subtitle: "Full-Stack Serving Infrastructure",
-    description: "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, advanced mediation capabilities including waterfall, in-app bidding & hybrid auction models, and support for all major demand sources.",
+    description: "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, it offers advanced mediation capabilities including waterfall, in-app bidding, and hybrid auction models, along with support for all major demand sources.",
     specs: [
       { label: "Latency", value: "<10ms" },
       { label: "Channels", value: "8+" },
@@ -104,25 +104,6 @@ const technologies = [
     gradient: "from-violet-500 to-purple-400",
   },
   {
-    icon: FileText,
-    title: "Content CMS",
-    subtitle: "Publisher Content Platform",
-    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
-    specs: [
-      { label: "API-First", value: "RESTful" },
-      { label: "Formats", value: "All Types" },
-      { label: "Workflow", value: "Automated" },
-    ],
-    features: ["Headless CMS", "Multi-format", "SEO Engine", "Content Syndication"],
-    details: [
-      "Headless, API-first architecture for any frontend or platform",
-      "Supports articles, video, audio, galleries & interactive content",
-      "Built-in SEO optimization, schema markup & AMP support",
-      "Automated content syndication, scheduling & multi-site management",
-    ],
-    gradient: "from-orange-500 to-amber-400",
-  },
-  {
     icon: Globe,
     title: "CDN Infrastructure",
     subtitle: "Global Delivery Network",
@@ -140,6 +121,25 @@ const technologies = [
       "Instant cache invalidation",
     ],
     gradient: "from-emerald-500 to-teal-400",
+  },
+  {
+    icon: FileText,
+    title: "Content CMS",
+    subtitle: "Publisher Content Platform",
+    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
+    specs: [
+      { label: "API-First", value: "RESTful" },
+      { label: "Formats", value: "All Types" },
+      { label: "Workflow", value: "Automated" },
+    ],
+    features: ["Headless CMS", "Multi-format", "SEO Engine", "Content Syndication"],
+    details: [
+      "Headless, API-first architecture for any frontend or platform",
+      "Supports articles, video, audio, galleries & interactive content",
+      "Built-in SEO optimization, schema markup & AMP support",
+      "Automated content syndication, scheduling & multi-site management",
+    ],
+    gradient: "from-orange-500 to-amber-400",
   },
 ];
 
