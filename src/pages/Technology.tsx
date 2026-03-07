@@ -1,5 +1,23 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Server, Settings, Globe, Tv, ArrowRight, Zap, Shield, Clock, Activity, Cpu, Database, Network, Lock, Play, Smartphone, FileText, Code2 } from "lucide-react";
+import {
+  Server,
+  Settings,
+  Globe,
+  Tv,
+  ArrowRight,
+  Zap,
+  Shield,
+  Clock,
+  Activity,
+  Cpu,
+  Database,
+  Network,
+  Lock,
+  Play,
+  Smartphone,
+  FileText,
+  Code2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,7 +30,8 @@ const technologies = [
     icon: Server,
     title: "Ad Server",
     subtitle: "Full-Stack Serving Infrastructure",
-    description: "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, it offers advanced mediation capabilities including waterfall, in-app bidding, and hybrid auction models, along with support for all major demand sources.",
+    description:
+      "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With Native, Prebid, and OpenRTB (oRTB) integration, it offers advanced mediation capabilities including waterfall, in-app bidding, and hybrid auction models, along with support for all major demand sources.",
     specs: [
       { label: "Latency", value: "<10ms" },
       { label: "Channels", value: "8+" },
@@ -31,7 +50,8 @@ const technologies = [
     icon: Play,
     title: "Video Player Technology",
     subtitle: "Enterprise Video Playback Engine",
-    description: "A high-performance, monetization-ready video player designed for seamless content delivery with built-in ad orchestration across every screen. Adaptive streaming, multi-format support, and AI-driven content recommendations out of the box.",
+    description:
+      "A high-performance, monetization-ready video player designed for seamless content delivery with built-in ad orchestration across every screen. Adaptive streaming, multi-format support, and AI-driven content recommendations out of the box.",
     specs: [
       { label: "Start Time", value: "<200ms" },
       { label: "Ad Formats", value: "VAST/VPAID" },
@@ -50,7 +70,8 @@ const technologies = [
     icon: Code2,
     title: "Lightweight SDK",
     subtitle: "Modern Integration Toolkit",
-    description: "A blazing-fast, modular SDK designed for effortless integration across Web, iOS, Android, and CTV platforms. Minimal footprint, maximum capability — built for developers who demand performance without compromise.",
+    description:
+      "A blazing-fast, modular SDK designed for effortless integration across Web, iOS, Android, and CTV platforms. Minimal footprint, maximum capability — built for developers who demand performance without compromise.",
     specs: [
       { label: "Size", value: "<30KB" },
       { label: "Load Time", value: "<50ms" },
@@ -69,7 +90,8 @@ const technologies = [
     icon: Settings,
     title: "AdOps Engine",
     subtitle: "Automation Platform",
-    description: "Automated ad operations platform that streamlines workflows, reduces errors, and scales your operations. Handle complex campaign management with ease.",
+    description:
+      "Automated ad operations platform that streamlines workflows, reduces errors, and scales your operations. Handle complex campaign management with ease.",
     specs: [
       { label: "Automation", value: "90%" },
       { label: "Time Saved", value: "60%" },
@@ -88,7 +110,8 @@ const technologies = [
     icon: Tv,
     title: "SSAI Architecture",
     subtitle: "Server-Side Ad Insertion",
-    description: "Server-side ad insertion for seamless video experiences. Buffer-free, ad-block resistant delivery with sub-50ms stitching latency.",
+    description:
+      "Server-side ad insertion for seamless video experiences. Buffer-free, ad-block resistant delivery with sub-50ms stitching latency.",
     specs: [
       { label: "Stitching", value: "<50ms" },
       { label: "Formats", value: "All Major" },
@@ -107,7 +130,8 @@ const technologies = [
     icon: Globe,
     title: "CDN Infrastructure",
     subtitle: "Global Delivery Network",
-    description: "Global content delivery network optimized for ad creatives. Fast, reliable delivery worldwide with intelligent edge caching and automatic optimization.",
+    description:
+      "Global content delivery network optimized for ad creatives. Fast, reliable delivery worldwide with intelligent edge caching and automatic optimization.",
     specs: [
       { label: "PoPs", value: "200+" },
       { label: "Countries", value: "150+" },
@@ -126,7 +150,8 @@ const technologies = [
     icon: FileText,
     title: "Content CMS",
     subtitle: "Publisher Content Platform",
-    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
+    description:
+      "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
     specs: [
       { label: "API-First", value: "RESTful" },
       { label: "Formats", value: "All Types" },
@@ -164,7 +189,7 @@ const AnimatedCounter = ({ end, suffix = "" }: { end: number; suffix?: string })
           setIsVisible(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (ref.current) {
@@ -176,7 +201,7 @@ const AnimatedCounter = ({ end, suffix = "" }: { end: number; suffix?: string })
 
   useEffect(() => {
     if (!isVisible) return;
-    
+
     const duration = 2000;
     const steps = 60;
     const increment = end / steps;
@@ -195,14 +220,19 @@ const AnimatedCounter = ({ end, suffix = "" }: { end: number; suffix?: string })
     return () => clearInterval(timer);
   }, [isVisible, end]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
 };
 
 const Technology = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
@@ -215,16 +245,19 @@ const Technology = () => {
         <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
           {/* Animated Grid Background */}
           <div className="absolute inset-0 overflow-hidden opacity-30">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--muted-foreground)) 1px, transparent 0)`,
-              backgroundSize: '40px 40px'
-            }} />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--muted-foreground)) 1px, transparent 0)`,
+                backgroundSize: "40px 40px",
+              }}
+            />
           </div>
-          
+
           {/* Animated Orbs */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              animate={{ 
+              animate={{
                 x: [0, 100, 0],
                 y: [0, -50, 0],
               }}
@@ -232,7 +265,7 @@ const Technology = () => {
               className="absolute top-1/4 left-1/3 w-72 h-72 bg-accent/10 rounded-full blur-3xl"
             />
             <motion.div
-              animate={{ 
+              animate={{
                 x: [0, -80, 0],
                 y: [0, 80, 0],
               }}
@@ -240,8 +273,8 @@ const Technology = () => {
               className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-highlight/10 rounded-full blur-3xl"
             />
           </div>
-          
-          <motion.div 
+
+          <motion.div
             style={{ opacity: heroOpacity, scale: heroScale }}
             className="container mx-auto px-6 relative z-10"
           >
@@ -251,7 +284,7 @@ const Technology = () => {
               transition={{ duration: 0.6 }}
               className="text-center max-w-5xl mx-auto"
             >
-              <motion.span 
+              <motion.span
                 className="shimmer-badge mb-6 inline-block"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -265,10 +298,10 @@ const Technology = () => {
                 <span className="gradient-text">Scale & Speed</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-                Enterprise infrastructure powering the modern advertising ecosystem. 
-                Engineered for performance, reliability, and global scale.
+                Enterprise infrastructure powering the modern advertising ecosystem. Engineered for performance,
+                reliability, and global scale.
               </p>
-              
+
               {/* Hero Stats */}
               <div className="flex flex-wrap justify-center gap-8 mb-12">
                 {[
@@ -291,20 +324,16 @@ const Technology = () => {
                   </motion.div>
                 ))}
               </div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Button size="xl" className="rounded-full group" onClick={() => window.location.href = '/contact'}>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+                <Button size="xl" className="rounded-full group" onClick={() => (window.location.href = "/contact")}>
                   Explore Technology
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
             </motion.div>
           </motion.div>
-          
+
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -338,7 +367,7 @@ const Technology = () => {
                 Built from the ground up for reliability, security, and performance at scale
               </p>
             </motion.div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {architectureFeatures.map((feature, index) => (
                 <motion.div
@@ -379,7 +408,7 @@ const Technology = () => {
                 Cutting-edge technology components that power the Kolorowey platform
               </p>
             </motion.div>
-            
+
             <div className="space-y-32">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -391,12 +420,18 @@ const Technology = () => {
                   className="relative"
                 >
                   {/* Background accent */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${tech.gradient} opacity-5 blur-3xl rounded-3xl`} />
-                  
-                  <div className={`relative grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                    <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${tech.gradient} opacity-5 blur-3xl rounded-3xl`}
+                  />
+
+                  <div
+                    className={`relative grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
+                  >
+                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                       <div className="flex items-center gap-4 mb-6">
-                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${tech.gradient}`}>
+                        <div
+                          className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${tech.gradient}`}
+                        >
                           <tech.icon className="w-8 h-8 text-white" />
                         </div>
                         <div>
@@ -404,11 +439,9 @@ const Technology = () => {
                           <p className="text-muted-foreground">{tech.subtitle}</p>
                         </div>
                       </div>
-                      
-                      <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                        {tech.description}
-                      </p>
-                      
+
+                      <p className="text-muted-foreground text-lg leading-relaxed mb-8">{tech.description}</p>
+
                       <div className="space-y-4 mb-8">
                         {tech.details.map((detail, i) => (
                           <div key={i} className="flex items-start gap-3">
@@ -417,7 +450,7 @@ const Technology = () => {
                           </div>
                         ))}
                       </div>
-                      
+
                       <div className="flex flex-wrap gap-2">
                         {tech.features.map((feature) => (
                           <span
@@ -429,8 +462,8 @@ const Technology = () => {
                         ))}
                       </div>
                     </div>
-                    
-                    <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+
+                    <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                       <div className="magnetic-card p-6 lg:p-10">
                         <div className="flex flex-col sm:flex-row sm:justify-around gap-6">
                           {tech.specs.map((spec) => (
@@ -438,9 +471,7 @@ const Technology = () => {
                               <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-extrabold gradient-text mb-2 leading-tight">
                                 {spec.value}
                               </div>
-                              <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                                {spec.label}
-                              </div>
+                              <div className="text-xs text-muted-foreground uppercase tracking-wider">{spec.label}</div>
                             </div>
                           ))}
                         </div>
@@ -469,7 +500,7 @@ const Technology = () => {
                 Deployed across 200+ points of presence for low-latency, high-availability service
               </p>
             </motion.div>
-            
+
             {/* World Map with PoP Locations */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -515,17 +546,15 @@ const Technology = () => {
               <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
               <div className="relative z-10">
                 <Network className="w-12 h-12 text-white/80 mx-auto mb-6" />
-                <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-                  Ready to scale with confidence?
-                </h2>
+                <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Ready to scale with confidence?</h2>
                 <p className="text-primary-foreground/70 mb-10 max-w-xl mx-auto text-lg">
                   Our technology handles the complexity so you can focus on growth.
                 </p>
-                <Button 
-                  size="xl" 
-                  variant="secondary" 
+                <Button
+                  size="xl"
+                  variant="secondary"
                   className="rounded-full group"
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={() => (window.location.href = "/contact")}
                 >
                   Get Started
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
