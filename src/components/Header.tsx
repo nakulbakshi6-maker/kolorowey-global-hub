@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,11 @@ const Header = () => {
     { label: "Environment", href: "/environment" },
     { label: "Resources", href: "/resources" },
   ];
+
+  const isActive = (href: string) => {
+    if (href === "/") return location.pathname === "/";
+    return location.pathname.startsWith(href);
+  };
 
   return (
     <motion.header
@@ -48,7 +55,7 @@ const Header = () => {
             <img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
-              className={`transition-all duration-500 ${isScrolled ? 'h-16' : 'h-24'} w-auto group-hover:scale-105`}
+              className={`transition-all duration-500 ${isScrolled ? 'h-20' : 'h-28'} w-auto group-hover:scale-105`}
             />
           </a>
 
@@ -64,7 +71,11 @@ const Header = () => {
                   e.preventDefault();
                   window.location.href = link.href;
                 }}
-                className="px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-all duration-200"
+                className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-200 ${
+                  isActive(link.href)
+                    ? "text-accent bg-accent/10"
+                    : "text-muted-foreground hover:text-accent hover:bg-accent/5"
+                }`}
               >
                 {link.label}
               </a>
@@ -109,7 +120,11 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="block px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors font-medium"
+                    className={`block px-4 py-3 rounded-xl transition-colors font-medium ${
+                      isActive(link.href)
+                        ? "text-accent bg-accent/10"
+                        : "text-foreground hover:text-accent hover:bg-accent/5"
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
