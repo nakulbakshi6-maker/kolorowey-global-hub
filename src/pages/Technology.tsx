@@ -104,25 +104,6 @@ const technologies = [
     gradient: "from-violet-500 to-purple-400",
   },
   {
-    icon: FileText,
-    title: "Content CMS",
-    subtitle: "Publisher Content Platform",
-    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
-    specs: [
-      { label: "API-First", value: "RESTful" },
-      { label: "Formats", value: "All Types" },
-      { label: "Workflow", value: "Automated" },
-    ],
-    features: ["Headless CMS", "Multi-format", "SEO Engine", "Content Syndication"],
-    details: [
-      "Headless, API-first architecture for any frontend or platform",
-      "Supports articles, video, audio, galleries & interactive content",
-      "Built-in SEO optimization, schema markup & AMP support",
-      "Automated content syndication, scheduling & multi-site management",
-    ],
-    gradient: "from-orange-500 to-amber-400",
-  },
-  {
     icon: Globe,
     title: "CDN Infrastructure",
     subtitle: "Global Delivery Network",
@@ -140,6 +121,25 @@ const technologies = [
       "Instant cache invalidation",
     ],
     gradient: "from-emerald-500 to-teal-400",
+  },
+  {
+    icon: FileText,
+    title: "Content CMS",
+    subtitle: "Publisher Content Platform",
+    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
+    specs: [
+      { label: "API-First", value: "RESTful" },
+      { label: "Formats", value: "All Types" },
+      { label: "Workflow", value: "Automated" },
+    ],
+    features: ["Headless CMS", "Multi-format", "SEO Engine", "Content Syndication"],
+    details: [
+      "Headless, API-first architecture for any frontend or platform",
+      "Supports articles, video, audio, galleries & interactive content",
+      "Built-in SEO optimization, schema markup & AMP support",
+      "Automated content syndication, scheduling & multi-site management",
+    ],
+    gradient: "from-orange-500 to-amber-400",
   },
 ];
 
