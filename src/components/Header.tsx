@@ -37,33 +37,42 @@ const Header = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "py-3"
-          : "py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "py-3" : "py-6"}`}
     >
       {/* Floating header container */}
       <div className="container mx-auto px-6">
-        <div className={`flex items-center justify-between transition-all duration-500 ${
-          isScrolled 
-            ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border border-border/50" 
-            : ""
-        }`}>
+        <div
+          className={`flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border border-border/50" : ""
+          }`}
+        >
           {/* Logo - Extra large */}
-          <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="relative flex items-center group">
-            <img 
-              src={koloroweyLogo} 
-              alt="Kolorowey" 
-              className={`transition-all duration-500 ${isScrolled ? 'h-20' : 'h-28'} w-auto group-hover:scale-105`}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "/";
+            }}
+            className="relative flex items-center group"
+          >
+            <img
+              src={koloroweyLogo}
+              alt="Kolorowey"
+              className={`transition-all duration-500 ${isScrolled ? "h-20" : "h-28"} w-auto group-hover:scale-105`}
             />
-            <span className={`font-semibold text-muted-foreground transition-all duration-500 ${isScrolled ? 'text-[5px] -ml-4 -mt-6' : 'text-[7px] -ml-5 -mt-8'}`}>™</span>
+            <span
+              className={`font-semibold text-muted-foreground transition-all duration-500 ${isScrolled ? "text-[5px] -ml-3 -mt-6" : "text-[7px] -ml-4 -mt-8"}`}
+            >
+              ™
+            </span>
           </a>
 
           {/* Center Navigation - Pill style */}
-          <nav className={`hidden lg:flex items-center gap-1 ${
-            !isScrolled ? "bg-card/80 backdrop-blur-lg rounded-full px-2 py-2 shadow-md border border-border/30" : ""
-          }`}>
+          <nav
+            className={`hidden lg:flex items-center gap-1 ${
+              !isScrolled ? "bg-card/80 backdrop-blur-lg rounded-full px-2 py-2 shadow-md border border-border/30" : ""
+            }`}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -85,9 +94,9 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button 
+            <Button
               className="rounded-full px-6 font-semibold group"
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => (window.location.href = "/contact")}
             >
               Get Started
               <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
@@ -132,9 +141,9 @@ const Header = () => {
                   </motion.a>
                 ))}
                 <div className="pt-4 px-4">
-                  <Button 
+                  <Button
                     className="w-full justify-center h-12 rounded-xl font-semibold"
-                    onClick={() => window.location.href = '/contact'}
+                    onClick={() => (window.location.href = "/contact")}
                   >
                     Get Started
                   </Button>
