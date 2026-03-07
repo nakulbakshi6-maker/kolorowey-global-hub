@@ -57,7 +57,7 @@ const Header = () => {
               alt="Kolorowey" 
               className={`transition-all duration-500 ${isScrolled ? 'h-20' : 'h-28'} w-auto group-hover:scale-105`}
             />
-            <span className={`absolute top-1 -right-3 font-semibold text-muted-foreground ${isScrolled ? 'text-[6px]' : 'text-[8px]'}`}>™</span>
+            <span className={`font-semibold text-muted-foreground transition-all duration-500 ${isScrolled ? 'text-[5px] -ml-1 -mt-6' : 'text-[7px] -ml-1 -mt-8'}`}>™</span>
           </a>
 
           {/* Center Navigation - Pill style */}
