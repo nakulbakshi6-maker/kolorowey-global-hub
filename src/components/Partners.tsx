@@ -106,52 +106,6 @@ const Partners = () => {
           ))}
         </motion.div>
 
-        {/* Big Stats Row */}
-        <motion.div 
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {[
-            { value: "500+", label: "Enterprise Partners", link: true },
-            { value: "$12B+", label: "Annual Ad Spend" },
-            { value: "15+", label: "Years Experience" },
-            { value: "24/7", label: "Global Support", link: true },
-          ].map((stat, index) => (
-            <motion.div 
-              key={stat.label}
-              className="group cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-            >
-              <div className="flex items-start gap-2 mb-2">
-                <motion.span 
-                  className="big-number"
-                  whileHover={{ textShadow: '0 0 40px hsl(320 85% 55% / 0.5)' }}
-                >
-                  {stat.value}
-                </motion.span>
-                {stat.link && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -5, y: 5 }}
-                    whileHover={{ opacity: 1, x: 0, y: 0 }}
-                    className="opacity-0 group-hover:opacity-100"
-                  >
-                    <ArrowUpRight className="w-6 h-6 text-accent" />
-                  </motion.div>
-                )}
-              </div>
-              <div className="text-muted-foreground font-medium group-hover:text-accent transition-colors">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
