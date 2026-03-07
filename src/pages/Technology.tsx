@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Server, Settings, Globe, Tv, Fingerprint, ArrowRight, Zap, Shield, Clock, Activity, Cpu, Database, Network, Lock } from "lucide-react";
+import { Server, Settings, Globe, Tv, ArrowRight, Zap, Shield, Clock, Activity, Cpu, Database, Network, Lock, Play, Smartphone, FileText, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,19 +11,19 @@ const technologies = [
   {
     icon: Server,
     title: "Ad Server",
-    subtitle: "Decision Engine",
-    description: "Enterprise-grade ad serving infrastructure handling billions of requests with sub-10ms response times. Our AI-powered decision engine optimizes every impression in real-time.",
+    subtitle: "Full-Stack Serving Infrastructure",
+    description: "A complete, enterprise-grade ad server rivaling SpringServe, GAM, Amazon UAM, and Aniview — built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, advanced mediation capabilities comparable to AppLovin MAX and ironSource, and support for all major demand sources.",
     specs: [
       { label: "Latency", value: "<10ms" },
-      { label: "Uptime", value: "99.99%" },
+      { label: "Channels", value: "8+" },
       { label: "Capacity", value: "1M+ QPS" },
     ],
-    features: ["Decision Engine", "Creative Management", "Trafficking", "Forecasting"],
+    features: ["Prebid & oRTB", "Header Bidding", "Mediation Engine", "Yield Optimization"],
     details: [
-      "AI-powered real-time decisioning",
-      "Multi-variant creative optimization",
-      "Predictive inventory forecasting",
-      "Global edge deployment",
+      "Full Prebid.js & Server-Side Prebid support with oRTB 2.6 compliance",
+      "Omnichannel serving: Web, App, CTV, OTT, DOOH, Gaming, Audio & more",
+      "Advanced mediation layer with waterfall, in-app bidding & hybrid auction models",
+      "Supports all publisher types — from indie blogs to Tier 1 broadcasters",
     ],
     gradient: "from-accent to-pink-500",
   },
@@ -85,21 +85,59 @@ const technologies = [
     gradient: "from-violet-500 to-purple-400",
   },
   {
-    icon: Fingerprint,
-    title: "Identity & Measurement",
-    subtitle: "Privacy-First Attribution",
-    description: "Privacy-first identity solutions and comprehensive measurement. Accurate attribution without third-party cookies using advanced contextual and cohort-based approaches.",
+    icon: Play,
+    title: "Video Player Technology",
+    subtitle: "Enterprise Video Playback Engine",
+    description: "A high-performance, monetization-ready video player on par with Ex.co, Primis, Connatix, JW Player, Dailymotion, Brightcove, and Blue Billywig. Designed for seamless content delivery with built-in ad orchestration across every screen.",
     specs: [
-      { label: "Match Rate", value: "85%+" },
-      { label: "Privacy", value: "Compliant" },
-      { label: "Attribution", value: "Multi-touch" },
+      { label: "Start Time", value: "<200ms" },
+      { label: "Ad Formats", value: "VAST/VPAID" },
+      { label: "Codecs", value: "All Major" },
     ],
-    features: ["Universal ID", "Contextual Signals", "Attribution Modeling", "Incrementality"],
+    features: ["Adaptive Bitrate", "Instream & Outstream", "Floating Player", "Playlist Engine"],
     details: [
-      "First-party identity graph",
-      "Contextual targeting engine",
-      "Multi-touch attribution",
-      "Incrementality measurement",
+      "Supports HLS, DASH, MP4 with adaptive bitrate streaming",
+      "Built-in VAST, VPAID & OMID compliant ad playback",
+      "Customizable floating, sticky & in-content player formats",
+      "AI-driven content recommendation & playlist curation",
+    ],
+    gradient: "from-rose-500 to-red-400",
+  },
+  {
+    icon: Code2,
+    title: "Lightweight SDK",
+    subtitle: "Modern Integration Toolkit",
+    description: "A blazing-fast, modular SDK designed for effortless integration across Web, iOS, Android, and CTV platforms. Minimal footprint, maximum capability — built for developers who demand performance without compromise.",
+    specs: [
+      { label: "Size", value: "<30KB" },
+      { label: "Load Time", value: "<50ms" },
+      { label: "Platforms", value: "5+" },
+    ],
+    features: ["Async Loading", "Tree Shaking", "Auto-Config", "Event Hooks"],
+    details: [
+      "Modular architecture — import only what you need with tree-shaking support",
+      "Cross-platform: Web, iOS, Android, CTV & React Native",
+      "Zero-config auto-detection of environment, ad slots & viewability",
+      "Rich event hooks, callbacks & real-time analytics pipeline",
+    ],
+    gradient: "from-sky-500 to-blue-400",
+  },
+  {
+    icon: FileText,
+    title: "Content CMS",
+    subtitle: "Publisher Content Platform",
+    description: "A flexible, headless content management system built for modern publishers — from news outlets and bloggers to video-first creators and OTT platforms. Manage, distribute, and monetize content at scale with built-in SEO and ad integration.",
+    specs: [
+      { label: "API-First", value: "RESTful" },
+      { label: "Formats", value: "All Types" },
+      { label: "Workflow", value: "Automated" },
+    ],
+    features: ["Headless CMS", "Multi-format", "SEO Engine", "Content Syndication"],
+    details: [
+      "Headless, API-first architecture for any frontend or platform",
+      "Supports articles, video, audio, galleries & interactive content",
+      "Built-in SEO optimization, schema markup & AMP support",
+      "Automated content syndication, scheduling & multi-site management",
     ],
     gradient: "from-orange-500 to-amber-400",
   },
