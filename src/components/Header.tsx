@@ -51,12 +51,13 @@ const Header = () => {
             : ""
         }`}>
           {/* Logo - Extra large */}
-          <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="flex items-center group">
+          <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="flex items-start group">
             <img 
               src={koloroweyLogo} 
               alt="Kolorowey" 
               className={`transition-all duration-500 ${isScrolled ? 'h-20' : 'h-28'} w-auto group-hover:scale-105`}
             />
+            <span className={`font-medium text-muted-foreground transition-all duration-500 ${isScrolled ? 'text-[8px] mt-1' : 'text-[10px] mt-2'}`}>™</span>
           </a>
 
           {/* Center Navigation - Pill style */}
