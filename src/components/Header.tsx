@@ -122,8 +122,8 @@ const Header = () => {
                     transition={{ delay: index * 0.05 }}
                     className={`block px-4 py-3 rounded-xl transition-colors font-medium ${
                       isActive(link.href)
-                        ? "text-accent bg-accent/10"
-                        : "text-foreground hover:text-accent hover:bg-accent/5"
+                        ? "text-highlight bg-highlight/10"
+                        : "text-foreground hover:text-highlight hover:bg-highlight/5"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
