@@ -12,7 +12,7 @@ const technologies = [
     icon: Server,
     title: "Ad Server",
     subtitle: "Full-Stack Serving Infrastructure",
-    description: "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, advanced mediation capabilities including waterfall, in-app bidding & hybrid auction models, and support for all major demand sources.",
+    description: "A complete, enterprise-grade ad server built to serve every publisher type across every channel. With native Prebid and OpenRTB (oRTB) integration, it offers advanced mediation capabilities including waterfall, in-app bidding, and hybrid auction models, along with support for all major demand sources.",
     specs: [
       { label: "Latency", value: "<10ms" },
       { label: "Channels", value: "8+" },
