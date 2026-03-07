@@ -349,7 +349,7 @@ const Publishers = () => {
                 {[...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"], ...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"]].map((name, i) => (
                   <div
                     key={`row1-${i}`}
-                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-muted-foreground font-medium text-xs uppercase tracking-widest hover:border-accent/50 hover:text-foreground hover:bg-accent/5 hover:scale-105 transition-all duration-300 cursor-default"
+                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/80 font-semibold text-[13px] uppercase tracking-wider font-mono hover:border-accent/50 hover:text-foreground hover:bg-accent/5 hover:scale-105 transition-all duration-300 cursor-default"
                   >
                     {name}
                   </div>
@@ -367,7 +367,7 @@ const Publishers = () => {
                 {[...["Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"], ...["Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"]].map((name, i) => (
                   <div
                     key={`row2-${i}`}
-                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-muted-foreground font-medium text-xs uppercase tracking-widest hover:border-highlight/50 hover:text-foreground hover:bg-highlight/5 hover:scale-105 transition-all duration-300 cursor-default"
+                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/80 font-semibold text-[13px] uppercase tracking-wider font-mono hover:border-highlight/50 hover:text-foreground hover:bg-highlight/5 hover:scale-105 transition-all duration-300 cursor-default"
                   >
                     {name}
                   </div>
