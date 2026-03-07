@@ -326,17 +326,17 @@ const Publishers = () => {
               </p>
             </motion.div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {Array.from({ length: 12 }).map((_, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi", "Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"].map((name, i) => (
                 <motion.div
-                  key={i}
+                  key={name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="h-20 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground font-medium"
+                  className="h-20 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground font-semibold text-sm"
                 >
-                  Partner {i + 1}
+                  {name}
                 </motion.div>
               ))}
             </div>
