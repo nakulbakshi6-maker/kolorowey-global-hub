@@ -366,7 +366,7 @@ const Advertisers = () => {
                   transition={{ delay: index * 0.1 }}
                   className="relative"
                 >
-                  <div className="text-8xl font-extrabold text-secondary absolute -top-6 left-0 opacity-50">
+                  <div className="text-8xl font-extrabold absolute -top-6 left-0 gradient-text opacity-80">
                     {item.step}
                   </div>
                   <div className="relative pt-16 pl-4">
