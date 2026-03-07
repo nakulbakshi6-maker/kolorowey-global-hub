@@ -52,14 +52,14 @@ const Partners = () => {
             Why Kolorowey
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-            Built for
+            Why Choose
             <br />
             <motion.span 
               className="gradient-text inline-block"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Scale & Performance
+              Kolorowey
             </motion.span>
           </h2>
           <p className="text-lg text-muted-foreground">
