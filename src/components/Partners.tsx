@@ -1,40 +1,16 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Globe, Layers, Shield, Zap, BarChart3, Users, Server, Radio } from "lucide-react";
 
-const partnerLogos = [
-  "Google", "Amazon", "Meta", "Microsoft", "Adobe", "Salesforce", "Oracle", "IBM"
+const platformHighlights = [
+  { icon: Globe, label: "150+ Countries", description: "Global reach across every major market" },
+  { icon: Layers, label: "Omnichannel", description: "Web, App, CTV, DOOH, Audio & Gaming" },
+  { icon: Shield, label: "Brand Safe", description: "Enterprise-grade fraud prevention" },
+  { icon: Zap, label: "Sub-10ms", description: "Ultra-low latency bid responses" },
+  { icon: Server, label: "99.99% Uptime", description: "Carrier-grade infrastructure reliability" },
+  { icon: Radio, label: "Real-Time", description: "Live campaign optimization & reporting" },
+  { icon: BarChart3, label: "AI-Powered", description: "Machine learning yield optimization" },
+  { icon: Users, label: "Dedicated Support", description: "24/7 expert account management" },
 ];
-
-// Animated counter hook
-const useCounter = (end: number, duration: number = 2) => {
-  const [count, setCount] = useState(0);
-  const nodeRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const motionValue = useMotionValue(0);
-          const controls = animate(motionValue, end, {
-            duration,
-            ease: "easeOut",
-            onUpdate: (latest) => setCount(Math.floor(latest)),
-          });
-          return () => controls.stop();
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (nodeRef.current) observer.observe(nodeRef.current);
-    return () => observer.disconnect();
-  }, [end, duration]);
-
-  return { count, ref: nodeRef };
-};
 
 const Partners = () => {
   return (
@@ -73,27 +49,25 @@ const Partners = () => {
             className="outline-badge mb-6 inline-block"
             whileHover={{ scale: 1.05, rotate: 2 }}
           >
-            Partnerships
+            Why Kolorowey
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-            Trusted by the
+            Built for
             <br />
             <motion.span 
               className="gradient-text inline-block"
-              animate={{ 
-                scale: [1, 1.02, 1],
-              }}
+              animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              world's best teams
+              Scale & Performance
             </motion.span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            From startups to Fortune 500 companies, we power advertising for brands that matter.
+            An enterprise-grade advertising platform engineered to deliver results across every channel, format, and market.
           </p>
         </motion.div>
 
-        {/* Partner Logos - Interactive Grid with stagger */}
+        {/* Platform Highlights Grid */}
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/50 rounded-3xl overflow-hidden mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -101,38 +75,38 @@ const Partners = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {partnerLogos.map((partner, index) => (
+          {platformHighlights.map((item, index) => (
             <motion.div
-              key={partner}
-              className="bg-card p-10 md:p-14 flex items-center justify-center group cursor-pointer relative overflow-hidden"
+              key={item.label}
+              className="bg-card p-8 md:p-10 flex flex-col items-center justify-center text-center group cursor-pointer relative overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               whileHover={{ scale: 1.03 }}
             >
-              {/* Animated gradient sweep */}
               <motion.div 
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
                   background: 'linear-gradient(135deg, transparent, hsl(320 85% 55% / 0.1), transparent)',
                 }}
-                animate={{
-                  backgroundPosition: ['200% 200%', '-200% -200%'],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
               />
-              <motion.span 
-                className="relative z-10 text-xl md:text-2xl font-bold text-muted-foreground group-hover:text-accent transition-all duration-300"
-                whileHover={{ scale: 1.1, rotate: 2 }}
-              >
-                {partner}
-              </motion.span>
+              <div className="relative z-10">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-highlight/20 to-accent/20 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-6 h-6 text-highlight" />
+                </div>
+                <span className="block text-lg font-bold text-foreground mb-1 group-hover:text-accent transition-colors">
+                  {item.label}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {item.description}
+                </span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Big Stats Row with animated counters */}
+        {/* Big Stats Row */}
         <motion.div 
           className="grid grid-cols-2 lg:grid-cols-4 gap-8"
           initial={{ opacity: 0 }}
@@ -141,10 +115,10 @@ const Partners = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {[
-            { value: "500", suffix: "+", label: "Enterprise Partners", link: true },
-            { value: "$12", suffix: "B+", label: "Annual Ad Spend" },
-            { value: "15", suffix: "+", label: "Years Experience" },
-            { value: "24/7", suffix: "", label: "Global Support", link: true },
+            { value: "500+", label: "Enterprise Partners", link: true },
+            { value: "$12B+", label: "Annual Ad Spend" },
+            { value: "15+", label: "Years Experience" },
+            { value: "24/7", label: "Global Support", link: true },
           ].map((stat, index) => (
             <motion.div 
               key={stat.label}
@@ -158,11 +132,9 @@ const Partners = () => {
               <div className="flex items-start gap-2 mb-2">
                 <motion.span 
                   className="big-number"
-                  whileHover={{ 
-                    textShadow: '0 0 40px hsl(320 85% 55% / 0.5)'
-                  }}
+                  whileHover={{ textShadow: '0 0 40px hsl(320 85% 55% / 0.5)' }}
                 >
-                  {stat.value}{stat.suffix}
+                  {stat.value}
                 </motion.span>
                 {stat.link && (
                   <motion.div
