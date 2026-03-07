@@ -73,8 +73,8 @@ const Header = () => {
                 }}
                 className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-200 ${
                   isActive(link.href)
-                    ? "text-highlight bg-highlight/10"
-                    : "text-muted-foreground hover:text-highlight hover:bg-highlight/5"
+                    ? "text-accent bg-accent/10"
+                    : "text-muted-foreground hover:text-accent hover:bg-accent/5"
                 }`}
               >
                 {link.label}
