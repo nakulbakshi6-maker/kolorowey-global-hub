@@ -349,7 +349,7 @@ const Publishers = () => {
                 {[...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"], ...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"]].map((name, i) => (
                   <div
                     key={`row1-${i}`}
-                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/80 font-semibold text-[13px] uppercase tracking-wider font-mono hover:border-accent/50 hover:text-foreground hover:bg-accent/5 hover:scale-105 transition-all duration-300 cursor-default"
+                    className="h-16 w-44 flex-shrink-0 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground font-bold text-sm tracking-tight hover:border-accent/50 hover:bg-accent/5 hover:scale-105 transition-all duration-300 cursor-default" style={{ fontFamily: "'DM Sans', sans-serif" }}
                   >
                     {name}
                   </div>
