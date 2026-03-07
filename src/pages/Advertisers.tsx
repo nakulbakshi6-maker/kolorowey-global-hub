@@ -81,7 +81,7 @@ const solutions = [
     title: "DOOH Advertising",
     description: "Digital out-of-home campaigns at scale. Programmatic access to screens in prime locations with dynamic, context-aware creative.",
     features: ["Location Targeting", "Dynamic Creative", "Audience Data", "Real-time Activation"],
-    stats: { value: "100K+", label: "DOOH Screens" },
+    stats: { value: "10K+", label: "DOOH Screens" },
     details: [
       "Billboards, transit, retail, and venues",
       "Location and audience-based targeting",
