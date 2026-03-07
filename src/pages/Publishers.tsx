@@ -310,36 +310,83 @@ const Publishers = () => {
         </section>
 
         {/* Integration Partners */}
-        <section className="py-24 bg-secondary/30">
-          <div className="container mx-auto px-6">
+        <section className="py-32 bg-secondary/30 relative overflow-hidden">
+          {/* Animated background orbs */}
+          <div className="absolute top-0 left-1/3 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-highlight/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          
+          <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              transition={{ duration: 0.6 }}
+              className="text-center mb-20"
             >
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="shimmer-badge mb-6 inline-block"
+              >
+                Partner Ecosystem
+              </motion.span>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
                 Connected to <span className="gradient-text">180+ Demand Partners</span>
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Maximum competition for every impression through our premium partner network
               </p>
             </motion.div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi", "Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"].map((name, i) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="h-20 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground font-semibold text-sm"
-                >
-                  {name}
-                </motion.div>
-              ))}
+            {/* Infinite scrolling marquee - Row 1 */}
+            <div className="mb-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="flex gap-4 w-max"
+              >
+                {[...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"], ...["Google", "Nexxen", "Amazon", "PubMatic", "Equativ", "OpenX", "Eskimi", "Magnite", "FreeWheel", "InMobi"]].map((name, i) => (
+                  <div
+                    key={`row1-${i}`}
+                    className="h-20 w-48 flex-shrink-0 rounded-xl bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground font-bold text-sm hover:border-accent/50 hover:bg-accent/5 hover:scale-105 transition-all duration-300 cursor-default"
+                  >
+                    {name}
+                  </div>
+                ))}
+              </motion.div>
             </div>
+
+            {/* Infinite scrolling marquee - Row 2 (reverse) */}
+            <div className="mb-16 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <motion.div
+                animate={{ x: ["-50%", "0%"] }}
+                transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+                className="flex gap-4 w-max"
+              >
+                {[...["Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"], ...["Blasto", "MGID", "Silverpush", "Bidscube", "Bid9", "Kueez", "Smile Wanted", "LoopMe", "Nexverse", "JioAds"]].map((name, i) => (
+                  <div
+                    key={`row2-${i}`}
+                    className="h-20 w-48 flex-shrink-0 rounded-xl bg-card/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground font-bold text-sm hover:border-highlight/50 hover:bg-highlight/5 hover:scale-105 transition-all duration-300 cursor-default"
+                  >
+                    {name}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Bottom highlight stat */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center"
+            >
+              <p className="text-muted-foreground text-sm">
+                And many more — powering <span className="text-accent font-bold">50B+ daily impressions</span> worldwide
+              </p>
+            </motion.div>
           </div>
         </section>
 
