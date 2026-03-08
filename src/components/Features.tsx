@@ -41,18 +41,18 @@ const features = [
   {
     icon: Layers,
     title: "Header Bidding",
-    description: "Native Prebid integration with server-side and client-side header bidding for maximum yield.",
+    description: "Prebid integration with server-side and client-side header bidding for maximum yield.",
     number: "06",
     color: "from-blue-400 to-indigo-500",
   },
 ];
 
 // Magnetic card component
-const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: number }) => {
+const FeatureCard = ({ feature, index }: { feature: (typeof features)[0]; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), { stiffness: 300, damping: 30 });
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 300, damping: 30 });
 
@@ -79,31 +79,31 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ 
-        rotateX, 
+      style={{
+        rotateX,
         rotateY,
-        transformStyle: 'preserve-3d',
+        transformStyle: "preserve-3d",
       }}
       className="bg-card p-8 md:p-10 group cursor-pointer relative overflow-hidden"
     >
       {/* Animated gradient border on hover */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
           background: `linear-gradient(135deg, transparent 40%, hsl(320 85% 55% / 0.1) 50%, transparent 60%)`,
-          backgroundSize: '200% 200%',
+          backgroundSize: "200% 200%",
         }}
         animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
+          backgroundPosition: ["0% 0%", "100% 100%"],
         }}
-        transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+        transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
       />
-      
-      <div className="relative z-10" style={{ transform: 'translateZ(20px)' }}>
+
+      <div className="relative z-10" style={{ transform: "translateZ(20px)" }}>
         <div className="flex items-start justify-between mb-6">
-          <motion.div 
+          <motion.div
             className="w-14 h-14 rounded-xl flex items-center justify-center"
-            style={{ background: 'var(--gradient-brand)' }}
+            style={{ background: "var(--gradient-brand)" }}
             whileHover={{ scale: 1.15, rotate: 10 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -116,11 +116,9 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
         <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">
           {feature.title}
         </h3>
-        <p className="text-muted-foreground leading-relaxed mb-4">
-          {feature.description}
-        </p>
-        <motion.a 
-          href="#" 
+        <p className="text-muted-foreground leading-relaxed mb-4">{feature.description}</p>
+        <motion.a
+          href="#"
           className="inline-flex items-center text-sm font-semibold text-accent opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
           whileHover={{ x: 5 }}
         >
@@ -136,19 +134,19 @@ const Features = () => {
   return (
     <section id="platform" className="relative py-32 bg-secondary overflow-hidden">
       {/* Animated background elements */}
-      <motion.div 
+      <motion.div
         className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-10 blur-2xl"
-        style={{ background: 'var(--gradient-brand)' }}
-        animate={{ 
+        style={{ background: "var(--gradient-brand)" }}
+        animate={{
           scale: [1, 1.3, 1],
           x: [0, 30, 0],
         }}
         transition={{ duration: 15, repeat: Infinity }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 left-0 w-[300px] h-[300px] rounded-full opacity-10 blur-2xl"
-        style={{ background: 'var(--gradient-cyan)' }}
-        animate={{ 
+        style={{ background: "var(--gradient-cyan)" }}
+        animate={{
           scale: [1.2, 1, 1.2],
           y: [0, -20, 0],
         }}
@@ -164,10 +162,7 @@ const Features = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.span 
-            className="outline-badge mb-6 inline-block"
-            whileHover={{ scale: 1.05 }}
-          >
+          <motion.span className="outline-badge mb-6 inline-block" whileHover={{ scale: 1.05 }}>
             Platform
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
@@ -181,9 +176,9 @@ const Features = () => {
         </motion.div>
 
         {/* Features Grid with 3D hover effects */}
-        <div 
+        <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/50 rounded-3xl overflow-hidden"
-          style={{ perspective: '1000px' }}
+          style={{ perspective: "1000px" }}
         >
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
