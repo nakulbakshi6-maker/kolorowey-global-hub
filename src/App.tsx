@@ -11,6 +11,7 @@ import Technology from "./pages/Technology";
 import Environment from "./pages/Environment";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/environment" element={<Environment />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
