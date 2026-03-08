@@ -127,9 +127,9 @@ const Privacy = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden" style={{ background: 'var(--gradient-navy)' }}>
+      <section className="relative pt-32 pb-16 overflow-hidden bg-secondary">
         <motion.div
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-5 blur-3xl pointer-events-none"
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl pointer-events-none"
           style={{ background: 'var(--gradient-brand)' }}
         />
         <div className="container mx-auto px-6 relative z-10">
@@ -139,10 +139,13 @@ const Privacy = () => {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
+              Legal
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Privacy Policy
             </h1>
-            <p className="text-lg text-white/60 leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               Your privacy matters to us. Learn how Kolorowey Media collects, uses, and protects your information.
             </p>
           </motion.div>
