@@ -39,9 +39,9 @@ const features = [
     color: "from-violet-500 to-purple-600",
   },
   {
-    icon: Workflow,
-    title: "Open APIs",
-    description: "200+ integrations with full API access for custom workflows.",
+    icon: Layers,
+    title: "Header Bidding",
+    description: "Native Prebid integration with server-side and client-side header bidding for maximum yield.",
     number: "06",
     color: "from-blue-400 to-indigo-500",
   },
