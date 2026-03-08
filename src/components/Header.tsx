@@ -61,7 +61,7 @@ const Header = () => {
               className={`transition-all duration-500 ${isScrolled ? "h-24 scale-x-110" : "h-32 scale-x-110"} w-auto group-hover:scale-105`}
             />
             <span
-              className={`font-semibold text-muted-foreground transition-all duration-500 ${isScrolled ? "text-[7px] -ml-10 -mt-2" : "text-[9px] -ml-11 -mt-9"}`}
+              className={`font-semibold text-muted-foreground transition-all duration-500 ${isScrolled ? "text-[7px] -ml-10 -mt-2" : "text-[9px] -ml-14 -mt-9"}`}
             >
               ™
             </span>
