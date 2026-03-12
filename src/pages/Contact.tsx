@@ -14,12 +14,26 @@ import { supabase } from "@/integrations/supabase/client";
 const contactSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
   lastName: z.string().trim().min(1, "Last name is required").max(50, "Last name must be less than 50 characters"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
-  company: z.string().trim().min(1, "Company name is required").max(100, "Company name must be less than 100 characters"),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
+  company: z
+    .string()
+    .trim()
+    .min(1, "Company name is required")
+    .max(100, "Company name must be less than 100 characters"),
   jobTitle: z.string().trim().max(100, "Job title must be less than 100 characters").optional(),
-  companyType: z.enum(["publisher", "advertiser", "agency", "other"], { required_error: "Please select your company type" }),
+  companyType: z.enum(["publisher", "advertiser", "agency", "other"], {
+    required_error: "Please select your company type",
+  }),
   monthlyTraffic: z.string().optional(),
-  message: z.string().trim().min(10, "Please provide more details (at least 10 characters)").max(2000, "Message must be less than 2000 characters"),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Please provide more details (at least 10 characters)")
+    .max(2000, "Message must be less than 2000 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -63,9 +77,9 @@ const Contact = () => {
   });
 
   const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -75,10 +89,10 @@ const Contact = () => {
     setErrors({});
 
     const result = contactSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
-      result.error.errors.forEach(err => {
+      result.error.errors.forEach((err) => {
         if (err.path[0]) {
           fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
         }
@@ -94,12 +108,12 @@ const Contact = () => {
     }
 
     // Send email via edge function
-    const { data, error } = await supabase.functions.invoke('send-contact-email', {
+    const { data, error } = await supabase.functions.invoke("send-contact-email", {
       body: result.data,
     });
 
     if (error || !data?.success) {
-      console.error('Error sending contact email:', error || data?.error);
+      console.error("Error sending contact email:", error || data?.error);
       setIsSubmitting(false);
       toast({
         title: "Failed to send message",
@@ -108,7 +122,7 @@ const Contact = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
     toast({
@@ -120,16 +134,16 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl pointer-events-none"
-          style={{ background: 'var(--gradient-brand)' }}
+          style={{ background: "var(--gradient-brand)" }}
           animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
           transition={{ duration: 20, repeat: Infinity }}
         />
-        
+
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-3xl"
@@ -145,8 +159,8 @@ const Contact = () => {
               <span className="block gradient-text">AdTech Future</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl">
-              Whether you're a publisher looking to maximize revenue, an advertiser seeking premium inventory, 
-              or an agency managing multiple clients—we're here to help.
+              Whether you're a publisher looking to maximize revenue, an advertiser seeking premium inventory, or an
+              agency managing multiple clients—we're here to help.
             </p>
           </motion.div>
         </div>
@@ -156,23 +170,22 @@ const Contact = () => {
       <section className="pb-24">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            
             {/* Contact Form */}
-            <motion.div 
+            <motion.div
               className="lg:col-span-3"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               {isSubmitted ? (
-                <motion.div 
+                <motion.div
                   className="bg-card rounded-2xl border border-border p-12 text-center"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                 >
                   <motion.div
                     className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
-                    style={{ background: 'var(--gradient-brand)' }}
+                    style={{ background: "var(--gradient-brand)" }}
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
@@ -181,17 +194,26 @@ const Contact = () => {
                   </motion.div>
                   <h2 className="text-2xl font-bold text-primary mb-4">Thank You!</h2>
                   <p className="text-muted-foreground mb-6">
-                    Your message has been received. Our team will review your inquiry and 
-                    get back to you within 24 hours with next steps.
+                    Your message has been received. Our team will review your inquiry and get back to you within 24
+                    hours with next steps.
                   </p>
                   <p className="text-sm text-muted-foreground">
                     In the meantime, feel free to explore our{" "}
-                    <a href="/technology" className="text-accent hover:underline">technology</a> or{" "}
-                    <a href="/resources" className="text-accent hover:underline">resources</a>.
+                    <a href="/technology" className="text-accent hover:underline">
+                      technology
+                    </a>{" "}
+                    or{" "}
+                    <a href="/resources" className="text-accent hover:underline">
+                      resources
+                    </a>
+                    .
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border p-8 md:p-10 space-y-8">
+                <form
+                  onSubmit={handleSubmit}
+                  className="bg-card rounded-2xl border border-border p-8 md:p-10 space-y-8"
+                >
                   <div>
                     <h2 className="text-2xl font-bold text-primary mb-2">Tell us about yourself</h2>
                     <p className="text-sm text-muted-foreground">All fields marked with * are required</p>
@@ -210,8 +232,8 @@ const Contact = () => {
                             type="button"
                             onClick={() => handleInputChange("companyType", type.value)}
                             className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
-                              isSelected 
-                                ? "border-accent bg-accent/5" 
+                              isSelected
+                                ? "border-accent bg-accent/5"
                                 : "border-border hover:border-accent/30 bg-background"
                             }`}
                             whileHover={{ scale: 1.02 }}
@@ -226,9 +248,7 @@ const Contact = () => {
                         );
                       })}
                     </div>
-                    {errors.companyType && (
-                      <p className="text-sm text-destructive">{errors.companyType}</p>
-                    )}
+                    {errors.companyType && <p className="text-sm text-destructive">{errors.companyType}</p>}
                   </div>
 
                   {/* Name Fields */}
@@ -242,9 +262,7 @@ const Contact = () => {
                         placeholder="John"
                         className={errors.firstName ? "border-destructive" : ""}
                       />
-                      {errors.firstName && (
-                        <p className="text-sm text-destructive">{errors.firstName}</p>
-                      )}
+                      {errors.firstName && <p className="text-sm text-destructive">{errors.firstName}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name *</Label>
@@ -255,9 +273,7 @@ const Contact = () => {
                         placeholder="Doe"
                         className={errors.lastName ? "border-destructive" : ""}
                       />
-                      {errors.lastName && (
-                        <p className="text-sm text-destructive">{errors.lastName}</p>
-                      )}
+                      {errors.lastName && <p className="text-sm text-destructive">{errors.lastName}</p>}
                     </div>
                   </div>
 
@@ -272,9 +288,7 @@ const Contact = () => {
                       placeholder="john@company.com"
                       className={errors.email ? "border-destructive" : ""}
                     />
-                    {errors.email && (
-                      <p className="text-sm text-destructive">{errors.email}</p>
-                    )}
+                    {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                   </div>
 
                   {/* Company & Job Title */}
@@ -288,9 +302,7 @@ const Contact = () => {
                         placeholder="Acme Inc."
                         className={errors.company ? "border-destructive" : ""}
                       />
-                      {errors.company && (
-                        <p className="text-sm text-destructive">{errors.company}</p>
-                      )}
+                      {errors.company && <p className="text-sm text-destructive">{errors.company}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="jobTitle">Job Title</Label>
@@ -305,7 +317,7 @@ const Contact = () => {
 
                   {/* Monthly Traffic (for Publishers) */}
                   {(formData.companyType === "publisher" || formData.companyType === "agency") && (
-                    <motion.div 
+                    <motion.div
                       className="space-y-2"
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
@@ -320,7 +332,9 @@ const Contact = () => {
                       >
                         <option value="">Select range</option>
                         {trafficOptions.map((option) => (
-                          <option key={option} value={option}>{option}</option>
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
                         ))}
                       </select>
                     </motion.div>
@@ -337,27 +351,19 @@ const Contact = () => {
                       rows={5}
                       className={errors.message ? "border-destructive" : ""}
                     />
-                    {errors.message && (
-                      <p className="text-sm text-destructive">{errors.message}</p>
-                    )}
+                    {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
                   </div>
 
                   {/* Submit Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                  >
+                  <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full h-14 text-base font-semibold rounded-xl text-white shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300"
-                      style={{ background: 'var(--gradient-brand)' }}
+                      style={{ background: "var(--gradient-brand)" }}
                     >
                       {isSubmitting ? (
-                        <motion.span
-                          animate={{ opacity: [1, 0.5, 1] }}
-                          transition={{ duration: 1, repeat: Infinity }}
-                        >
+                        <motion.span animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }}>
                           Sending...
                         </motion.span>
                       ) : (
@@ -371,26 +377,32 @@ const Contact = () => {
 
                   <p className="text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our{" "}
-                    <a href="#" className="text-accent hover:underline">Privacy Policy</a> and{" "}
-                    <a href="#" className="text-accent hover:underline">Terms of Service</a>.
+                    <a href="#" className="text-accent hover:underline">
+                      Privacy Policy
+                    </a>{" "}
+                    and{" "}
+                    <a href="#" className="text-accent hover:underline">
+                      Terms of Service
+                    </a>
+                    .
                   </p>
                 </form>
               )}
             </motion.div>
 
             {/* Sidebar */}
-            <motion.div 
+            <motion.div
               className="lg:col-span-2 space-y-8"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               {/* What to Expect */}
-              <div className="rounded-2xl p-8" style={{ background: 'var(--gradient-navy)' }}>
+              <div className="rounded-2xl p-8" style={{ background: "var(--gradient-navy)" }}>
                 <h3 className="text-xl font-bold text-white mb-6">What to Expect</h3>
                 <ul className="space-y-4">
                   {benefits.map((benefit, index) => (
-                    <motion.li 
+                    <motion.li
                       key={index}
                       className="flex items-start gap-3"
                       initial={{ opacity: 0, x: 20 }}
@@ -407,10 +419,10 @@ const Contact = () => {
               {/* Contact Info */}
               <div className="bg-card rounded-2xl border border-border p-8 space-y-6">
                 <h3 className="text-lg font-bold text-primary">Direct Contact</h3>
-                
+
                 <div className="space-y-4">
-                  <a 
-                    href="mailto:reach@kolorowey.com" 
+                  <a
+                    href="mailto:reach@kolorowey.com"
                     className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
@@ -421,7 +433,7 @@ const Contact = () => {
                       <p className="text-sm font-medium text-foreground">reach@kolorowey.com</p>
                     </div>
                   </a>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-accent" />
@@ -429,9 +441,10 @@ const Contact = () => {
                     <div>
                       <p className="text-xs text-muted-foreground">Headquarters</p>
                       <p className="text-sm text-foreground">
-                        World Trade Centre,<br />
-                        Nauroji Nagar, Safdarjung Enclave,<br />
-                        New Delhi, Delhi 110029
+                        5th Floor, Wing-A, <br />
+                        Statesman House, Barakhamba Road,
+                        <br />
+                        New Delhi - 110001
                       </p>
                     </div>
                   </div>
