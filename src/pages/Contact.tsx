@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, Mail, MapPin, Phone, Users, Zap, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, Mail, MapPin, Users, Zap, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -377,13 +378,13 @@ const Contact = () => {
 
                   <p className="text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our{" "}
-                    <a href="#" className="text-accent hover:underline">
+                    <Link to="/privacy" className="text-accent hover:underline">
                       Privacy Policy
-                    </a>{" "}
+                    </Link>{" "}
                     and{" "}
-                    <a href="#" className="text-accent hover:underline">
+                    <Link to="/terms" className="text-accent hover:underline">
                       Terms of Service
-                    </a>
+                    </Link>
                     .
                   </p>
                 </form>
