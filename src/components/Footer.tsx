@@ -189,12 +189,12 @@ const Footer = () => {
             >
               Terms
             </Link>
-            <a 
-              href="#" 
+            <Link 
+              to="/dpa"
               className="text-sm text-white/30 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
             >
-              Cookies
-            </a>
+              DPA
+            </Link>
           </div>
         </motion.div>
       </div>
