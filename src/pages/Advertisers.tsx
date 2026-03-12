@@ -316,7 +316,7 @@ const Advertisers = () => {
                 
                 <Button 
                   className="rounded-full group"
-                  onClick={() => window.location.href = '/environment'}
+                  onClick={() => window.location.href = '/contact'}
                 >
                   Get Started
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -283,7 +283,7 @@ const Publishers = () => {
                     <Button 
                       variant="outline" 
                       className="rounded-full group"
-                      onClick={() => window.location.href = '/technology'}
+                      onClick={() => window.location.href = '/contact'}
                     >
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
