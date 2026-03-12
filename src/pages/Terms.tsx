@@ -196,7 +196,7 @@ const sections = [
     number: 17,
     title: "Privacy Policy",
     content: [
-      "Access to and use of this Website is subject to the Privacy Policy & DPA. We respect your privacy. The Company will not intentionally monitor or disclose any private messages or address information unless required by law, regulation or court order. You agree to respect the privacy and confidentiality of others.",
+      "Access to and use of this Website is subject to the Privacy Policy and the Data Processing Agreement (DPA). We respect your privacy. The Company will not intentionally monitor or disclose any private messages or address information unless required by law, regulation or court order. You agree to respect the privacy and confidentiality of others.",
     ],
   },
   {
