@@ -378,13 +378,13 @@ const Contact = () => {
 
                   <p className="text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our{" "}
-                    <a href="#" className="text-accent hover:underline">
+                    <Link to="/privacy" className="text-accent hover:underline">
                       Privacy Policy
-                    </a>{" "}
+                    </Link>{" "}
                     and{" "}
-                    <a href="#" className="text-accent hover:underline">
+                    <Link to="/terms" className="text-accent hover:underline">
                       Terms of Service
-                    </a>
+                    </Link>
                     .
                   </p>
                 </form>
