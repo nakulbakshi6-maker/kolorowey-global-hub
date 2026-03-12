@@ -24,7 +24,6 @@ const Header = () => {
     { label: "Advertisers", href: "/advertisers" },
     { label: "Technology", href: "/technology" },
     { label: "Environment", href: "/environment" },
-    { label: "Resources", href: "/resources" },
   ];
 
   const isActive = (href: string) => {

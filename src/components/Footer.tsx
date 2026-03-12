@@ -148,9 +148,8 @@ const Footer = () => {
               Headquarters
             </h4>
             <p className="text-sm text-white/40 leading-relaxed">
-              World Trade Centre,<br />
-              Nauroji Nagar, Safdarjung Enclave,<br />
-              New Delhi, Delhi 110029
+              5th Floor, Wing-A, Statesman House,<br />
+              Barakhamba Road, New Delhi - 110001
             </p>
           </motion.div>
         </div>
