@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, Mail, MapPin, Phone, Users, Zap, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, Mail, MapPin, Users, Zap, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
