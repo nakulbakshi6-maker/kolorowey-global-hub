@@ -136,7 +136,9 @@ const Footer = () => {
             <p className="text-sm text-white/40 leading-relaxed">
               5th Floor, Wing-A, Statesman House,
               <br />
-              Barakhamba Road, Connaught Place, New Delhi - 110001
+              Barakhamba Road, Connaught Place,
+              <br />
+              New Delhi - 110001
             </p>
           </motion.div>
         </div>
