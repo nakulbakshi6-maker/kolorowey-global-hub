@@ -1,79 +1,130 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cookie, X, Shield } from "lucide-react";
+import { Cookie, X, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const COOKIE_KEY = "kolorowey_cookie_seen_date";
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Show on every refresh after a short delay
-    const timer = setTimeout(() => setVisible(true), 1000);
+    const today = new Date().toDateString();
+    const lastSeen = localStorage.getItem(COOKIE_KEY);
+
+    if (lastSeen === today) return;
+
+    const timer = setTimeout(() => setVisible(true), 1200);
     return () => clearTimeout(timer);
   }, []);
 
   const handleDismiss = () => {
+    localStorage.setItem(COOKIE_KEY, new Date().toDateString());
     setVisible(false);
   };
 
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-50"
-        >
-          <div className="bg-gradient-to-br from-primary to-[hsl(250_40%_30%)] rounded-2xl shadow-2xl p-5 text-white border border-white/10">
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
-                <Shield className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1 space-y-2">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-sm font-bold text-white">Cookie Notice</h3>
-                  <button
-                    onClick={handleDismiss}
-                    className="text-white/60 hover:text-white transition-colors"
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-foreground/20 backdrop-blur-[2px] z-[60]"
+            onClick={handleDismiss}
+          />
+
+          {/* Banner — centered */}
+          <motion.div
+            initial={{ y: 60, opacity: 0, scale: 0.92 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 40, opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", damping: 22, stiffness: 260, mass: 0.8 }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] w-[calc(100%-2rem)] max-w-lg"
+          >
+            <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-xl">
+              {/* Animated gradient accent bar */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{ background: "var(--gradient-brand)" }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+              />
+
+              {/* Floating glow orbs */}
+              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-highlight/10 blur-2xl pointer-events-none" />
+
+              <div className="relative p-5 pt-6">
+                {/* Close button */}
+                <button
+                  onClick={handleDismiss}
+                  className="absolute top-3 right-3 w-7 h-7 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Icon + Title row */}
+                <div className="flex items-center gap-3 mb-3">
+                  <motion.div
+                    className="icon-box w-10 h-10 rounded-xl"
+                    animate={{ rotate: [0, -8, 8, -4, 0] }}
+                    transition={{ delay: 0.8, duration: 0.6, ease: "easeInOut" }}
                   >
-                    <X className="w-4 h-4" />
-                  </button>
+                    <Cookie className="w-5 h-5" />
+                  </motion.div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-foreground">Cookie Notice</h3>
+                    <motion.div
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-accent" />
+                    </motion.div>
+                  </div>
                 </div>
-                <p className="text-xs text-white/80 leading-relaxed">
-                  We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By continuing to use our site, you agree to our{" "}
-                  <Link to="/privacy" className="text-[hsl(185_85%_60%)] hover:underline font-medium">
+
+                {/* Description */}
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4 pr-4">
+                  We use cookies to enhance your experience, serve personalized content, and analyze traffic. By continuing, you agree to our{" "}
+                  <Link to="/privacy" onClick={handleDismiss} className="text-accent hover:underline font-semibold">
                     Privacy Policy
                   </Link>
-                  {" "}&{" "}
-                  <Link to="/dpa" className="text-[hsl(185_85%_60%)] hover:underline font-medium">
+                  {" & "}
+                  <Link to="/dpa" onClick={handleDismiss} className="text-accent hover:underline font-semibold">
                     DPA
                   </Link>.
                 </p>
-                <div className="flex flex-wrap gap-2 pt-2">
+
+                {/* Action buttons */}
+                <div className="flex items-center gap-2">
                   <Button
                     onClick={handleDismiss}
                     size="sm"
-                    className="h-8 px-4 text-xs font-semibold rounded-lg bg-white text-primary hover:bg-white/90"
+                    className="h-9 px-5 text-xs font-bold rounded-xl shadow-sm"
+                    style={{ background: "var(--gradient-brand)" }}
                   >
-                    <Cookie className="w-3.5 h-3.5 mr-1.5" />
-                    Got it
+                    <Shield className="w-3.5 h-3.5 mr-1.5" />
+                    Accept All
                   </Button>
                   <Button
                     onClick={handleDismiss}
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
-                    className="h-8 px-3 text-xs font-medium rounded-lg text-white/70 hover:text-white hover:bg-white/10"
+                    className="h-9 px-4 text-xs font-semibold rounded-xl"
                   >
                     Dismiss
                   </Button>
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
