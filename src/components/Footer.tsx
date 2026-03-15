@@ -134,11 +134,10 @@ const Footer = () => {
           >
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide">Headquarters</h4>
             <p className="text-sm text-white/40 leading-relaxed">
-              5th Floor, Wing-A, Statesman House,
-              <br />
-              Barakhamba Road, Connaught Place,
-              <br />
-              New Delhi - 110001
+              Kolorowey<br />
+              5th Floor, Wing-A, Statesman House,<br />
+              Barakhamba Road, Connaught Place,<br />
+              New Delhi - 110001, India
             </p>
           </motion.div>
         </div>

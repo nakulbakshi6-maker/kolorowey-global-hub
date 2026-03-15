@@ -253,7 +253,7 @@ const DPA = () => {
                 <p className="text-base md:text-lg text-muted-foreground leading-[1.8]">
                   This Data Processing Agreement, including any Appendices ("Addendum"), forms part of the{" "}
                   <Link to="/terms" className="text-accent hover:underline font-medium">Terms of Use</Link>,
-                  Master Services Agreement ("Service Agreement"), or any other written or electronic agreement between Kolorowey Media Private Limited, having its principal place of business at 5th Floor, Wing-A, Statesman House, Barakhamba Road, New Delhi - 110001 ("Data Processor") and the company/individual whose information has been provided ("Data Principal").
+                  Master Services Agreement ("Service Agreement"), or any other written or electronic agreement between Kolorowey Media Private Limited, having its principal place of business at 5th Floor, Wing-A, Statesman House, Barakhamba Road, Connaught Place, New Delhi - 110001, India ("Data Processor") and the company/individual whose information has been provided ("Data Principal").
                 </p>
                 <p className="text-base md:text-lg text-muted-foreground leading-[1.8] mt-4">
                   The Data Processor and Data Principal are collectively referred to as the "Parties", and individually as a "Party".

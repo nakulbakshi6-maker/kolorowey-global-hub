@@ -442,10 +442,10 @@ const Contact = () => {
                     <div>
                       <p className="text-xs text-muted-foreground">Headquarters</p>
                       <p className="text-sm text-foreground">
-                        5th Floor, Wing-A, <br />
-                        Statesman House, Barakhamba Road,
-                        <br />
-                        New Delhi - 110001
+                        Kolorowey<br />
+                        5th Floor, Wing-A, Statesman House,<br />
+                        Barakhamba Road, Connaught Place,<br />
+                        New Delhi - 110001, India
                       </p>
                     </div>
                   </div>
