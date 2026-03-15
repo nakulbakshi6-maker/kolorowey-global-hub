@@ -124,6 +124,7 @@ const CookieConsent = () => {
                 </div>
               </div>
             </div>
+            </div>
           </motion.div>
         </>
       )}
