@@ -38,14 +38,15 @@ const CookieConsent = () => {
             onClick={handleDismiss}
           />
 
-          {/* Banner — centered */}
+          {/* Banner — centered in viewport */}
           <motion.div
-            initial={{ y: 60, opacity: 0, scale: 0.92 }}
+            initial={{ y: 40, opacity: 0, scale: 0.9 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 40, opacity: 0, scale: 0.95 }}
-            transition={{ type: "spring", damping: 22, stiffness: 260, mass: 0.8 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] w-[calc(100%-2rem)] max-w-lg"
+            exit={{ y: 20, opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", damping: 24, stiffness: 280, mass: 0.6 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4"
           >
+            <div className="relative w-full max-w-md">
             <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-xl">
               {/* Animated gradient accent bar */}
               <motion.div
@@ -122,6 +123,7 @@ const CookieConsent = () => {
                   </Button>
                 </div>
               </div>
+            </div>
             </div>
           </motion.div>
         </>
