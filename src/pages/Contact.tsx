@@ -5,6 +5,7 @@ import { ArrowRight, Building2, Mail, MapPin, Users, Zap, CheckCircle2 } from "l
 import { z } from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
