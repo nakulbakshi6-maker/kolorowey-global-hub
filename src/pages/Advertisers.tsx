@@ -3,6 +3,7 @@ import { Store, MousePointer, Users, Lock, Tv, Building2, ArrowRight, Check, Tar
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef, useState } from "react";
 
 const solutions = [
