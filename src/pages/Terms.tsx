@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, FileText, Users, Key, Eye, Lock, UserCheck, AlertTriangle, Globe, Link2, Scale, Gavel, Bell, RefreshCw, Zap, Server, Ban, Database, Handshake, XCircle, CloudOff, ScrollText, Mail, Building } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: RefreshCw,
@@ -285,6 +286,11 @@ const sections = [
 const Terms = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Terms of Use - Kolorowey"
+        description="Terms of use for Kolorowey Media platform and services. Review our policies on account usage, intellectual property, and user conduct."
+        canonical="https://kolorowey.com/terms"
+      />
       <Header />
 
       {/* Hero */}

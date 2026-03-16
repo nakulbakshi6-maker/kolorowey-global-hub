@@ -3,6 +3,7 @@ import { Shield, FileText, Users, Key, Lock, Eye, UserCheck, AlertTriangle, Glob
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: FileText,
@@ -169,6 +170,11 @@ const sections = [
 const DPA = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Data Processing Addendum - Kolorowey"
+        description="Kolorowey's Data Processing Addendum (DPA) covering GDPR compliance, data security, sub-processor management, and incident response procedures."
+        canonical="https://kolorowey.com/dpa"
+      />
       <Header />
 
       {/* Hero */}

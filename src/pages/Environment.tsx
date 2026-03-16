@@ -3,6 +3,7 @@ import { Globe, TabletSmartphone, AppWindow, Tv, Building2, Gamepad2, Volume2, A
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef, useState } from "react";
 
 const environments = [
@@ -98,6 +99,11 @@ const Environment = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Environments - Kolorowey | Omnichannel Advertising"
+        description="Reach audiences across Web, Mobile, In-App, CTV, DOOH, Gaming, and Audio. 7B+ daily impressions, 35+ ad formats, 150+ countries. Beyond the walled gardens."
+        canonical="https://kolorowey.com/environment"
+      />
       <Header />
       <main>
         {/* Hero Section */}

@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef, useState, useEffect } from "react";
 
 const technologies = [
@@ -237,6 +238,11 @@ const Technology = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Technology - Kolorowey | Enterprise AdTech Infrastructure"
+        description="Enterprise infrastructure powering modern advertising. Ad server, video player, SDK, SSAI, CDN with sub-10ms latency, 1M+ QPS, 99.99% uptime, and 200+ global PoPs."
+        canonical="https://kolorowey.com/technology"
+      />
       <Header />
       <main>
         {/* Hero Section */}

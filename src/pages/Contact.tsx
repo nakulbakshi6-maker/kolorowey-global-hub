@@ -5,6 +5,7 @@ import { ArrowRight, Building2, Mail, MapPin, Users, Zap, CheckCircle2 } from "l
 import { z } from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -134,6 +135,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Contact Us - Kolorowey | Get Started with AdTech"
+        description="Get in touch with Kolorowey. Whether you're a publisher, advertiser, or agency — our team will help you build your AdTech future. Personal onboarding within 24 hours."
+        canonical="https://kolorowey.com/contact"
+      />
       <Header />
 
       {/* Hero Section */}

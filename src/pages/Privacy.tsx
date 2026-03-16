@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Database, UserCheck, Bell, Link2, FileText, Globe, Baby, RefreshCw } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: Database,
@@ -150,6 +151,11 @@ const sections = [
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Privacy Policy - Kolorowey"
+        description="Learn how Kolorowey Media collects, uses, and protects your information. GDPR, CCPA compliant privacy practices."
+        canonical="https://kolorowey.com/privacy"
+      />
       <Header />
 
       {/* Hero — full-width, light, spacious */}

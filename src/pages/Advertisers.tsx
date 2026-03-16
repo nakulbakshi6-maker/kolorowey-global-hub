@@ -3,6 +3,7 @@ import { Store, MousePointer, Users, Lock, Tv, Building2, ArrowRight, Check, Tar
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef, useState } from "react";
 
 const solutions = [
@@ -112,6 +113,11 @@ const Advertisers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Advertiser Solutions - Kolorowey | Programmatic Advertising"
+        description="Programmatic advertising solutions that deliver results. Access premium inventory, advanced targeting, and real-time optimization across every channel. 2.5B+ daily reach, 150+ countries."
+        canonical="https://kolorowey.com/advertisers"
+      />
       <Header />
       <main>
         {/* Hero Section */}

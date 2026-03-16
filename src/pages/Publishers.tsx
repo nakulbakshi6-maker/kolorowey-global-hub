@@ -3,6 +3,7 @@ import { Server, Play, Tv, Video, MonitorPlay, Building2, Smartphone, Globe, Arr
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef } from "react";
 
 const solutions = [
@@ -106,6 +107,11 @@ const Publishers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Publisher Solutions - Kolorowey | Maximize Ad Revenue"
+        description="Complete monetization solutions for publishers. SSP, video players, header bidding, CTV & DOOH monetization. 50B+ daily impressions, 180+ demand partners, 99.9% fill rate."
+        canonical="https://kolorowey.com/publishers"
+      />
       <Header />
       <main>
         {/* Hero Section - Full Width */}
