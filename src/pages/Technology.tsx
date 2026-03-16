@@ -21,9 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useRef, useState, useEffect, Suspense, lazy } from "react";
-
-const WorldMap = lazy(() => import("@/components/WorldMap"));
+import { useRef, useState, useEffect } from "react";
 
 const technologies = [
   {
@@ -508,15 +506,21 @@ const Technology = () => {
               viewport={{ once: true }}
               className="magnetic-card p-6 md:p-10 relative overflow-hidden"
             >
-              <Suspense
-                fallback={
-                  <div className="aspect-[2/1] flex items-center justify-center bg-secondary/50 rounded-xl">
-                    <div className="animate-pulse text-muted-foreground">Loading map...</div>
-                  </div>
-                }
-              >
-                <WorldMap />
-              </Suspense>
+              {/* Global Network Visualization */}
+              <div className="aspect-[2/1] flex items-center justify-center bg-gradient-to-br from-secondary/50 to-background rounded-xl border border-border/30">
+                <div className="text-center">
+                  <motion.div
+                    className="text-6xl md:text-7xl font-extrabold gradient-text mb-4"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 150 }}
+                  >
+                    200+
+                  </motion.div>
+                  <p className="text-muted-foreground">Global Points of Presence</p>
+                </div>
+              </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
                 {[
