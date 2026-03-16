@@ -286,6 +286,11 @@ const sections = [
 const Terms = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Terms of Use - Kolorowey"
+        description="Terms of use for Kolorowey Media platform and services. Review our policies on account usage, intellectual property, and user conduct."
+        canonical="https://kolorowey.com/terms"
+      />
       <Header />
 
       {/* Hero */}

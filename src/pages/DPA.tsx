@@ -170,6 +170,11 @@ const sections = [
 const DPA = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Data Processing Addendum - Kolorowey"
+        description="Kolorowey's Data Processing Addendum (DPA) covering GDPR compliance, data security, sub-processor management, and incident response procedures."
+        canonical="https://kolorowey.com/dpa"
+      />
       <Header />
 
       {/* Hero */}
