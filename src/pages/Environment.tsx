@@ -3,6 +3,7 @@ import { Globe, TabletSmartphone, AppWindow, Tv, Building2, Gamepad2, Volume2, A
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useRef, useState } from "react";
 
 const environments = [
