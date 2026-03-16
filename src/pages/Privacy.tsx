@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Database, UserCheck, Bell, Link2, FileText, Globe, Baby, RefreshCw } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: Database,
