@@ -21,9 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useRef, useState, useEffect, Suspense, lazy } from "react";
-
-const WorldMap = lazy(() => import("@/components/WorldMap"));
+import { useRef, useState, useEffect } from "react";
 
 const technologies = [
   {
