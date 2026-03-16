@@ -135,6 +135,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Contact Us - Kolorowey | Get Started with AdTech"
+        description="Get in touch with Kolorowey. Whether you're a publisher, advertiser, or agency — our team will help you build your AdTech future. Personal onboarding within 24 hours."
+        canonical="https://kolorowey.com/contact"
+      />
       <Header />
 
       {/* Hero Section */}

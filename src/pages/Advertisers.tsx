@@ -113,6 +113,11 @@ const Advertisers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Advertiser Solutions - Kolorowey | Programmatic Advertising"
+        description="Programmatic advertising solutions that deliver results. Access premium inventory, advanced targeting, and real-time optimization across every channel. 2.5B+ daily reach, 150+ countries."
+        canonical="https://kolorowey.com/advertisers"
+      />
       <Header />
       <main>
         {/* Hero Section */}

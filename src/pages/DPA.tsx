@@ -3,6 +3,7 @@ import { Shield, FileText, Users, Key, Lock, Eye, UserCheck, AlertTriangle, Glob
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: FileText,

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, FileText, Users, Key, Eye, Lock, UserCheck, AlertTriangle, Globe, Link2, Scale, Gavel, Bell, RefreshCw, Zap, Server, Ban, Database, Handshake, XCircle, CloudOff, ScrollText, Mail, Building } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const sectionIcons: Record<number, React.ElementType> = {
   1: RefreshCw,

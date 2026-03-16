@@ -99,6 +99,11 @@ const Environment = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Environments - Kolorowey | Omnichannel Advertising"
+        description="Reach audiences across Web, Mobile, In-App, CTV, DOOH, Gaming, and Audio. 7B+ daily impressions, 35+ ad formats, 150+ countries. Beyond the walled gardens."
+        canonical="https://kolorowey.com/environment"
+      />
       <Header />
       <main>
         {/* Hero Section */}

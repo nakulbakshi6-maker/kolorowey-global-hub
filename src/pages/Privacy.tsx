@@ -151,6 +151,11 @@ const sections = [
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Privacy Policy - Kolorowey"
+        description="Learn how Kolorowey Media collects, uses, and protects your information. GDPR, CCPA compliant privacy practices."
+        canonical="https://kolorowey.com/privacy"
+      />
       <Header />
 
       {/* Hero — full-width, light, spacious */}
