@@ -202,6 +202,7 @@ const Solutions = () => {
                 <motion.button 
                   className="inline-flex items-center gap-2 text-accent font-semibold group"
                   whileHover={{ x: 5 }}
+                  onClick={() => window.location.href = '/contact'}
                 >
                   Learn more about {activeSolution.title.toLowerCase()} solutions
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

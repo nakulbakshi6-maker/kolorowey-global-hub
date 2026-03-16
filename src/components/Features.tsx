@@ -118,7 +118,7 @@ const FeatureCard = ({ feature, index }: { feature: (typeof features)[0]; index:
         </h3>
         <p className="text-muted-foreground leading-relaxed mb-4">{feature.description}</p>
         <motion.a
-          href="#"
+          href="/contact"
           className="inline-flex items-center text-sm font-semibold text-accent opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
           whileHover={{ x: 5 }}
         >
