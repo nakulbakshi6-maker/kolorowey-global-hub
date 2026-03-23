@@ -498,20 +498,9 @@ const Technology = () => {
               viewport={{ once: true }}
               className="magnetic-card p-6 md:p-10 relative overflow-hidden"
             >
-              {/* Global Network Visualization */}
-              <div className="aspect-[2/1] flex items-center justify-center bg-gradient-to-br from-secondary/50 to-background rounded-xl border border-border/30">
-                <div className="text-center">
-                  <motion.div
-                    className="text-6xl md:text-7xl font-extrabold gradient-text mb-4"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 150 }}
-                  >
-                    200+
-                  </motion.div>
-                  <p className="text-muted-foreground">Global Points of Presence</p>
-                </div>
+              {/* World Map with PoP Locations */}
+              <div className="rounded-xl border border-border/30 overflow-hidden bg-gradient-to-br from-secondary/50 to-background">
+                <GlobalInfrastructureMap />
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
