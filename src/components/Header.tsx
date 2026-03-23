@@ -42,7 +42,7 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <div
           className={`flex items-center justify-between transition-all duration-500 ${
-            isScrolled ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-2 shadow-lg border border-border/50" : ""
+            isScrolled ? "bg-card/90 backdrop-blur-xl rounded-2xl px-6 py-1.5 shadow-lg border border-border/50" : ""
           }`}
         >
           {/* Logo - Extra large */}
