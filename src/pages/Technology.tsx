@@ -499,9 +499,7 @@ const Technology = () => {
               className="magnetic-card p-6 md:p-10 relative overflow-hidden"
             >
               {/* World Map with PoP Locations */}
-              <div className="rounded-xl border border-border/30 overflow-hidden bg-gradient-to-br from-secondary/50 to-background">
-                <GlobalInfrastructureMap />
-              </div>
+              <GlobalInfrastructureMap />
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8 text-center relative">
                 {[

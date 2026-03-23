@@ -59,9 +59,21 @@ const popLocations = [
   { name: "Santiago", coordinates: [-70.6693, -33.4489], region: "Rest of World" },
 ];
 
+const glowFilters: Record<string, string> = {
+  "North America": "drop-shadow(0 0 6px hsl(325, 80%, 55%)) drop-shadow(0 0 14px hsl(325, 80%, 55%))",
+  "Europe": "drop-shadow(0 0 6px hsl(188, 80%, 50%)) drop-shadow(0 0 14px hsl(188, 80%, 50%))",
+  "Asia Pacific": "drop-shadow(0 0 6px hsl(142, 70%, 45%)) drop-shadow(0 0 14px hsl(142, 70%, 45%))",
+  "Rest of World": "drop-shadow(0 0 6px hsl(38, 90%, 55%)) drop-shadow(0 0 14px hsl(38, 90%, 55%))",
+};
+
 const GlobalInfrastructureMap = memo(() => {
   return (
-    <div className="relative">
+    <div
+      className="relative w-full rounded-xl overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, hsl(230, 45%, 12%), hsl(230, 45%, 20%), hsl(230, 40%, 16%))",
+      }}
+    >
       <ComposableMap
         projectionConfig={{ scale: 147, center: [0, 10] }}
         className="w-full h-auto"
@@ -73,12 +85,12 @@ const GlobalInfrastructureMap = memo(() => {
               <Geography
                 key={geo.rpiKey || geo.properties?.name}
                 geography={geo}
-                fill="hsl(var(--muted))"
-                stroke="hsl(var(--border))"
+                fill="hsl(230, 45%, 26%)"
+                stroke="hsl(230, 40%, 33%)"
                 strokeWidth={0.5}
                 style={{
                   default: { outline: "none" },
-                  hover: { outline: "none", fill: "hsl(var(--muted-foreground) / 0.2)" },
+                  hover: { outline: "none", fill: "hsl(230, 45%, 30%)" },
                   pressed: { outline: "none" },
                 }}
               />
@@ -88,11 +100,12 @@ const GlobalInfrastructureMap = memo(() => {
         {popLocations.map((pop, i) => (
           <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
             <motion.circle
-              r={4}
+              r={5}
               fill={regionColors[pop.region]}
-              opacity={0.9}
+              opacity={0.85}
+              style={{ filter: glowFilters[pop.region] }}
               initial={{ scale: 0 }}
-              animate={{ scale: [1, 1.4, 1] }}
+              animate={{ scale: [1, 1.5, 1] }}
               transition={{
                 delay: i * 0.05,
                 duration: 2,
@@ -100,7 +113,7 @@ const GlobalInfrastructureMap = memo(() => {
                 repeatDelay: 3,
               }}
             />
-            <circle r={2} fill={regionColors[pop.region]} />
+            <circle r={2.5} fill="white" opacity={0.9} />
           </Marker>
         ))}
       </ComposableMap>
