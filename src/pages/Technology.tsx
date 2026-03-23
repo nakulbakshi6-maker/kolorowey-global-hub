@@ -18,6 +18,7 @@ import {
   FileText,
   Code2,
 } from "lucide-react";
+import GlobalInfrastructureMap from "@/components/GlobalInfrastructureMap";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
