@@ -88,11 +88,11 @@ const GlobalInfrastructureMap = memo(() => {
         {popLocations.map((pop, i) => (
           <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
             <motion.circle
-              r={3}
-              fill="hsl(var(--accent))"
+              r={4}
+              fill={regionColors[pop.region]}
               opacity={0.9}
               initial={{ scale: 0 }}
-              animate={{ scale: [1, 1.5, 1] }}
+              animate={{ scale: [1, 1.4, 1] }}
               transition={{
                 delay: i * 0.05,
                 duration: 2,
@@ -100,7 +100,7 @@ const GlobalInfrastructureMap = memo(() => {
                 repeatDelay: 3,
               }}
             />
-            <circle r={1.5} fill="hsl(var(--accent))" />
+            <circle r={2} fill={regionColors[pop.region]} />
           </Marker>
         ))}
       </ComposableMap>
