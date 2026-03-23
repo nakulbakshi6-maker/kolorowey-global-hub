@@ -75,13 +75,10 @@ const GlobalInfrastructureMap = memo(() => {
         height={420}
       >
         <defs>
-          {Object.entries(regionColors).map(([region, color]) => (
-            <radialGradient key={region} id={`glow-${region.replace(/\s/g, "")}`}>
-              <stop offset="0%" stopColor={color} stopOpacity="1" />
-              <stop offset="40%" stopColor={color} stopOpacity="0.6" />
-              <stop offset="100%" stopColor={color} stopOpacity="0" />
-            </radialGradient>
-          ))}
+          <filter id="neon-glow">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
         </defs>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
@@ -103,29 +100,30 @@ const GlobalInfrastructureMap = memo(() => {
         </Geographies>
         {popLocations.map((pop, i) => (
           <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
-            {/* Outer glow ring */}
+            {/* Ping ripple */}
             <motion.circle
-              r={14}
-              fill={`url(#glow-${pop.region.replace(/\s/g, "")})`}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.7, 0.3] }}
+              r={3}
+              fill="none"
+              stroke={regionColors[pop.region]}
+              strokeWidth={1.5}
+              initial={{ r: 3, opacity: 1 }}
+              animate={{ r: 18, opacity: 0 }}
               transition={{
-                delay: i * 0.06,
-                duration: 3,
+                delay: i * 0.08,
+                duration: 2.5,
                 repeat: Infinity,
-                ease: "easeInOut",
+                repeatDelay: 1.5,
+                ease: "easeOut",
               }}
             />
-            {/* Main dot */}
-            <motion.circle
-              r={4}
+            {/* Solid dot with SVG glow filter */}
+            <circle
+              r={4.5}
               fill={regionColors[pop.region]}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: i * 0.04, type: "spring", stiffness: 200 }}
+              filter="url(#neon-glow)"
             />
-            {/* Bright center */}
-            <circle r={1.5} fill="white" opacity={0.95} />
+            {/* Sharp center */}
+            <circle r={2} fill="white" opacity={0.85} />
           </Marker>
         ))}
       </ComposableMap>
