@@ -98,34 +98,59 @@ const GlobalInfrastructureMap = memo(() => {
             ))
           }
         </Geographies>
-        {popLocations.map((pop, i) => (
-          <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
-            {/* Ping ripple */}
-            <motion.circle
-              r={3}
-              fill="none"
-              stroke={regionColors[pop.region]}
-              strokeWidth={1.5}
-              initial={{ r: 3, opacity: 1 }}
-              animate={{ r: 18, opacity: 0 }}
-              transition={{
-                delay: i * 0.08,
-                duration: 2.5,
-                repeat: Infinity,
-                repeatDelay: 1.5,
-                ease: "easeOut",
-              }}
-            />
-            {/* Solid dot with SVG glow filter */}
-            <circle
-              r={4.5}
-              fill={regionColors[pop.region]}
-              filter="url(#neon-glow)"
-            />
-            {/* Sharp center */}
-            <circle r={2} fill="white" opacity={0.85} />
-          </Marker>
-        ))}
+        {popLocations.map((pop) => {
+          const regionDelay: Record<string, number> = {
+            "North America": 0,
+            "Europe": 1,
+            "Asia Pacific": 2,
+            "Rest of World": 3,
+          };
+          const delay = regionDelay[pop.region] ?? 0;
+          return (
+            <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
+              {/* Ping ripple - synced per continent */}
+              <motion.circle
+                r={3}
+                fill="none"
+                stroke={regionColors[pop.region]}
+                strokeWidth={1.5}
+                initial={{ r: 3, opacity: 0.9 }}
+                animate={{ r: 20, opacity: 0 }}
+                transition={{
+                  delay,
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 6,
+                  ease: "easeOut",
+                }}
+              />
+              {/* Second ripple wave offset */}
+              <motion.circle
+                r={3}
+                fill="none"
+                stroke={regionColors[pop.region]}
+                strokeWidth={1}
+                initial={{ r: 3, opacity: 0.6 }}
+                animate={{ r: 14, opacity: 0 }}
+                transition={{
+                  delay: delay + 0.3,
+                  duration: 1.8,
+                  repeat: Infinity,
+                  repeatDelay: 6.2,
+                  ease: "easeOut",
+                }}
+              />
+              {/* Solid dot with glow */}
+              <circle
+                r={4.5}
+                fill={regionColors[pop.region]}
+                filter="url(#neon-glow)"
+              />
+              {/* Sharp center */}
+              <circle r={2} fill="white" opacity={0.85} />
+            </Marker>
+          );
+        })}
       </ComposableMap>
     </div>
   );
