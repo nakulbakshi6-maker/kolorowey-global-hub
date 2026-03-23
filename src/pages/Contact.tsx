@@ -204,17 +204,6 @@ const Contact = () => {
                     Your message has been received. Our team will review your inquiry and get back to you within 24
                     hours with next steps.
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    In the meantime, feel free to explore our{" "}
-                    <a href="/technology" className="text-accent hover:underline">
-                      technology
-                    </a>{" "}
-                    or{" "}
-                    <a href="/resources" className="text-accent hover:underline">
-                      resources
-                    </a>
-                    .
-                  </p>
                 </motion.div>
               ) : (
                 <form
