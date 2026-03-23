@@ -59,13 +59,6 @@ const popLocations = [
   { name: "Santiago", coordinates: [-70.6693, -33.4489], region: "Rest of World" },
 ];
 
-const glowFilters: Record<string, string> = {
-  "North America": "drop-shadow(0 0 6px hsl(325, 80%, 55%)) drop-shadow(0 0 14px hsl(325, 80%, 55%))",
-  "Europe": "drop-shadow(0 0 6px hsl(188, 80%, 50%)) drop-shadow(0 0 14px hsl(188, 80%, 50%))",
-  "Asia Pacific": "drop-shadow(0 0 6px hsl(142, 70%, 45%)) drop-shadow(0 0 14px hsl(142, 70%, 45%))",
-  "Rest of World": "drop-shadow(0 0 6px hsl(38, 90%, 55%)) drop-shadow(0 0 14px hsl(38, 90%, 55%))",
-};
-
 const GlobalInfrastructureMap = memo(() => {
   return (
     <div
@@ -81,6 +74,15 @@ const GlobalInfrastructureMap = memo(() => {
         width={900}
         height={420}
       >
+        <defs>
+          {Object.entries(regionColors).map(([region, color]) => (
+            <radialGradient key={region} id={`glow-${region.replace(/\s/g, "")}`}>
+              <stop offset="0%" stopColor={color} stopOpacity="1" />
+              <stop offset="40%" stopColor={color} stopOpacity="0.6" />
+              <stop offset="100%" stopColor={color} stopOpacity="0" />
+            </radialGradient>
+          ))}
+        </defs>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => (
@@ -101,21 +103,29 @@ const GlobalInfrastructureMap = memo(() => {
         </Geographies>
         {popLocations.map((pop, i) => (
           <Marker key={pop.name} coordinates={pop.coordinates as [number, number]}>
+            {/* Outer glow ring */}
             <motion.circle
-              r={5}
-              fill={regionColors[pop.region]}
-              opacity={0.85}
-              style={{ filter: glowFilters[pop.region] }}
-              initial={{ scale: 0 }}
-              animate={{ scale: [1, 1.5, 1] }}
+              r={14}
+              fill={`url(#glow-${pop.region.replace(/\s/g, "")})`}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.7, 0.3] }}
               transition={{
-                delay: i * 0.05,
-                duration: 2,
+                delay: i * 0.06,
+                duration: 3,
                 repeat: Infinity,
-                repeatDelay: 3,
+                ease: "easeInOut",
               }}
             />
-            <circle r={2.5} fill="white" opacity={0.9} />
+            {/* Main dot */}
+            <motion.circle
+              r={4}
+              fill={regionColors[pop.region]}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.04, type: "spring", stiffness: 200 }}
+            />
+            {/* Bright center */}
+            <circle r={1.5} fill="white" opacity={0.95} />
           </Marker>
         ))}
       </ComposableMap>
