@@ -75,9 +75,11 @@ const GlobalInfrastructureMap = memo(() => {
       }}
     >
       <ComposableMap
-        projectionConfig={{ scale: 147, center: [0, 10] }}
-        className="w-full h-auto"
-        style={{ aspectRatio: "2/1" }}
+        projectionConfig={{ scale: 170, center: [0, 5] }}
+        className="w-full h-full"
+        style={{ width: "100%", height: "100%" }}
+        width={900}
+        height={420}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
