@@ -144,43 +144,46 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <motion.div
-          className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="pt-8 border-t border-white/10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <motion.span
-              className="text-xs font-bold tracking-[0.2em] uppercase bg-clip-text text-transparent"
+              className="text-xs font-bold tracking-[0.2em] uppercase bg-clip-text text-transparent text-center sm:text-left"
               style={{ backgroundImage: "var(--gradient-brand)" }}
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               AdTech Unfragmented
             </motion.span>
-            <span className="text-white/20">•</span>
-            <p className="text-sm text-white/30">© 2026 Kolorowey</p>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link
-              to="/privacy"
-              className="text-sm text-white/30 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-            >
-              Privacy
-            </Link>
-            <Link
-              to="/terms"
-              className="text-sm text-white/30 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-            >
-              Terms
-            </Link>
-            <Link
-              to="/dpa"
-              className="text-sm text-white/30 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-            >
-              DPA
-            </Link>
+            
+            <div className="flex items-center gap-5">
+              <Link
+                to="/privacy"
+                className="text-xs text-white/30 hover:text-white transition-all duration-300"
+              >
+                Privacy
+              </Link>
+              <span className="text-white/15">|</span>
+              <Link
+                to="/terms"
+                className="text-xs text-white/30 hover:text-white transition-all duration-300"
+              >
+                Terms
+              </Link>
+              <span className="text-white/15">|</span>
+              <Link
+                to="/dpa"
+                className="text-xs text-white/30 hover:text-white transition-all duration-300"
+              >
+                DPA
+              </Link>
+            </div>
+            
+            <p className="text-xs text-white/25">© 2026 Kolorowey</p>
           </div>
         </motion.div>
       </div>
