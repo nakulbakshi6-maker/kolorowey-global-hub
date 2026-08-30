@@ -13,7 +13,7 @@ const platformHighlights = [
 ];
 
 const keyMetrics = [
-  { icon: Target, value: "50B+", label: "Daily Impressions", description: "Massive scale across all channels with precision targeting capabilities" },
+  { icon: Target, value: "1B+", label: "Monthly Impressions", description: "Massive scale across all channels with precision targeting capabilities" },
   { icon: TrendingUp, value: "2.5B+", label: "Daily Reach", description: "Connect with audiences worldwide through our extensive network" },
   { icon: Lock, value: "100%", label: "Privacy Compliant", description: "GDPR, CCPA, and global privacy regulation ready out of the box" },
   { icon: Cpu, value: "<10ms", label: "Response Time", description: "Industry-leading latency for real-time bidding and ad delivery" },
