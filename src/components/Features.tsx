@@ -20,7 +20,7 @@ const features = [
   {
     icon: Zap,
     title: "Real-Time Bidding",
-    description: "Sub-10ms latency infrastructure handling 50B+ daily requests.",
+    description: "Sub-10ms latency infrastructure handling 1B+ monthly requests.",
     number: "03",
     color: "from-yellow-400 to-orange-500",
   },

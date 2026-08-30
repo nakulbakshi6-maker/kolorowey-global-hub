@@ -109,7 +109,7 @@ const Publishers = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Publisher Solutions - Kolorowey | Maximize Ad Revenue"
-        description="Complete monetization solutions for publishers. SSP, video players, header bidding, CTV & DOOH monetization. 50B+ daily impressions, 180+ demand partners, 99.9% fill rate."
+        description="Complete monetization solutions for publishers. SSP, video players, header bidding, CTV & DOOH monetization. 1B+ monthly impressions, 180+ demand partners, 99.9% fill rate."
         canonical="https://kolorowey.com/publishers"
       />
       <Header />
@@ -153,7 +153,7 @@ const Publishers = () => {
               {/* Hero Stats */}
               <div className="flex flex-wrap justify-center gap-8 mb-12">
                 {[
-                  { value: "50B+", label: "Daily Impressions" },
+                  { value: "1B+", label: "Monthly Impressions" },
                   { value: "180+", label: "Demand Partners" },
                   { value: "99.9%", label: "Fill Rate" },
                   { value: "<10ms", label: "Latency" },
@@ -375,7 +375,7 @@ const Publishers = () => {
               className="text-center"
             >
               <p className="text-muted-foreground text-sm">
-                And many more — powering <span className="text-accent font-bold">50B+ daily impressions</span> worldwide
+                And many more — powering <span className="text-accent font-bold">1B+ monthly impressions</span> worldwide
               </p>
             </motion.div>
           </div>

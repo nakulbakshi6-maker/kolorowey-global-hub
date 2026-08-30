@@ -13,7 +13,7 @@ const solutions = [
     stats: { value: "45%", label: "Average revenue lift" },
     gradient: "from-accent to-pink-400",
     metrics: [
-      { value: "50B+", label: "Daily impressions" },
+      { value: "1B+", label: "Monthly impressions" },
       { value: "180+", label: "Demand partners" },
       { value: "200+", label: "SSP integrations" },
       { value: "99.9%", label: "Fill rate" },

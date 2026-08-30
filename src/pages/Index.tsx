@@ -11,7 +11,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Kolorowey - AdTech Unfragmented | Premium Programmatic Platform"
-        description="Kolorowey is the unified infrastructure for programmatic advertising. Connect publishers, advertisers, and platforms through a single enterprise-grade platform with sub-10ms latency and 50B+ daily impressions."
+        description="Kolorowey is the unified infrastructure for programmatic advertising. Connect publishers, advertisers, and platforms through a single enterprise-grade platform with sub-10ms latency and 1B+ monthly impressions."
         canonical="https://kolorowey.com/"
       />
       <Header />
