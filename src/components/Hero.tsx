@@ -238,9 +238,16 @@ const Hero = () => {
           transition={{ duration: 0.8, type: "spring", stiffness: 150 }}
           className="mb-10 md:mb-12 flex justify-center"
         >
-          <span className="shimmer-badge">
-            AdTech Unfragmented
-          </span>
+          {festiveOn ? (
+            <span className="festive-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold">
+              <DiyaIcon className="w-4 h-4" />
+              Festive Season 2026 • Q4 Ready
+            </span>
+          ) : (
+            <span className="shimmer-badge">
+              AdTech Unfragmented
+            </span>
+          )}
         </motion.div>
 
         {/* Headline */}
@@ -249,7 +256,7 @@ const Hero = () => {
             <div key={text} className="overflow-hidden">
               <motion.h1 
                 className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1] tracking-tight ${
-                  index === 1 ? 'gradient-text' : ''
+                  index === 1 ? (festiveOn ? 'festive-gradient-text' : 'gradient-text') : ''
                 }`}
                 initial={{ y: 120, opacity: 0, rotateX: -20 }}
                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
