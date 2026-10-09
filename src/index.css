@@ -383,3 +383,14 @@ html.festive body { background-image: radial-gradient(ellipse at top, hsl(var(--
 html.festive .bg-card { box-shadow: 0 0 0 1px hsl(var(--festive-gold) / 0.25), 0 8px 30px -12px hsl(var(--festive-gold) / 0.35); }
 html.festive button.bg-primary, html.festive .bg-primary { box-shadow: 0 0 22px -4px hsl(var(--festive-gold) / 0.6); }
 html.festive h1 { text-shadow: 0 0 40px hsl(var(--festive-gold) / 0.25); }
+html.festive .festive-gradient-text {
+  background: linear-gradient(90deg, hsl(var(--festive-gold)) 0%, hsl(var(--festive-marigold)) 35%, hsl(var(--accent)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html.festive .festive-pill {
+  background: linear-gradient(90deg, hsl(var(--festive-gold)) 0%, hsl(var(--accent)) 100%);
+  color: white;
+  box-shadow: 0 4px 20px -4px hsl(var(--festive-gold) / 0.5);
+}

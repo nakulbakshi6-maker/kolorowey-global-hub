@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useFestive } from "@/lib/festive";
+import { DiyaIcon } from "@/components/Festive";
 
 const Hero = () => {
+  const { on: festiveOn } = useFestive();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -221,6 +224,50 @@ const Hero = () => {
             background: 'radial-gradient(ellipse at center, transparent 0%, hsl(var(--background) / 0.3) 70%, hsl(var(--background) / 0.6) 100%)',
           }}
         />
+
+        {/* Festive rangoli corner patterns + twinkling gold dots */}
+        {festiveOn && (
+          <>
+            {["bottom-0 left-0", "bottom-0 right-0 -scale-x-100"].map((pos) => (
+              <svg key={pos} viewBox="0 0 220 220" className={`absolute ${pos} w-56 h-56 md:w-72 md:h-72 opacity-50 pointer-events-none`}>
+                <g stroke="hsl(var(--festive-gold))" fill="none" strokeWidth="1">
+                  {[40, 70, 100, 130, 160, 190].map((r) => (
+                    <path key={r} d={`M 0 ${r} A ${r} ${r} 0 0 1 ${r} 0`} />
+                  ))}
+                  {[10, 25, 40, 55, 70, 80].map((a) => (
+                    <line key={a} x1="0" y1="0" x2={200 * Math.cos((a * Math.PI) / 180)} y2={200 * Math.sin((a * Math.PI) / 180)} />
+                  ))}
+                  {[50, 110, 170].map((r) =>
+                    [15, 45, 75].map((a) => (
+                      <circle key={`${r}-${a}`} cx={r * Math.cos((a * Math.PI) / 180)} cy={r * Math.sin((a * Math.PI) / 180)} r="3" fill="hsl(var(--festive-gold))" stroke="none" opacity="0.7" />
+                    ))
+                  )}
+                </g>
+              </svg>
+            ))}
+            {Array.from({ length: 16 }, (_, i) => ({
+              left: (i * 61) % 100,
+              top: (i * 37) % 90,
+              size: 3 + (i % 3) * 2,
+              delay: (i % 5) * 0.7,
+            })).map((d, i) => (
+              <motion.div
+                key={`sparkle-${i}`}
+                className="absolute rounded-full pointer-events-none"
+                style={{
+                  left: `${d.left}%`,
+                  top: `${d.top}%`,
+                  width: d.size,
+                  height: d.size,
+                  background: 'hsl(var(--festive-gold))',
+                  boxShadow: '0 0 8px hsl(var(--festive-gold) / 0.8)',
+                }}
+                animate={{ opacity: [0.15, 0.9, 0.15], scale: [1, 1.6, 1] }}
+                transition={{ duration: 2.4, repeat: Infinity, delay: d.delay, ease: "easeInOut" }}
+              />
+            ))}
+          </>
+        )}
       </motion.div>
 
       {/* === MAIN CONTENT === */}
@@ -235,9 +282,16 @@ const Hero = () => {
           transition={{ duration: 0.8, type: "spring", stiffness: 150 }}
           className="mb-10 md:mb-12 flex justify-center"
         >
-          <span className="shimmer-badge">
-            AdTech Unfragmented
-          </span>
+          {festiveOn ? (
+            <span className="festive-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold">
+              <DiyaIcon className="w-4 h-4" />
+              Festive Season 2026 • Q4 Ready
+            </span>
+          ) : (
+            <span className="shimmer-badge">
+              AdTech Unfragmented
+            </span>
+          )}
         </motion.div>
 
         {/* Headline */}
@@ -246,7 +300,7 @@ const Hero = () => {
             <div key={text} className="overflow-hidden">
               <motion.h1 
                 className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1] tracking-tight ${
-                  index === 1 ? 'gradient-text' : ''
+                  index === 1 ? (festiveOn ? 'festive-gradient-text' : 'gradient-text') : ''
                 }`}
                 initial={{ y: 120, opacity: 0, rotateX: -20 }}
                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
