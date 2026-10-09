@@ -386,7 +386,7 @@
 }
 
 /* Festive season ambience (auto-off after season end) */
-html.festive { --background: var(--festive-cream); }
+html.festive { --background: var(--festive-cream); --secondary: 45 45% 96%; }
 html.festive body { background-image: var(--festive-paper); }
 html.festive .bg-card { box-shadow: 0 0 0 1px hsl(var(--festive-gold) / 0.25), 0 8px 30px -12px hsl(var(--festive-gold) / 0.35); }
 html.festive button.bg-primary { box-shadow: var(--shadow-festive-button); }
@@ -434,7 +434,7 @@ html.festive .festive-pill {
 .festive-hero { background-image: var(--festive-paper); min-height: 0; padding-top: 158px; padding-bottom: 52px; }
 .festive-hero .hero-badge { margin-bottom: 42px; }
 .festive-hero .hero-headline { margin-bottom: 42px; }
-.festive-hero h1 { font-size: 80px; line-height: 1.1; letter-spacing: 0; }
+.festive-hero h1 { font-size: 80px; line-height: 1.1; letter-spacing: 0; width: fit-content; margin-inline: auto; }
 .festive-hero .hero-description { font-size: 21px; line-height: 1.35; max-width: 620px; margin-bottom: 52px; }
 .festive-hero .hero-cta { margin-bottom: 74px; }
 .festive-hero .hero-cta button { height: 48px; padding: 0 30px; font-size: 14px; }
