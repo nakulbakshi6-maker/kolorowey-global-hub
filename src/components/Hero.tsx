@@ -3,7 +3,7 @@ import { ArrowRight, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-reac
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { useFestive } from "@/lib/festive";
-import { DiyaIcon } from "@/components/Festive";
+import { FestiveRangoli } from "@/components/Festive";
 
 const Hero = () => {
   const { on: festiveOn } = useFestive();
@@ -68,11 +68,12 @@ const Hero = () => {
   const countriesCounter = useAnimatedCounter(50, 1200, 1800);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 md:pt-40 pb-20">
+    <section ref={containerRef} className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 md:pt-40 pb-20 ${festiveOn ? "festive-hero" : ""}`}>
+      {festiveOn && <FestiveRangoli />}
       
       {/* === CURSOR GLOW EFFECT === */}
       <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full pointer-events-none z-10"
+        className={`absolute w-[600px] h-[600px] rounded-full pointer-events-none z-10 ${festiveOn ? "hidden" : ""}`}
         style={{
           x: smoothMouseX,
           y: smoothMouseY,
@@ -84,10 +85,10 @@ const Hero = () => {
       />
 
       {/* === ELEGANT BACKGROUND ANIMATIONS === */}
-      <motion.div className="absolute inset-0 overflow-hidden" style={{ y }}>
+      <motion.div className={`absolute inset-0 overflow-hidden ${festiveOn ? "festive-lights" : ""}`} style={festiveOn ? undefined : { y }}>
         
         {/* Large soft gradient blobs */}
-        <motion.div 
+        <motion.div
           className="absolute -top-1/4 -left-1/4 w-[800px] h-[800px] rounded-full opacity-40"
           style={{
             background: 'radial-gradient(circle, hsl(320 85% 85% / 0.6) 0%, hsl(320 85% 90% / 0.3) 40%, transparent 70%)',
@@ -253,14 +254,12 @@ const Hero = () => {
             })).map((d, i) => (
               <motion.div
                 key={`sparkle-${i}`}
-                className="absolute rounded-full pointer-events-none"
+                 className="festive-light absolute rounded-full pointer-events-none"
                 style={{
                   left: `${d.left}%`,
                   top: `${d.top}%`,
                   width: d.size,
                   height: d.size,
-                  background: 'hsl(var(--festive-gold))',
-                  boxShadow: '0 0 8px hsl(var(--festive-gold) / 0.8)',
                 }}
                 animate={{ opacity: [0.15, 0.9, 0.15], scale: [1, 1.6, 1] }}
                 transition={{ duration: 2.4, repeat: Infinity, delay: d.delay, ease: "easeInOut" }}
@@ -272,7 +271,7 @@ const Hero = () => {
 
       {/* === MAIN CONTENT === */}
       <motion.div 
-        className="relative z-10 container mx-auto px-6 text-center max-w-5xl"
+        className="hero-content relative z-10 container mx-auto px-6 text-center max-w-5xl"
         style={{ opacity }}
       >
         {/* Badge */}
@@ -280,11 +279,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, type: "spring", stiffness: 150 }}
-          className="mb-10 md:mb-12 flex justify-center"
+          className="hero-badge mb-10 md:mb-12 flex justify-center"
         >
           {festiveOn ? (
             <span className="festive-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold">
-              <DiyaIcon className="w-4 h-4" />
               Festive Season 2026 • Q4 Ready
             </span>
           ) : (
@@ -295,7 +293,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Headline */}
-        <div className="mb-10 md:mb-14 space-y-2 md:space-y-3">
+        <div className="hero-headline mb-10 md:mb-14 space-y-2 md:space-y-3">
           {["The unified", "infrastructure", "for AdTech"].map((text, index) => (
             <div key={text} className="overflow-hidden">
               <motion.h1 
@@ -318,7 +316,7 @@ const Hero = () => {
 
         {/* Subheadline */}
         <motion.p 
-          className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 md:mb-16 leading-relaxed"
+          className="hero-description text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 md:mb-16 leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
@@ -332,7 +330,7 @@ const Hero = () => {
 
         {/* CTA */}
         <motion.div 
-          className="flex justify-center mb-16 md:mb-20"
+          className="hero-cta flex justify-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
@@ -465,7 +463,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Floating decorative elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden ${festiveOn ? "hidden" : ""}`}>
           {/* Orbiting dots */}
           {[0, 1, 2].map((i) => (
             <motion.div
