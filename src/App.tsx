@@ -15,6 +15,7 @@ import Terms from "./pages/Terms";
 import DPA from "./pages/DPA";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
+import { FestiveAmbience, FestivePopup } from "./components/Festive";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,8 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <CookieConsent />
+        <FestiveAmbience />
+        <FestivePopup />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

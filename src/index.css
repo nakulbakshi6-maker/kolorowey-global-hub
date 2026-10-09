@@ -12,6 +12,11 @@
 
 @layer base {
   :root {
+    --festive-gold: 40 92% 56%;
+    --festive-gold-deep: 30 85% 42%;
+    --festive-rose: 350 75% 60%;
+    --festive-marigold: 32 98% 55%;
+    --festive-flame: 22 100% 55%;
     /* Clean white base */
     --background: 0 0% 100%;
     --foreground: 230 35% 18%;
@@ -372,3 +377,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(245 70% 55%);
 }
+
+/* Festive season ambience (auto-off after season end) */
+html.festive body { background-image: radial-gradient(ellipse at top, hsl(var(--festive-gold) / 0.10), transparent 60%); }
+html.festive .bg-card { box-shadow: 0 0 0 1px hsl(var(--festive-gold) / 0.25), 0 8px 30px -12px hsl(var(--festive-gold) / 0.35); }
+html.festive button.bg-primary, html.festive .bg-primary { box-shadow: 0 0 22px -4px hsl(var(--festive-gold) / 0.6); }
+html.festive h1 { text-shadow: 0 0 40px hsl(var(--festive-gold) / 0.25); }

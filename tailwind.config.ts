@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       colors: {
+        festive: { gold: 'hsl(var(--festive-gold))', 'gold-deep': 'hsl(var(--festive-gold-deep))', rose: 'hsl(var(--festive-rose))', marigold: 'hsl(var(--festive-marigold))' },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

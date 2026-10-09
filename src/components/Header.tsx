@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { FestiveToggle } from "@/components/Festive";
 import koloroweyLogo from "@/assets/kolorowey-logo.png";
 
 const Header = () => {
@@ -93,6 +94,7 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            <FestiveToggle />
             <Button
               className="rounded-full px-6 font-semibold group"
               onClick={() => (window.location.href = "/contact")}
@@ -103,12 +105,15 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center gap-2">
+          <FestiveToggle compact />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-3 text-foreground rounded-full hover:bg-secondary transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
