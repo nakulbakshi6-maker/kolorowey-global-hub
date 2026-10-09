@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Globe, Clock, TrendingUp, Calendar } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useFestive } from "@/lib/festive";
+import { DiyaIcon } from "@/components/Festive";
 
 const Hero = () => {
+  const { on: festiveOn } = useFestive();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
