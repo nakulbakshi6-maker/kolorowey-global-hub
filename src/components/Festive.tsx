@@ -90,12 +90,14 @@ export const FestiveRangoli = () => (
     {["left", "right"].map((side) => (
       <svg key={side} viewBox="0 0 300 300" className={`festive-rangoli-${side}`} fill="none">
         <g stroke="currentColor" strokeWidth="1.1">
-          {[85, 140, 205, 270].map((r) => <circle key={r} cx="0" cy="300" r={r} />)}
-          {[0, 18, 36, 54, 72, 90].map((angle) => (
-            <path key={angle} d="M0 300 Q-28 140 0 18 Q86 140 0 300Z" transform={`rotate(${angle} 0 300)`} />
+          {[-18, 6, 30, 54, 78].map((angle) => (
+            <path key={angle} d="M0 300 Q-46 144 0 10 Q146 142 0 300Z" transform={`rotate(${angle} 0 300)`} />
           ))}
-          {[12, 30, 48, 66, 84].map((angle) => (
-            <path key={angle} d="M0 300 Q-12 240 0 196 Q34 240 0 300Z" transform={`rotate(${angle} 0 300)`} />
+          {[-6, 18, 42, 66, 90].map((angle) => (
+            <path key={angle} d="M0 300 Q-30 186 0 94 Q110 186 0 300Z" transform={`rotate(${angle} 0 300)`} />
+          ))}
+          {[0, 24, 48, 72].map((angle) => (
+            <path key={angle} d="M0 300 Q-17 244 0 190 Q60 244 0 300Z" transform={`rotate(${angle} 0 300)`} />
           ))}
         </g>
       </svg>
@@ -106,15 +108,15 @@ export const FestiveRangoli = () => (
 export const FestiveAmbience = () => {
   const { on } = useFestive();
   const reducedMotion = useReducedMotion();
-  const items = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
-    left: i % 2 === 0 ? Math.random() * 18 : 82 + Math.random() * 18, size: 8 + Math.random() * 10, dur: 18 + Math.random() * 10,
+  const items = useMemo(() => Array.from({ length: 14 }, (_, i) => ({
+    left: i % 2 === 0 ? Math.random() * 22 : 78 + Math.random() * 22, size: 12 + Math.random() * 10, dur: 18 + Math.random() * 10,
     delay: -Math.random() * 20, drift: (Math.random() - 0.5) * 160, kind: i % 3,
   })), []);
   if (!on) return null;
   return (
     <div className="festive-ambience pointer-events-none fixed inset-0 z-[40] overflow-hidden" aria-hidden>
       {!reducedMotion && items.map((p, i) => (
-        <motion.div key={i} className="absolute top-0" style={{ left: `${p.left}%`, width: p.size, height: p.size, opacity: 0.4 }}
+        <motion.div key={i} className="absolute top-0" style={{ left: `${p.left}%`, width: p.size, height: p.size, opacity: 0.6 }}
           initial={{ y: "-10vh" }}
           animate={{ y: "110vh", x: [0, p.drift, 0], rotate: [0, 360] }}
           transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: "linear" }}>
