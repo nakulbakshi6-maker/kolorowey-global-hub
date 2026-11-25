@@ -12,6 +12,7 @@ const footerLinks = {
     { label: "Publishers", href: "/publishers" },
     { label: "Advertisers", href: "/advertisers" },
   ],
+  Company: [{ label: "Careers", href: "/careers" }],
 };
 
 const Footer = () => {
@@ -66,7 +67,7 @@ const Footer = () => {
         </motion.div>
 
         {/* Main footer content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 mb-12">
           {/* Navigation Columns */}
           {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
             <motion.div

@@ -1,0 +1,3 @@
+- [x] Define all three role listings and full details in one shared source.
+- [ ] Build the Careers overview and individual role pages; connect navigation, footer, and sitemap.
+- [ ] Verify role pages, email application links, tests, and responsive layout.

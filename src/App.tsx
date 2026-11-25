@@ -13,6 +13,8 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import DPA from "./pages/DPA";
+import Careers from "./pages/Careers";
+import CareerRole from "./pages/CareerRole";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
 import { FestiveAmbience, FestivePopup } from "./components/Festive";
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/dpa" element={<DPA />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/:slug" element={<CareerRole />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
